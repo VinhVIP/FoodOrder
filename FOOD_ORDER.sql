@@ -206,3 +206,6 @@ ON DELETE CASCADE;
 -- 
 INSERT INTO rated (id_food, id_account, star, comment)
 VALUES (1, 2, 5, N'Đồ ăn ngon');
+
+
+-- vinh
