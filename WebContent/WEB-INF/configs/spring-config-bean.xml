@@ -14,19 +14,29 @@
 			http://www.springframework.org/schema/mvc 
 			http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+	<!-- Đổi đường dẫn theo từng máy -->
+	<bean id="uploadfile" class="food.bean.UploadFile">
+		<property name="basePath"
+			value="D:\Programs\jee-2020-06\eclipse\Food\WebContent\resources\img" />
+	</bean>
+
 	<bean id="categoryDAO" class="food.dao.impl.CategoryDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
+
 	<bean id="foodDAO" class="food.dao.impl.FoodDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
+
 	<bean id="accountDAO" class="food.dao.impl.AccountDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
+
 	<bean id="ratedDAO" class="food.dao.impl.RatedDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="cartDAO" class="food.dao.impl.CartDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 

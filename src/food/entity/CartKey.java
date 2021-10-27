@@ -16,6 +16,16 @@ public class CartKey implements Serializable{
 	@Column(name="id_food")
 	private int foodId;
 	
+	public CartKey() {
+		super();
+	}
+
+	public CartKey(int accountId, int foodId) {
+		super();
+		this.accountId = accountId;
+		this.foodId = foodId;
+	}
+	
 
 	public int getAccountId() {
 		return accountId;

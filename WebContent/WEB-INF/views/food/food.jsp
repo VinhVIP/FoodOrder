@@ -72,16 +72,26 @@
 				</div>
 
 				<c:choose>
-					<c:when test="${food.type == 0}">
-						<a href="#"><button href="#" type="button"
-								class="btn btn-primary mv-10">
-								<i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ
-							</button></a>
-						<a><button href="#" type="button" class="btn btn-danger ml-10">
-								<i class="bi bi-coin"></i> Đặt ngay
-							</button></a>
+					<c:when test="${food.type == 0 && addedToCart == false}">
+						<a href="food/cart.htm?id_food=${food.foodId}" type="button"
+							class="btn btn-primary mv-10"> <i
+							class="bi bi-cart-plus-fill"></i> Thêm vào giỏ
+						</a>
+						<a href="#" type="button" class="btn btn-danger ml-10"> <i
+							class="bi bi-coin"></i> Đặt ngay
+						</a>
+					</c:when>
+					<c:when test="${addedToCart == true}">
+						<button type="button"
+							class="btn btn-primary mv-10" disabled> <i
+							class="bi bi-cart-plus-fill"></i> Đã có trong giỏ
+						</button>
+						<a href="#" type="button" class="btn btn-danger ml-10"> <i
+							class="bi bi-coin"></i> Đặt ngay
+						</a>
 					</c:when>
 					<c:otherwise>
+						<!-- Disabled -->
 						<a><button href="#" type="button"
 								class="btn btn-primary mv-10" disabled>
 								<i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ
@@ -220,43 +230,85 @@
 		</div>
 
 		<!--  Bình luận -->
-		<p style="font-size: 22px">
-			<b>Các đánh giá</b> <a class="ml-10"
-				href="food/rateds.htm?id_food=${food.foodId}"
+		<c:choose>
+			<c:when test="${food.rateds.size() == 0}">
+				<p style="font-size: 22px">
+					<i>Món ăn này chưa có đánh giá nào!</i>
+				</p>
+			</c:when>
+			<c:otherwise>
+				<div>
+					<p class="heading">
+						<b>Các đánh giá</b> <a class="ml-10"
+							href="food/rateds.htm?id_food=${food.foodId}"
+							style="font-size: 18px"><i>Xem thêm </i><i
+							class="bi bi-arrow-right"></i></a>
+					</p>
+					<div class="col">
+						<c:forEach items="${food.rateds}" var="rated" begin="0" end="4">
+							<div class="row">
+								<div class="col-1 mr-10">
+									<img class="rounded-circle z-depth-2" alt="50x50" width="60px"
+										height="60px" src="${rated.account.avatar}"
+										data-holder-rendered="true">
+								</div>
+								<div class="col-8">
+									<b>${rated.account.name}</b><br> <span
+										class="small-ratings"> <c:forEach begin="1" end="5"
+											varStatus="index">
+											<c:choose>
+												<c:when test="${index.count <= rated.star}">
+													<i class="fa fa-star rating-color"></i>
+												</c:when>
+												<c:otherwise>
+													<i class="fa fa-star"></i>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</span> <span class="mh-10">•</span> <span class="time"><fmt:formatDate
+											pattern="dd/MM/yyyy - HH:mm" value="${rated.cmtTime}" /></span> <br>
+									<p class="comment">${rated.comment}</p>
+									<hr style="border: 1px solid #f1f1f1">
+								</div>
+							</div>
+						</c:forEach>
+
+					</div>
+				</div>
+			</c:otherwise>
+
+		</c:choose>
+
+		<hr style="border: 2px solid #f1f1f1">
+
+		<!-- Các món cùng danh mục -->
+		<p class="heading">
+			Các món cùng danh mục <a class="ml-10"
+				href="food/index.htm?id_category=${food.category.categoryId}"
 				style="font-size: 18px"><i>Xem thêm </i><i
 				class="bi bi-arrow-right"></i></a>
 		</p>
-		<div class="col">
-			<c:forEach items="${food.rateds}" var="rated" begin="0" end="4">
-				<div class="row">
-					<div class="col-1 mr-10">
-						<img class="rounded-circle z-depth-2" alt="50x50" width="60px"
-							height="60px" src="${rated.account.avatar}"
-							data-holder-rendered="true">
-					</div>
-					<div class="col-8">
-						<b>${rated.account.name}</b><br> <span class="small-ratings">
-							<c:forEach begin="1" end="5" varStatus="index">
-								<c:choose>
-									<c:when test="${index.count <= rated.star}">
-										<i class="fa fa-star rating-color"></i>
-									</c:when>
-									<c:otherwise>
-										<i class="fa fa-star"></i>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-						</span> <span class="mh-10">•</span> <span class="time"><fmt:formatDate
-								pattern="dd/MM/yyyy - HH:mm" value="${rated.cmtTime}" /></span> <br>
-						<p class="comment">${rated.comment}</p>
-						<hr style="border: 1px solid #f1f1f1">
+		<div class="row row-cols-2 row-cols-md-4 g-4">
+			<c:forEach var="f" items="${listFoodSameCategory}" begin="0" end="3">
+				<div class="col">
+					<div class="card h-100">
+						<a href="food/index.htm?id=${f.foodId}"><img
+							src="resources/img/suon.jpg" class="card-img-top" alt="..."></a>
+						<div class="card-body">
+							<h5 class="card-title">${f.name}</h5>
+							<p class="card-text">
+								Giá: <i><b>${f.price}</b></i> đ
+							</p>
+							<p class="card-text">${f.detail}</p>
+						</div>
+						<div class="card-footer">
+							<a href="#" class="btn btn-primary">Thêm vào giỏ</a>
+						</div>
 					</div>
 				</div>
+
 			</c:forEach>
-
 		</div>
-
-		<!-- Các món cùng danh mục -->
 	</div>
 </div>
 <br />

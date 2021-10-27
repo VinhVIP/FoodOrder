@@ -1,6 +1,12 @@
-.ml-20{
+*[id$=errors] {
+	color: red;
+	font-style: italic;
+}
+
+.ml-20 {
 	margin-left: 20px;
 }
+
 .ml-10 {
 	margin-left: 10px;
 }
@@ -299,7 +305,13 @@ pre {
 .comment {
 	font-size: 18px;
 }
+
 .time {
 	font-size: 17px;
 	font-style: italic;
+}
+
+.heading {
+	font-size: 22px;
+	font-weight: bold;
 }

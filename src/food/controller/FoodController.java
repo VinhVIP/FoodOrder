@@ -1,29 +1,31 @@
 package food.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import food.dao.CartDAO;
 import food.dao.CategoryDAO;
 import food.dao.FoodDAO;
 import food.dao.RatedDAO;
 import food.entity.Account;
+import food.entity.Cart;
+import food.entity.CartKey;
 import food.entity.Category;
 import food.entity.Food;
 import food.entity.Rated;
 import food.entity.RatedKey;
-import food.model.Rating;
 import food.utils.Constants;
 
 @Controller
@@ -38,6 +40,9 @@ public class FoodController {
 
 	@Autowired
 	private RatedDAO ratedDAO;
+	
+	@Autowired
+	private CartDAO cartDAO;
 
 	@RequestMapping(value = "index", params = { "id" })
 	public String food(ModelMap model, HttpSession session,  @RequestParam(value = "id") int id) {
@@ -60,13 +65,17 @@ public class FoodController {
 		}
 		if (food.getRateds().size() > 0)
 			avgStar /= food.getRateds().size();
+		
+		List<Food> listFoodSameCategory = foodDAO.listFoodsInCategory(food.getCategory().getCategoryId());
 
+		
 		model.addAttribute("categories", list);
 		model.addAttribute("category", food.getCategory());
 		model.addAttribute("food", food);
 		model.addAttribute("avgStar", avgStar);
 		model.addAttribute("avgStarString", String.format("%.1f", avgStar));
 		model.addAttribute("countStar", countStar);
+		model.addAttribute("listFoodSameCategory", listFoodSameCategory);
 
 		Account user = (Account) session.getAttribute("account");
 		if(user != null) {
@@ -77,6 +86,9 @@ public class FoodController {
 			}
 
 			model.addAttribute("userRating", rated);
+			
+			Cart cart = cartDAO.get(user.getAccountId(), id);
+			model.addAttribute("addedToCart", cart != null);
 		}
 		
 
@@ -176,6 +188,23 @@ public class FoodController {
 			}
 		}
 		
+		return "redirect:/food/index.htm?id=" + foodId;
+	}
+	
+	@RequestMapping(value="cart", params= {"id_food"})
+	public String addToCart(ModelMap model, HttpSession session, @RequestParam("id_food") int foodId) {
+		Account user = (Account) session.getAttribute("account");
+		if (user == null) {
+			System.out.println("user null rooi");
+		}else {
+			Cart cart = new Cart();
+			cart.setCartId(new CartKey(user.getAccountId(), foodId));
+			cart.setQuantity(1);
+			
+			boolean added = cartDAO.insert(cart);
+			System.out.println(added ? "OK Add" : "Fail Add");
+		
+		}
 		return "redirect:/food/index.htm?id=" + foodId;
 	}
 

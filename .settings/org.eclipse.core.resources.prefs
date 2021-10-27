@@ -1,3 +1,6 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/views/include/footer.jsp=UTF-8
+encoding//src/food/bean/CategoryBean.java=UTF-8
+encoding//src/food/controller/AdminController.java=UTF-8
+encoding//src/food/controller/admin/CategoryAdminController.java=UTF-8
 encoding//src/food/utils/Constants.java=UTF-8
