@@ -29,7 +29,7 @@
 		</nav>
 
 		<div class="row">
-			<div class="col-lg-4">
+			<div class="col-lg-5">
 
 				<!-- Hình ảnh món ăn -->
 				<div id="carouselFoodImages" class="carousel slide"
@@ -172,7 +172,7 @@
 
 
 				<br /> <br />
-				<c:if test="${sessionScope.account != null}">
+				<c:if test="${sessionScope.account != null and hasOrdered}">
 					<form:form action="food/rating.htm?id=${food.foodId}" method="POST"
 						modelAttribute="userRating">
 						<div>

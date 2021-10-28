@@ -10,7 +10,8 @@
 	<div class="col-7">
 
 		<div>
-			<span class="float-start">${message}</span> <span class="float-end"><a
+			<span class="float-start msg-success">${message}</span>
+			<span class="float-start msg-fail">${msgError}</span> <span class="float-end"><a
 				href="admin/category/add.htm" type="button" class="btn btn-primary">Thêm
 					danh mục</a></span>
 
@@ -31,10 +32,18 @@
 						<td scope="row">${c.categoryId}</td>
 						<td><img class="rounded-circle z-depth-2 mr-10"
 							src="${c.logo}" width="50px" height="50px" /></td>
-						<td>${c.name}</td>
+						<td>${c.name}<span class="badge bg-warning ml-10">${c.foods.size()}</span></td>
 						<td><a href="admin/category/edit.htm?id=${c.categoryId}"
 							type="button" class="btn btn-primary">Sửa</a></td>
-						<td><a href="admin/category.htm?delete=${c.categoryId}" type="button" class="btn btn-danger">Xóa</a></td>
+						<td><c:choose>
+								<c:when test="${c.foods.size() > 0}">
+									<button type="button" class="btn btn-danger" disabled>Xóa</button>
+								</c:when>
+								<c:otherwise>
+									<a href="admin/category.htm?delete=${c.categoryId}"
+										type="button" class="btn btn-danger">Xóa</a>
+								</c:otherwise>
+							</c:choose></td>
 					</tr>
 				</c:forEach>
 			</tbody>

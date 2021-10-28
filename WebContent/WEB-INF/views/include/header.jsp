@@ -5,7 +5,7 @@
 <head>
 <meta charset='utf-8'>
 <base href="${pageContext.servletContext.contextPath}/">
-<title>Home</title>
+<title>Food Order</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <link rel="icon" type="image/png" href="resources/img/icon.png" />
 <link rel='stylesheet' type='text/css' media='screen'
@@ -21,7 +21,7 @@
 <script src='resources/js/jquery-3.6.0.min.js'></script>
 
 <link rel='stylesheet' type='text/css' media='screen'
-	href='resources/css/app.css?ver=1.0.3'>
+	href='resources/css/app.css?ver=1.0.6'>
 
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -71,6 +71,12 @@
 								height="40" class="d-inline-block align-text-top"></li>
 							<li class="nav-item active"><a class="nav-link"
 								aria-current="page" href="home.htm">Trang chủ</a></li>
+
+							<c:if test="${sessionScope.account.accountId == 1}">
+								<li class="nav-item"><a class="nav-link"
+									href="admin/index.htm">Admin Panel</a></li>
+							</c:if>
+							
 							<li class="nav-item"><a class="nav-link" href="#">Đơn
 									hàng của ${sessionScope.account.name}</a></li>
 						</ul>
@@ -90,7 +96,8 @@
 											cá nhân</a></li>
 									<li><a class="dropdown-item" href="coupon.html">Phiếu
 											giảm giá</a></li>
-									<li><a class="dropdown-item" href="logout.htm">Đăng xuất</a></li>
+									<li><a class="dropdown-item" href="logout.htm">Đăng
+											xuất</a></li>
 								</ul>
 							</div>
 						</form>

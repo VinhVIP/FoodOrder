@@ -237,7 +237,7 @@ pre {
 }
 
 .middle {
-	margin-top: 10px;
+	margin-top: 15px;
 	float: left;
 	width: 70%;
 }
@@ -314,4 +314,14 @@ pre {
 .heading {
 	font-size: 22px;
 	font-weight: bold;
+}
+
+.msg-success {
+	font-size: 20px;
+	color: #00ff00;
+}
+
+.msg-fail {
+	font-size: 20px;
+	color: #ff0000;
 }

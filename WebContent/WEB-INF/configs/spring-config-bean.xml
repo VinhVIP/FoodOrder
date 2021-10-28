@@ -39,5 +39,9 @@
 	<bean id="cartDAO" class="food.dao.impl.CartDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	<bean id="orderDAO" class="food.dao.impl.OrderDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 </beans>

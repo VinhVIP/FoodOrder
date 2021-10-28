@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import food.dao.CartDAO;
 import food.dao.CategoryDAO;
 import food.dao.FoodDAO;
+import food.dao.OrderDAO;
 import food.dao.RatedDAO;
 import food.entity.Account;
 import food.entity.Cart;
@@ -43,6 +44,9 @@ public class FoodController {
 	
 	@Autowired
 	private CartDAO cartDAO;
+	
+	@Autowired
+	private OrderDAO orderDAO;
 
 	@RequestMapping(value = "index", params = { "id" })
 	public String food(ModelMap model, HttpSession session,  @RequestParam(value = "id") int id) {
@@ -79,18 +83,25 @@ public class FoodController {
 
 		Account user = (Account) session.getAttribute("account");
 		if(user != null) {
-			Rated rated = ratedDAO.getRated(user.getAccountId(), id);
+			// Kiểm tra xem user đã từng đặt món ăn này chưa? nếu đặt rồi mới cho đánh giá
+			boolean hasOrdered = orderDAO.hasOrdered(user.getAccountId(), id);	
 			
-			if(rated == null) {
-				rated = new Rated();
-			}
-
-			model.addAttribute("userRating", rated);
-			
+			// Kiêm tra món ăn đã có trong giỏ hay chưa
 			Cart cart = cartDAO.get(user.getAccountId(), id);
+			
+			model.addAttribute("hasOrdered", hasOrdered);
 			model.addAttribute("addedToCart", cart != null);
+			
+			if(hasOrdered) {
+				Rated rated = ratedDAO.getRated(user.getAccountId(), id);
+				
+				if(rated == null) {
+					rated = new Rated();
+				}
+
+				model.addAttribute("userRating", rated);
+			}		
 		}
-		
 
 		return "food/food";
 	}

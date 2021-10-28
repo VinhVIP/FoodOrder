@@ -82,7 +82,7 @@ public class CategoryAdminController {
 			if (added) {
 				reAttributes.addFlashAttribute("message", "Thêm mới danh mục thành công!");
 			} else {
-				model.addAttribute("message", "Thêm mới thất bại!");
+				model.addAttribute("msgError", "Thêm mới thất bại!");
 				return "admin/category/form";
 			}
 
@@ -104,7 +104,7 @@ public class CategoryAdminController {
 		Category c = categoryDAO.getCategory(categoryId);
 
 		if (c == null) {
-			reAttributes.addFlashAttribute("message", "Danh mục không tồn tại!");
+			reAttributes.addFlashAttribute("msgError", "Danh mục không tồn tại!");
 			reAttributes.addFlashAttribute("categories", categoryDAO.listCategories());
 			return "redirect:/admin/category.htm";
 		}
@@ -136,7 +136,7 @@ public class CategoryAdminController {
 		if (!cBean.getName().equalsIgnoreCase(c.getName())) {
 			Category sameName = categoryDAO.getCategoryByName(cBean.getName());
 			if (sameName != null) {
-				errors.rejectValue("name", "categoryBean", "Tên danh mục đã tồn tại!");
+				errors.rejectValue("msgError", "categoryBean", "Tên danh mục đã tồn tại!");
 				model.addAttribute("category", c);
 				return "admin/category/form";
 			}
@@ -162,7 +162,7 @@ public class CategoryAdminController {
 		if (updated) {
 			reAttributes.addFlashAttribute("message", "Chỉnh sửa danh mục thành công!");
 		} else {
-			reAttributes.addFlashAttribute("message", "Chỉnh sửa thất bại!");
+			reAttributes.addFlashAttribute("msgError", "Chỉnh sửa thất bại!");
 		}
 
 		reAttributes.addFlashAttribute("categories", categoryDAO.listCategories());
@@ -178,8 +178,16 @@ public class CategoryAdminController {
 		Category c = categoryDAO.getCategory(categoryId);
 
 		if (c != null) {
-			boolean deleted = categoryDAO.delete(c);
-			reAttributes.addFlashAttribute("message", deleted ? "Xóa thành công!" : "Xóa thất bại!");
+			if (c.getFoods().size() > 0) {
+				reAttributes.addFlashAttribute("msgError", "Đã có món trong danh mục nên không thể xóa!");
+			} else {
+				boolean deleted = categoryDAO.delete(c);
+				if (deleted)
+					reAttributes.addFlashAttribute("message", "Xóa thành công!");
+				else
+					reAttributes.addFlashAttribute("msgError", "Xóa thất bại!");
+			}
+
 		} else {
 			reAttributes.addFlashAttribute("message", "Không tìm thấy danh mục cần xóa!");
 		}
