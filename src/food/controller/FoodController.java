@@ -3,7 +3,6 @@ package food.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -41,15 +40,15 @@ public class FoodController {
 
 	@Autowired
 	private RatedDAO ratedDAO;
-	
+
 	@Autowired
 	private CartDAO cartDAO;
-	
+
 	@Autowired
 	private OrderDAO orderDAO;
 
 	@RequestMapping(value = "index", params = { "id" })
-	public String food(ModelMap model, HttpSession session,  @RequestParam(value = "id") int id) {
+	public String food(ModelMap model, HttpSession session, @RequestParam(value = "id") int id) {
 		Food food = foodDAO.getFood(id);
 
 		if (food == null) {
@@ -69,10 +68,19 @@ public class FoodController {
 		}
 		if (food.getRateds().size() > 0)
 			avgStar /= food.getRateds().size();
-		
+
 		List<Food> listFoodSameCategory = foodDAO.listFoodsInCategory(food.getCategory().getCategoryId());
 
-		
+		List<String> images = new ArrayList<String>();
+		if (food.getImages() != null && food.getImages().trim().length() > 0) {
+			for (String s : food.getImages().split("\\s+")) {
+				images.add(s);
+			}
+		} else {
+			images.add("resources/img/food.jpg");
+		}
+		model.addAttribute("images", images);
+
 		model.addAttribute("categories", list);
 		model.addAttribute("category", food.getCategory());
 		model.addAttribute("food", food);
@@ -82,25 +90,25 @@ public class FoodController {
 		model.addAttribute("listFoodSameCategory", listFoodSameCategory);
 
 		Account user = (Account) session.getAttribute("account");
-		if(user != null) {
+		if (user != null) {
 			// Kiểm tra xem user đã từng đặt món ăn này chưa? nếu đặt rồi mới cho đánh giá
-			boolean hasOrdered = orderDAO.hasOrdered(user.getAccountId(), id);	
-			
+			boolean hasOrdered = orderDAO.hasOrdered(user.getAccountId(), id);
+
 			// Kiêm tra món ăn đã có trong giỏ hay chưa
 			Cart cart = cartDAO.get(user.getAccountId(), id);
-			
+
 			model.addAttribute("hasOrdered", hasOrdered);
 			model.addAttribute("addedToCart", cart != null);
-			
-			if(hasOrdered) {
+
+			if (hasOrdered) {
 				Rated rated = ratedDAO.getRated(user.getAccountId(), id);
-				
-				if(rated == null) {
+
+				if (rated == null) {
 					rated = new Rated();
 				}
 
 				model.addAttribute("userRating", rated);
-			}		
+			}
 		}
 
 		return "food/food";
@@ -158,63 +166,63 @@ public class FoodController {
 		Account user = (Account) session.getAttribute("account");
 		if (user == null) {
 			System.out.println("user null rooi");
-		}else {
+		} else {
 			Rated rated = ratedDAO.getRated(user.getAccountId(), id);
-			
-			if(rated == null) {
+
+			if (rated == null) {
 				// insert
 				rated = rating;
 				rated.setRatedId(new RatedKey(user.getAccountId(), id));
 				boolean added = ratedDAO.insert(rated);
 				System.out.println(added ? "OK" : "Fail");
-			}else {
-				//update
+			} else {
+				// update
 				rated.setStar(rating.getStar());
 				rated.setComment(rating.getComment());
 				rated.setCmtTime(new Date());
-				
+
 				boolean updated = ratedDAO.update(rated);
-				
+
 				System.out.println(updated ? "OK update" : "Fail update");
 			}
 		}
 
 		return "redirect:/food/index.htm?id=" + id;
 	}
-	
-	@RequestMapping(value="rating", params= {"deleteId"})
+
+	@RequestMapping(value = "rating", params = { "deleteId" })
 	public String delete(ModelMap model, HttpSession session, @RequestParam("deleteId") int foodId) {
-		
+
 		Account user = (Account) session.getAttribute("account");
 		if (user == null) {
 			System.out.println("user null rooi");
-		}else {
+		} else {
 			Rated rated = ratedDAO.getRated(user.getAccountId(), foodId);
-			
-			if(rated != null) {
+
+			if (rated != null) {
 				// delete
 				boolean deleted = ratedDAO.delete(rated);
 				System.out.println(deleted ? "OK Delete" : "Fail delete");
-				
+
 			}
 		}
-		
+
 		return "redirect:/food/index.htm?id=" + foodId;
 	}
-	
-	@RequestMapping(value="cart", params= {"id_food"})
+
+	@RequestMapping(value = "cart", params = { "id_food" })
 	public String addToCart(ModelMap model, HttpSession session, @RequestParam("id_food") int foodId) {
 		Account user = (Account) session.getAttribute("account");
 		if (user == null) {
 			System.out.println("user null rooi");
-		}else {
+		} else {
 			Cart cart = new Cart();
 			cart.setCartId(new CartKey(user.getAccountId(), foodId));
 			cart.setQuantity(1);
-			
+
 			boolean added = cartDAO.insert(cart);
 			System.out.println(added ? "OK Add" : "Fail Add");
-		
+
 		}
 		return "redirect:/food/index.htm?id=" + foodId;
 	}

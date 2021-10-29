@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.transaction.annotation.Transactional;
 
 import food.dao.FoodDAO;
@@ -25,6 +26,20 @@ public class FoodDAOImpl implements FoodDAO {
 		Session session = sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
 		List<Food> list = session.createQuery("FROM Food").list();
+		return list;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Food> listFoodsByPage(int page) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM Food ORDER BY foodId DESC";
+		Query query = session.createQuery(hql);
+
+		query.setFirstResult((page - 1) * Constants.FPP);
+		query.setMaxResults(Constants.FPP);
+
+		List<Food> list = query.list();
 		return list;
 	}
 
@@ -82,5 +97,58 @@ public class FoodDAOImpl implements FoodDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public boolean insert(Food food) {
+		Session session = sessionFactory.openSession();
+		Transaction t = session.beginTransaction();
+		try {
+			session.save(food);
+			t.commit();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			t.rollback();
+		} finally {
+			session.close();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean update(Food food) {
+		Session session = sessionFactory.openSession();
+		Transaction t = session.beginTransaction();
+		try {
+			session.update(food);
+			t.commit();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			t.rollback();
+		} finally {
+			session.close();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean delete(Food food) {
+		Session session = sessionFactory.openSession();
+		Transaction t = session.beginTransaction();
+		try {
+			session.delete(food);
+			t.commit();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			t.rollback();
+		} finally {
+			session.close();
+		}
+		return false;
+	}
+
+
 
 }

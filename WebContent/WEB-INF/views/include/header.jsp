@@ -24,7 +24,7 @@
 	href='resources/css/app.css?ver=1.0.6'>
 
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 container-fluid">
 
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-md navbar-light bg-info fixed-top">
@@ -76,7 +76,7 @@
 								<li class="nav-item"><a class="nav-link"
 									href="admin/index.htm">Admin Panel</a></li>
 							</c:if>
-							
+
 							<li class="nav-item"><a class="nav-link" href="#">Đơn
 									hàng của ${sessionScope.account.name}</a></li>
 						</ul>

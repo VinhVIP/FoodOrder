@@ -3,16 +3,8 @@
 
 <div class="list-group">
 	<a href="admin/category.htm" class="list-group-item list-group-item-action"> Quản lý danh mục</a>
-
-	<a href="#" class="list-group-item list-group-item-action active"
-		data-bs-toggle="collapse" data-bs-target="#monan"
-		aria-expanded="false" aria-controls="monan"> Quản lý món ăn</a>
-
-	<div class="collapse" id="monan">
-		<a href="#" class="list-group-item list-group-item-action">● Thêm
-			món ăn</a> <a href="#" class="list-group-item list-group-item-action">●
-			Sửa, xóa món ăn</a>
-	</div>
+	
+	<a href="admin/food.htm" class="list-group-item list-group-item-action"> Quản lý món ăn</a>
 
 	<a href="#" class="list-group-item list-group-item-action active"
 		data-bs-toggle="collapse" data-bs-target="#don" aria-expanded="false"

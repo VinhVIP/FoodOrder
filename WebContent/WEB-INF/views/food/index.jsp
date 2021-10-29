@@ -13,8 +13,8 @@
 			<c:forEach var="f" items="${foods}">
 				<div class="col">
 					<div class="card h-100">
-						<a href="food/index.htm?id=${f.foodId}"><img src="resources/img/suon.jpg"
-							class="card-img-top" alt="..."></a>
+						<a href="food/index.htm?id=${f.foodId}"><img src="${Constants.getBanner(f.images)}"
+							class="card-img-top" height="200px"></a>
 						<div class="card-body">
 							<h5 class="card-title">${f.name}</h5>
 							<p class="card-text">

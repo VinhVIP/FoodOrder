@@ -10,59 +10,25 @@
 	<div class="col-lg-1"></div>
 	<div class="col-lg-6">
 
-		<c:choose>
-			<c:when test="${category == null}">
-				<form:form modelAttribute="categoryBean"
-					action="admin/category/add.htm" method="post"
-					enctype="multipart/form-data">
-					<div class="mb-3">
-						<label for="txtNameControl" class="form-label">Tên danh
-							mục</label>
-						<form:input path="name" type="text" class="form-control"
-							id="txtNameControl" />
-						<form:errors path="name" />
-					</div>
-					<div class="mb-3">
-						<label for="formFile" class="form-label">Logo</label>
-						<form:input path="logo" class="form-control" type="file"
-							accept="image/*" id="formFile" onchange="loadFile(event)" />
-						<img src="" id="output" width="100px" height="100px" class="mv-10" />
-					</div>
-					<div class="text-center">
-						<button type="submit" class="btn btn-primary">Thêm</button>
-					</div>
-				</form:form>
-			</c:when>
-
-			<c:otherwise>
-				<form:form modelAttribute="categoryBean"
-					action="admin/category/edit.htm?id=${category.categoryId}"
-					method="post" enctype="multipart/form-data">
-					<div class="mb-3">
-						<label for="txtNameControl" class="form-label">Tên danh
-							mục</label>
-						<form:input path="name" type="text" class="form-control"
-							id="txtNameControl" value="${category.name}" />
-						<form:errors path="name" />
-					</div>
-					<div class="mb-3">
-						<label for="formFile" class="form-label">Logo</label>
-						<form:input path="logo" class="form-control" type="file"
-							accept="image/*" id="formFile" onchange="loadFile(event)" />
-						<img src="${category.logo}" id="output" width="100px"
-							height="100px" class="mv-10" />
-					</div>
-					<div class="text-center">
-						<button type="submit" class="btn btn-primary">Chỉnh sửa</button>
-					</div>
-				</form:form>
-			</c:otherwise>
-		</c:choose>
-
-
-
-		<p>${message}</p>
-
+		<form:form modelAttribute="categoryBean"
+			action="${category == null ? 'admin/category/add.htm' : 'admin/category/edit.htm?id='}${category!=null?category.categoryId:''}"
+			method="post" enctype="multipart/form-data">
+			<div class="mb-3">
+				<label for="txtNameControl" class="form-label"><b>Tên danh mục</b></label>
+				<form:input path="name" type="text" class="form-control"
+					id="txtNameControl" />
+				<form:errors path="name" />
+			</div>
+			<div class="mb-3">
+				<label for="formFile" class="form-label"><b>Logo</b></label>
+				<form:input path="logo" class="form-control" type="file"
+					accept="image/*" id="formFile" onchange="loadFile(event)" />
+				<img src="${category.logo}" id="output" width="100px" height="100px" class="mv-10" />
+			</div>
+			<div class="text-center">
+				<button type="submit" class="btn btn-primary">${category == null ? "Thêm" : "Sửa"}</button>
+			</div>
+		</form:form>
 
 	</div>
 

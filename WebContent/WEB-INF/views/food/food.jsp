@@ -35,27 +35,43 @@
 				<div id="carouselFoodImages" class="carousel slide"
 					data-bs-ride="carousel">
 					<div class="carousel-indicators">
-						<button type="button" data-bs-target="#carouselExampleIndicators"
-							data-bs-slide-to="0" class="active" aria-current="true"
-							aria-label="Slide 1"></button>
-						<button type="button" data-bs-target="#carouselExampleIndicators"
-							data-bs-slide-to="1" aria-label="Slide 2"></button>
-						<button type="button" data-bs-target="#carouselExampleIndicators"
-							data-bs-slide-to="2" aria-label="Slide 3"></button>
+
+						<c:forEach varStatus="index" begin="1" end="${images.size()}">
+							<c:choose>
+								<c:when test="${index.count == 1}">
+									<button type="button"
+										data-bs-target="#carouselExampleIndicators"
+										data-bs-slide-to="0" class="active" aria-current="true"></button>
+								</c:when>
+								<c:otherwise>
+									<button type="button"
+										data-bs-target="#carouselExampleIndicators"
+										data-bs-slide-to="${index.count-1}"></button>
+								</c:otherwise>
+							</c:choose>
+
+						</c:forEach>
+
 					</div>
 					<div class="carousel-inner">
-						<div class="carousel-item active">
-							<img src="resources/img/comchien1.jpg"
-								class="rounded d-block w-100" alt="...">
-						</div>
-						<div class="carousel-item">
-							<img src="resources/img/comchien2.jpg"
-								class="rounded d-block w-100" alt="...">
-						</div>
-						<div class="carousel-item">
-							<img src="resources/img/comchien3.jpg"
-								class="rounded d-block w-100" alt="...">
-						</div>
+						<c:forEach items="${images}" var="img" varStatus="index">
+							<c:choose>
+								<c:when test="${index.count == 1}">
+									<div class="carousel-item active">
+										<img src="${img}" class="rounded d-block w-100"
+											alt="${food.name}">
+									</div>
+								</c:when>
+								<c:otherwise>
+									<div class="carousel-item">
+										<img src="${img}" class="rounded d-block w-100"
+											alt="${food.name}">
+									</div>
+								</c:otherwise>
+							</c:choose>
+
+						</c:forEach>
+
 					</div>
 					<button class="carousel-control-prev" type="button"
 						data-bs-target="#carouselExampleIndicators" data-bs-slide="prev"
@@ -82,9 +98,8 @@
 						</a>
 					</c:when>
 					<c:when test="${addedToCart == true}">
-						<button type="button"
-							class="btn btn-primary mv-10" disabled> <i
-							class="bi bi-cart-plus-fill"></i> Đã có trong giỏ
+						<button type="button" class="btn btn-primary mv-10" disabled>
+							<i class="bi bi-cart-plus-fill"></i> Đã có trong giỏ
 						</button>
 						<a href="#" type="button" class="btn btn-danger ml-10"> <i
 							class="bi bi-coin"></i> Đặt ngay

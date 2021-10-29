@@ -189,7 +189,7 @@ public class CategoryAdminController {
 			}
 
 		} else {
-			reAttributes.addFlashAttribute("message", "Không tìm thấy danh mục cần xóa!");
+			reAttributes.addFlashAttribute("msgError", "Không tìm thấy danh mục cần xóa!");
 		}
 
 		reAttributes.addFlashAttribute("categories", categoryDAO.listCategories());

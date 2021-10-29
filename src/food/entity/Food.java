@@ -11,39 +11,42 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import jdk.nashorn.internal.ir.annotations.Ignore;
 
 @Entity
-@Table(name="food")
+@Table(name = "food")
 public class Food {
-	
+
 	@Id
 	@GeneratedValue
-	@Column(name="id_food")
+	@Column(name = "id_food")
 	private int foodId;
-	
-	@Column(name="name")
+
+	@Column(name = "name")
 	private String name;
-	
-	@Column(name="detail")
+
+	@Column(name = "detail")
 	private String detail;
-	
-	@Column(name="price")
+
+	@Column(name = "price")
 	private int price;
-	
-	@Column(name="images")
+
+	@Column(name = "images")
 	private String images;
-	
-	@Column(name="type")
+
+	@Column(name = "type")
 	private int type;
-	
-	@Column(name="status")
+
+	@Column(name = "status")
 	private int status;
-	
+
 	@ManyToOne
-	@JoinColumn(name="id_category")
+	@JoinColumn(name = "id_category")
 	private Category category;
-	
-	
+
+
 	// Setter and getter
 	public int getFoodId() {
 		return foodId;
@@ -133,15 +136,13 @@ public class Food {
 		this.carts = carts;
 	}
 
-	@OneToMany(mappedBy = "food", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "food", fetch = FetchType.EAGER)
 	private Collection<Rated> rateds;
 
-	@OneToMany(mappedBy = "food", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "food", fetch = FetchType.EAGER)
 	private Collection<OrderDetail> orderDetails;
-	
-	@OneToMany(mappedBy = "food", fetch=FetchType.EAGER)
+
+	@OneToMany(mappedBy = "food", fetch = FetchType.EAGER)
 	private Collection<Cart> carts;
-	
-	
-	
+
 }

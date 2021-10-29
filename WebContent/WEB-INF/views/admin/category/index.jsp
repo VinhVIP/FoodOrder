@@ -34,14 +34,14 @@
 							src="${c.logo}" width="50px" height="50px" /></td>
 						<td>${c.name}<span class="badge bg-warning ml-10">${c.foods.size()}</span></td>
 						<td><a href="admin/category/edit.htm?id=${c.categoryId}"
-							type="button" class="btn btn-primary">Sửa</a></td>
+							type="button" class="btn btn-primary"><i class="bi bi-pencil-fill"></i></a></td>
 						<td><c:choose>
 								<c:when test="${c.foods.size() > 0}">
-									<button type="button" class="btn btn-danger" disabled>Xóa</button>
+									<button type="button" class="btn btn-danger" disabled><i class="bi bi-x-lg"></i></button>
 								</c:when>
 								<c:otherwise>
 									<a href="admin/category.htm?delete=${c.categoryId}"
-										type="button" class="btn btn-danger">Xóa</a>
+										type="button" class="btn btn-danger"><i class="bi bi-x-lg"></i></a>
 								</c:otherwise>
 							</c:choose></td>
 					</tr>
