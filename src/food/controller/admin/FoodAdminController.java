@@ -1,6 +1,7 @@
 package food.controller.admin;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -65,7 +66,7 @@ public class FoodAdminController {
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String addFood(ModelMap model, RedirectAttributes reAttributes,
 			@Validated @ModelAttribute("foodBean") FoodBean foodBean, BindingResult errors) {
-		
+
 		if (errors.hasErrors()) {
 			model.addAttribute("foodBean", foodBean);
 			model.addAttribute("categories", categoryDAO.listCategories());
@@ -141,7 +142,7 @@ public class FoodAdminController {
 			@Validated @ModelAttribute("foodBean") FoodBean foodBean, BindingResult errors) {
 
 		Food food = foodDAO.getFood(foodId);
-		
+
 		if (errors.hasErrors()) {
 			model.addAttribute("food", food);
 			model.addAttribute("foodBean", foodBean);
@@ -149,13 +150,40 @@ public class FoodAdminController {
 			return "admin/food/form";
 		}
 
-
 		food.setName(foodBean.getName());
 		food.setPrice(foodBean.getPrice());
 		food.setDetail(foodBean.getDetail());
 		food.setType(foodBean.getType());
 		food.setStatus(foodBean.getStatus());
 		food.setCategory(categoryDAO.getCategory(foodBean.getCategory()));
+
+		List<String> listImages = new ArrayList<>();
+
+		for (int i = 0; i < foodBean.getImages().length; i++) {
+			MultipartFile img = foodBean.getImages()[i];
+			String imagePath = foodBean.getImagePath()[i];
+
+			if (img.isEmpty()) {
+				if(imagePath.trim().length() > 0) listImages.add(imagePath);
+			} else {
+				String logoPath = upFile.getBasePath() + File.separator + img.getOriginalFilename();
+				listImages.add("resources/img/" + img.getOriginalFilename());
+
+				try {
+					img.transferTo(new File(logoPath));
+					Thread.sleep(1000);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		String images = "";
+		for (String s : listImages) {
+			images += s + " ";
+		}
+
+		food.setImages(images.trim());
 
 		boolean added = foodDAO.update(food);
 		if (added) {

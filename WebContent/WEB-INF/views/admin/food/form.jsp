@@ -25,7 +25,8 @@
 				<div class="col-md-3">
 					<label class="form-label"><b>Danh mục</b></label>
 					<form:select path="category" class="form-select">
-						<form:options itemLabel="name" itemValue="categoryId" items="${categories}"/>
+						<form:options itemLabel="name" itemValue="categoryId"
+							items="${categories}" />
 					</form:select>
 				</div>
 				<div class="col-md-3">
@@ -77,27 +78,27 @@
 			<label for="formFile" class="form-label mt-10"><b>Các
 					hình ảnh</b></label>
 			<div class="row">
-				<div class="col-4">
-					<form:input path="images" class="form-control form-control-sm"
-						type="file" accept="image/*" id="formFile"
-						onchange="loadFile(event)" />
-					<img src="${Constants.getImageAt(food.images, 0)}" id="output1"
-						width="100%" class="mv-10" />
-				</div>
-				<div class="col-4">
-					<form:input path="images" class="form-control form-control-sm"
-						type="file" accept="image/*" id="formFile"
-						onchange="loadFile2(event)" />
-					<img src="${Constants.getImageAt(food.images, 1)}" id="output2"
-						width="100%" class="mv-10" />
-				</div>
-				<div class="col-4">
-					<form:input path="images" class="form-control form-control-sm"
-						type="file" accept="image/*" id="formFile"
-						onchange="loadFile3(event)" />
-					<img src="${Constants.getImageAt(food.images, 2)}" id="output3"
-						width="100%" class="mv-10" />
-				</div>
+
+				<c:forEach begin="1" end="3" varStatus="index">
+					<div class="col-4">
+						<form:input path="images" class="form-control form-control-sm"
+							type="file" accept="image/*" id="formFile${index.count}"
+							onchange="loadFile(${index.count})" />
+						<img src="${Constants.getImageAt(food.images, index.count-1)}"
+							id="output${index.count}" width="100%" class="mv-10" />
+						<div class="text-center">
+							<button id="btn-${index.count}" type="button"
+								class="btn btn-warning btn-sm"
+								onclick="deleteImage(${index.count})">
+								<i class="bi bi-x-lg"></i>
+							</button>
+						</div>
+						<form:input type="text" class="form-control" path="imagePath"
+							id="imagePath${index.count}" />
+
+					</div>
+				</c:forEach>
+
 			</div>
 
 			<hr style="border: 1px solid #f1f1f1">
@@ -112,22 +113,35 @@
 </div>
 
 <script>
-	var loadFile = function(event) {
-		var output = document.getElementById('output1');
-		output.src = URL.createObjectURL(event.target.files[0]);
-		output.onload = function() {
-			URL.revokeObjectURL(output.src) // free memory
-		}
+	var images = "${food.images}";
+	console.log(images);
+	var arr = images.split(" ");
+	console.log(arr.length);
+
+	for (var i = 1; i <= 3; i++) {
+		$("#btn-" + i).hide();
+		$("#imagePath"+i).val('');
+	}
+
+	for (var i = 1; i <= arr.length; i++) {
+		if(arr[i-1].length > 0){
+			$("#btn-" + i).show();
+			$("#imagePath"+i).val(arr[i-1]);
+		}	
+	}
+
+	var deleteImage = function(i) {
+		var output = document.getElementById("output" + i);
+		output.src = '';
+		$("#formFile" + i).val('');
+		$("#btn-" + i).hide();
+		$("#imagePath"+i).val('');
 	};
-	var loadFile2 = function(event) {
-		var output = document.getElementById('output2');
-		output.src = URL.createObjectURL(event.target.files[0]);
-		output.onload = function() {
-			URL.revokeObjectURL(output.src) // free memory
-		}
-	};
-	var loadFile3 = function(event) {
-		var output = document.getElementById('output3');
+
+	var loadFile = function(i) {
+		var output = document.getElementById("output" + i);
+		$("#btn-" + i).show();
+		$("#imagePath"+i).val(event.target.files[0].name);
 		output.src = URL.createObjectURL(event.target.files[0]);
 		output.onload = function() {
 			URL.revokeObjectURL(output.src) // free memory

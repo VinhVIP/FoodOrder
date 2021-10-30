@@ -1,10 +1,7 @@
 package food.bean;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
-
-import food.entity.Category;
 
 public class FoodBean {
 
@@ -24,6 +21,19 @@ public class FoodBean {
 	private int category;
 	
 	
+	private String[] imagePath;
+	
+	
+	
+	
+	public String[] getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String[] imagePath) {
+		this.imagePath = imagePath;
+	}
+
 	public int getCategory() {
 		return category;
 	}
