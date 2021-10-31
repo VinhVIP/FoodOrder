@@ -1,8 +1,11 @@
 package food.utils;
 
+import food.entity.Food;
+import food.entity.Rated;
+
 public class Constants {
 
-	public static final int FPP = 4; // Foods Per Page
+	public static final int FPP = 6; // Foods Per Page
 
 	/**
 	 * 
@@ -31,6 +34,28 @@ public class Constants {
 		if (index >= s.length)
 			return "";
 		return s[index];
+	}
+
+	public static double getAvgStar(Food food) {
+		double avgStar = 0;
+		for (Rated rated : food.getRateds()) {
+			avgStar += rated.getStar();
+		}
+		if (food.getRateds().size() > 0)
+			avgStar /= food.getRateds().size();
+		return avgStar;
+	}
+
+	public static String getAvgStarString(Food food) {
+		return String.format("%.1f", getAvgStar(food));
+	}
+
+	public static String getShortDetail(String detail) {
+		if (detail.length() > 80) {
+			detail = detail.substring(0, 80);
+			detail += "...";
+		}
+		return detail;
 	}
 
 }

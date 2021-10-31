@@ -26,7 +26,7 @@
 				<img src="${category.logo}" id="output" width="100px" height="100px" class="mv-10" />
 			</div>
 			<div class="text-center">
-				<button type="submit" class="btn btn-primary">${category == null ? "Thêm" : "Sửa"}</button>
+				<button type="submit" class="btn btn-primary shadow">${category == null ? "Thêm" : "Sửa"}</button>
 			</div>
 		</form:form>
 
@@ -35,8 +35,13 @@
 </div>
 
 <script>
+	var logo = "${category.logo}";
+	console.log(logo);
+	if(logo == null || logo == '') $("#output").hide();
+	
 	var loadFile = function(event) {
 		var output = document.getElementById('output');
+		$("#output").show();
 		output.src = URL.createObjectURL(event.target.files[0]);
 		output.onload = function() {
 			URL.revokeObjectURL(output.src) // free memory

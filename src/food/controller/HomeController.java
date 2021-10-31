@@ -35,6 +35,8 @@ public class HomeController {
 		
 		List<Food> newFoods = foodDAO.listNewestFood(1);
 		model.addAttribute("newFoods", newFoods);
+		
+		model.addAttribute("mostBuyFoods", foodDAO.listMostBuyFood(1));
 
 		return "home";
 	}

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,8 +48,8 @@ public class FoodController {
 	@Autowired
 	private OrderDAO orderDAO;
 
-	@RequestMapping(value = "index", params = { "id" })
-	public String food(ModelMap model, HttpSession session, @RequestParam(value = "id") int id) {
+	@RequestMapping("/{id}")
+	public String food(ModelMap model, HttpSession session, @PathVariable(value="id") int id) {
 		Food food = foodDAO.getFood(id);
 
 		if (food == null) {
@@ -60,14 +61,15 @@ public class FoodController {
 		for (int i = 1; i < 6; i++) {
 			countStar[i] = 0;
 		}
-
-		double avgStar = 0;
+//
+//		double avgStar = 0;
 		for (Rated rated : food.getRateds()) {
-			avgStar += rated.getStar();
+//			avgStar += rated.getStar();
 			countStar[rated.getStar()]++;
 		}
-		if (food.getRateds().size() > 0)
-			avgStar /= food.getRateds().size();
+//		if (food.getRateds().size() > 0)
+//			avgStar /= food.getRateds().size();
+		double avgStar = Constants.getAvgStar(food);
 
 		List<Food> listFoodSameCategory = foodDAO.listFoodsInCategory(food.getCategory().getCategoryId());
 
@@ -113,6 +115,7 @@ public class FoodController {
 
 		return "food/food";
 	}
+	
 
 	@RequestMapping(value = "index", params = { "id_category" })
 	public String index(ModelMap model, @RequestParam(value = "id_category") int categoryId) {
@@ -144,8 +147,8 @@ public class FoodController {
 		return "food/index";
 	}
 
-	@RequestMapping(value = "rateds", params = { "id_food" })
-	public String rating(ModelMap model, @RequestParam(value = "id_food") int foodId) {
+	@RequestMapping(value = "/{id}/rateds")
+	public String rating(ModelMap model, @PathVariable(value = "id") int foodId) {
 		Food food = foodDAO.getFood(foodId);
 		if (food == null) {
 			return "not_found";

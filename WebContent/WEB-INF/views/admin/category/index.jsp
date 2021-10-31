@@ -12,25 +12,25 @@
 		<div>
 			<span class="float-start msg-success">${message}</span>
 			<span class="float-start msg-fail">${msgError}</span> <span class="float-end"><a
-				href="admin/category/add.htm" type="button" class="btn btn-primary">Thêm
+				href="admin/category/add.htm" type="button" class="btn btn-primary rounded-pill mb-10 shadow"><i class="bi bi-plus-circle-fill"></i> Thêm
 					danh mục</a></span>
 
 		</div>
-		<table class="table table-hover">
-			<thead>
+		<table class="shadow table table-hover">
+			<thead class="indigo">
 				<tr>
-					<th scope="col">ID</th>
+					<th class="btlr" scope="col">ID</th>
 					<th scope="col">Logo</th>
 					<th scope="col">Tên</th>
 					<th scope="col">Sửa</th>
-					<th scope="col">Xóa</th>
+					<th class="btrr" scope="col">Xóa</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="c" items="${categories}">
 					<tr>
 						<td scope="row">${c.categoryId}</td>
-						<td><img class="rounded-circle z-depth-2 mr-10"
+						<td><img class="rounded-circle z-depth-2 mr-10 shadow"
 							src="${c.logo}" width="50px" height="50px" /></td>
 						<td>${c.name}<span class="badge bg-warning ml-10">${c.foods.size()}</span></td>
 						<td><a href="admin/category/edit.htm?id=${c.categoryId}"

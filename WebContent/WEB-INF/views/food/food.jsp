@@ -32,7 +32,7 @@
 			<div class="col-lg-5">
 
 				<!-- Hình ảnh món ăn -->
-				<div id="carouselFoodImages" class="carousel slide"
+				<div id="carouselFoodImages" class="shadow carousel slide"
 					data-bs-ride="carousel">
 					<div class="carousel-indicators">
 
@@ -90,33 +90,42 @@
 				<c:choose>
 					<c:when test="${food.type == 0 && addedToCart == false}">
 						<a href="food/cart.htm?id_food=${food.foodId}" type="button"
-							class="btn btn-primary mv-10"> <i
+							class="btn btn-primary mv-10 shadow"> <i
 							class="bi bi-cart-plus-fill"></i> Thêm vào giỏ
 						</a>
-						<a href="#" type="button" class="btn btn-danger ml-10"> <i
-							class="bi bi-coin"></i> Đặt ngay
+						<a href="#" type="button" class="btn btn-danger ml-10 shadow">
+							<i class="bi bi-coin"></i> Đặt ngay
 						</a>
 					</c:when>
 					<c:when test="${addedToCart == true}">
-						<button type="button" class="btn btn-primary mv-10" disabled>
+						<button type="button" class="btn btn-primary mv-10 shadow"
+							disabled>
 							<i class="bi bi-cart-plus-fill"></i> Đã có trong giỏ
 						</button>
-						<a href="#" type="button" class="btn btn-danger ml-10"> <i
-							class="bi bi-coin"></i> Đặt ngay
+						<a href="#" type="button" class="btn btn-danger ml-10 shadow">
+							<i class="bi bi-coin"></i> Đặt ngay
 						</a>
 					</c:when>
 					<c:otherwise>
 						<!-- Disabled -->
 						<a><button href="#" type="button"
-								class="btn btn-primary mv-10" disabled>
+								class="btn btn-primary mv-10 shadow" disabled>
 								<i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ
 							</button></a>
-						<a><button href="#" type="button" class="btn btn-danger ml-10"
-								disabled>
+						<a><button href="#" type="button"
+								class="btn btn-danger ml-10 shadow" disabled>
 								<i class="bi bi-coin"></i> Đặt ngay
 							</button></a>
 					</c:otherwise>
 				</c:choose>
+
+				<div class="fb-share-button shadow float-end mt-10"
+					data-href="http://foodorder.com:9919/Food/" data-layout="button"
+					data-size="large">
+					<a target="_blank"
+						href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
+						class="fb-xfbml-parse-ignore">Chia sẻ</a>
+				</div>
 
 			</div>
 
@@ -255,9 +264,8 @@
 				<div>
 					<p class="heading">
 						<b>Các đánh giá</b> <a class="ml-10"
-							href="food/rateds.htm?id_food=${food.foodId}"
-							style="font-size: 18px"><i>Xem thêm </i><i
-							class="bi bi-arrow-right"></i></a>
+							href="food/${food.foodId}/rateds.htm" style="font-size: 18px"><i>Xem
+								thêm </i><i class="bi bi-arrow-right"></i></a>
 					</p>
 					<div class="col">
 						<c:forEach items="${food.rateds}" var="rated" begin="0" end="4">

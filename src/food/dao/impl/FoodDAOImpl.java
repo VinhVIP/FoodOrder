@@ -1,5 +1,7 @@
 package food.dao.impl;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -92,14 +94,26 @@ public class FoodDAOImpl implements FoodDAO {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Food> listMostBuyFood(int page) {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = sessionFactory.getCurrentSession();
+		List<Food> list = session.createQuery("FROM Food").list();
+		list.sort(new Comparator<Food>() {
+
+			@Override
+			public int compare(Food a, Food b) {
+				return a.getOrderDetails().size() - b.getOrderDetails().size();
+			}
+		});
+
+		list = list.subList(0, Constants.FPP);
+		return list;
 	}
 
 	@Override
 	public boolean insert(Food food) {
+		
 		Session session = sessionFactory.openSession();
 		Transaction t = session.beginTransaction();
 		try {

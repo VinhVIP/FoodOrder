@@ -84,16 +84,17 @@
 						<form:input path="images" class="form-control form-control-sm"
 							type="file" accept="image/*" id="formFile${index.count}"
 							onchange="loadFile(${index.count})" />
-						<img src="${Constants.getImageAt(food.images, index.count-1)}"
-							id="output${index.count}" width="100%" class="mv-10" />
-						<div class="text-center">
+						<div class="text-center mv-10">
 							<button id="btn-${index.count}" type="button"
 								class="btn btn-warning btn-sm"
 								onclick="deleteImage(${index.count})">
 								<i class="bi bi-x-lg"></i>
 							</button>
 						</div>
-						<form:input type="text" class="form-control" path="imagePath"
+						<img src="${Constants.getImageAt(food.images, index.count-1)}"
+							id="output${index.count}" width="100%" class="mv-10" />
+
+						<form:input type="hidden" class="form-control" path="imagePath"
 							id="imagePath${index.count}" />
 
 					</div>
@@ -104,7 +105,7 @@
 			<hr style="border: 1px solid #f1f1f1">
 
 			<div class="text-center mv-10">
-				<button type="submit" class="btn btn-primary">${food == null ? "Thêm" : "Sửa" }</button>
+				<button type="submit" class="btn btn-primary shadow">${food == null ? "Thêm" : "Sửa" }</button>
 			</div>
 		</form:form>
 
@@ -144,7 +145,7 @@
 		$("#imagePath"+i).val(event.target.files[0].name);
 		output.src = URL.createObjectURL(event.target.files[0]);
 		output.onload = function() {
-			URL.revokeObjectURL(output.src) // free memory
+			URL.revokeObjectURL(output.src); // free memory
 		}
 	};
 </script>

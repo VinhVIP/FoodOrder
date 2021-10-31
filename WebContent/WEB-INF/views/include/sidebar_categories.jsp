@@ -5,8 +5,7 @@
 	<h5>Danh mục món</h5>
 </div>
 
-
-<div class="list-group">
+<div class="shadow list-group">
 	<c:forEach var="c" items="${categories}">
 		<c:choose>
 			<c:when test="${category.categoryId == c.categoryId}">

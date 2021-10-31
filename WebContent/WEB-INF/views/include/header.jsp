@@ -7,6 +7,11 @@
 <base href="${pageContext.servletContext.contextPath}/">
 <title>Food Order</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+<meta name="description" content="Food order website">
+<meta name="keywords" content="Food, order">
+<meta name="author" content="Vinh">
+
 <link rel="icon" type="image/png" href="resources/img/icon.png" />
 <link rel='stylesheet' type='text/css' media='screen'
 	href='resources/css/bootstrap.min.css'>
@@ -21,10 +26,14 @@
 <script src='resources/js/jquery-3.6.0.min.js'></script>
 
 <link rel='stylesheet' type='text/css' media='screen'
-	href='resources/css/app.css?ver=1.0.6'>
-
+	href='resources/css/app.css?ver=1.0.5'>
 </head>
 <body class="d-flex flex-column min-vh-100 container-fluid">
+
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous"
+		src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0"
+		nonce="C1wAcng5"></script>
 
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-md navbar-light bg-info fixed-top">
@@ -81,7 +90,7 @@
 									hàng của ${sessionScope.account.name}</a></li>
 						</ul>
 						<form class="d-flex">
-							<a href="cart.html" type="button" class="btn btn-primary">
+							<a href="cart.html" type="button" class="btn btn-primary shadow rounded-pill"><i class="bi bi-cart-check-fill"></i> 
 								Giỏ hàng <span class="badge bg-danger">${sessionScope.account.carts.size()}</span>
 							</a>
 							<div class="dropdown ml-10">

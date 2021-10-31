@@ -45,7 +45,8 @@ public class Food {
 	@ManyToOne
 	@JoinColumn(name = "id_category")
 	private Category category;
-
+	
+	
 
 	// Setter and getter
 	public int getFoodId() {

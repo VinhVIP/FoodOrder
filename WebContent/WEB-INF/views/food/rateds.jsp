@@ -10,7 +10,7 @@
 	</div>
 	<div class="col-lg-9">
 		<h5>
-			Đánh giá món: <a href="food/index.htm?id=${food.foodId}">${food.name}</a> <i>(${food.rateds.size()} đánh giá)</i>
+			Đánh giá món: <a href="food/${food.foodId}.htm">${food.name}</a> <i>(${food.rateds.size()} đánh giá)</i>
 		</h5>
 		<br>
 		<div class="col">
