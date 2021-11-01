@@ -15,16 +15,17 @@ import food.dao.FoodDAO;
 import food.entity.Account;
 import food.entity.Category;
 import food.entity.Food;
+import food.utils.Constants;
 
 @Controller
 public class HomeController {
 
 	@Autowired
 	private CategoryDAO categoryDAO;
-	
+
 	@Autowired
 	private FoodDAO foodDAO;
-	
+
 	@Autowired
 	private AccountDAO accountDAO;
 
@@ -32,15 +33,18 @@ public class HomeController {
 	public String index(ModelMap model, HttpSession session) {
 		List<Category> list = categoryDAO.listCategories();
 		model.addAttribute("categories", list);
-		
-		List<Food> newFoods = foodDAO.listNewestFood(1);
-		model.addAttribute("newFoods", newFoods);
-		
-		model.addAttribute("mostBuyFoods", foodDAO.listMostBuyFood(1));
 
+		List<Food> newFoods = foodDAO.listFoods("", -1, Constants.FILTER_BY_NEWEST, 1);
+		List<Food> popularFoods = foodDAO.listFoods("", -1, Constants.FILTER_BY_POPULAR, 1);
+		List<Food> highRatingFoods = foodDAO.listFoods("", -1, Constants.FILTER_BY_RATING, 1);
+		
+		model.addAttribute("newFoods", newFoods.subList(0, Math.min(3, newFoods.size())));
+		model.addAttribute("mostBuyFoods", popularFoods.subList(0, Math.min(3, popularFoods.size())));
+		model.addAttribute("highRatingFoods", highRatingFoods.subList(0, Math.min(3, highRatingFoods.size())));
+		
 		return "home";
 	}
-	
+
 	@RequestMapping("login")
 	public String login(HttpSession session) {
 		// Fake login
@@ -48,10 +52,10 @@ public class HomeController {
 		Account account = accountDAO.getAccount(1);
 		System.out.println(account.getName());
 		session.setAttribute("account", account);
-		
+
 		return "redirect:/home.htm";
 	}
-	
+
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("account");

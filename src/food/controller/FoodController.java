@@ -1,8 +1,10 @@
 package food.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -49,7 +51,7 @@ public class FoodController {
 	private OrderDAO orderDAO;
 
 	@RequestMapping("/{id}")
-	public String food(ModelMap model, HttpSession session, @PathVariable(value="id") int id) {
+	public String food(ModelMap model, HttpSession session, @PathVariable(value = "id") int id) {
 		Food food = foodDAO.getFood(id);
 
 		if (food == null) {
@@ -61,17 +63,16 @@ public class FoodController {
 		for (int i = 1; i < 6; i++) {
 			countStar[i] = 0;
 		}
-//
-//		double avgStar = 0;
+
 		for (Rated rated : food.getRateds()) {
-//			avgStar += rated.getStar();
 			countStar[rated.getStar()]++;
 		}
-//		if (food.getRateds().size() > 0)
-//			avgStar /= food.getRateds().size();
+
 		double avgStar = Constants.getAvgStar(food);
 
 		List<Food> listFoodSameCategory = foodDAO.listFoodsInCategory(food.getCategory().getCategoryId());
+		Collections.shuffle(listFoodSameCategory);
+		listFoodSameCategory = listFoodSameCategory.subList(0, Math.min(3, listFoodSameCategory.size()));
 
 		List<String> images = new ArrayList<String>();
 		if (food.getImages() != null && food.getImages().trim().length() > 0) {
@@ -115,34 +116,53 @@ public class FoodController {
 
 		return "food/food";
 	}
-	
 
-	@RequestMapping(value = "index", params = { "id_category" })
-	public String index(ModelMap model, @RequestParam(value = "id_category") int categoryId) {
-		return "redirect:/food/index.htm?id_category=" + categoryId + "&page=1";
-	}
+	@RequestMapping(value = "index", method = RequestMethod.GET)
+	public String index(ModelMap model, @RequestParam Map<String, String> params) {
+		int categoryId = -1, filter = -1, page = 1;
+		String keyword = "";
 
-	@RequestMapping(value = "index", params = { "id_category", "page" })
-	public String index(ModelMap model, @RequestParam(value = "id_category") int categoryId,
-			@RequestParam(value = "page") int page) {
+		Category category = null;
+		String title = "Danh sách món";
 
-		if (page <= 0)
-			return "redirect:/food/index.htm?id_category=" + categoryId + "&page=1";
+		if (params.containsKey("id_category")) {
+			categoryId = Integer.parseInt(params.get("id_category"));
+			category = categoryDAO.getCategory(categoryId);
+			title = "Danh mục: " + category.getName();
+		}
+		if (params.containsKey("filter")) {
+			filter = Integer.parseInt(params.get("filter"));
+		}
+		if (params.containsKey("keyword")) {
+			keyword = params.get("keyword");
+			title = "Tìm kiếm: " + keyword.trim();
+		}
+		if (params.containsKey("page")) {
+			page = Integer.parseInt(params.get("page"));
+		}
 
-		Category category = categoryDAO.getCategory(categoryId);
-		int maxPage = Constants.getMaxPage(category.getFoods().size(), Constants.FPP);
-		if (page > maxPage)
-			return "redirect:/food/index.htm?id_category=" + categoryId + "&page=" + maxPage;
+		List<Food> foods = foodDAO.listFoods(keyword, categoryId, filter, page);
 
-		List<Food> foods = foodDAO.listFoodsInCategoryByPage(categoryId, page);
+		int startIndex = (page - 1) * Constants.FPP;
+		int endIndex = Math.min(page * Constants.FPP, foods.size());
 
-		model.addAttribute("category", category);
-		model.addAttribute("foods", foods);
+		model.addAttribute("categories", categoryDAO.listCategories());
+		model.addAttribute("foods", foods.subList(startIndex, endIndex));
+		model.addAttribute("maxPage", Constants.getMaxPage(foods.size(), Constants.FPP));
+
+		model.addAttribute("id_category", categoryId);
+		model.addAttribute("filter", filter);
+		model.addAttribute("keyword", keyword);
 		model.addAttribute("page", page);
-		model.addAttribute("maxPage", maxPage);
 
-		List<Category> categories = categoryDAO.listCategories();
-		model.addAttribute("categories", categories);
+		model.addAttribute("title", title);
+
+		model.addAttribute("url",
+				String.format("food/index.htm?keyword=%s&id_category=%d&filter=%d&page=", keyword, categoryId, filter));
+
+		if (categoryId != -1) {
+			model.addAttribute("category", categoryDAO.getCategory(categoryId));
+		}
 
 		return "food/index";
 	}

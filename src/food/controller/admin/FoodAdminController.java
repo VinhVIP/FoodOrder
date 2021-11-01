@@ -45,7 +45,7 @@ public class FoodAdminController {
 
 	@RequestMapping(params = { "page" })
 	public String index(ModelMap model, @RequestParam("page") int page) {
-		List<Food> foods = foodDAO.listFoodsByPage(page);
+		List<Food> foods = foodDAO.listFoods("", -1, Constants.FILTER_BY_NEWEST, page);
 
 		model.addAttribute("foods", foods);
 

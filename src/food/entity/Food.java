@@ -11,9 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import jdk.nashorn.internal.ir.annotations.Ignore;
 
 @Entity
 @Table(name = "food")
@@ -45,6 +42,15 @@ public class Food {
 	@ManyToOne
 	@JoinColumn(name = "id_category")
 	private Category category;
+	
+	@OneToMany(mappedBy = "food", fetch = FetchType.EAGER)
+	private Collection<Rated> rateds;
+
+	@OneToMany(mappedBy = "food", fetch = FetchType.EAGER)
+	private Collection<OrderDetail> orderDetails;
+
+	@OneToMany(mappedBy = "food", fetch = FetchType.EAGER)
+	private Collection<Cart> carts;
 	
 	
 
@@ -136,14 +142,5 @@ public class Food {
 	public void setCarts(Collection<Cart> carts) {
 		this.carts = carts;
 	}
-
-	@OneToMany(mappedBy = "food", fetch = FetchType.EAGER)
-	private Collection<Rated> rateds;
-
-	@OneToMany(mappedBy = "food", fetch = FetchType.EAGER)
-	private Collection<OrderDetail> orderDetails;
-
-	@OneToMany(mappedBy = "food", fetch = FetchType.EAGER)
-	private Collection<Cart> carts;
 
 }

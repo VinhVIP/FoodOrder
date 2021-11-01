@@ -6,5 +6,6 @@ encoding//src/food/controller/AdminController.java=UTF-8
 encoding//src/food/controller/FoodController.java=UTF-8
 encoding//src/food/controller/admin/CategoryAdminController.java=UTF-8
 encoding//src/food/controller/admin/FoodAdminController.java=UTF-8
+encoding//src/food/dao/FoodDAO.java=UTF-8
 encoding//src/food/dao/impl/OrderDAOImpl.java=UTF-8
 encoding//src/food/utils/Constants.java=UTF-8

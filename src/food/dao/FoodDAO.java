@@ -6,19 +6,14 @@ import food.entity.Food;
 
 public interface FoodDAO {
 	
+	/**
+	 * Lấy tất cả món ăn
+	 */
 	List<Food> listFoods();
 	
-	List<Food> listFoodsByPage(int page);
+	List<Food> listFoods(String keyword, int category, int filter, int page);
 	
-	List<Food> listFoodsInCategory(int categoryId);
-	
-	List<Food> listFoodsInCategoryByPage(int categoryId, int page);
-	
-	List<Food> listNewestFood(int page);
-	
-	List<Food> listHighRatingFood(int page);
-	
-	List<Food> listMostBuyFood(int page);
+	List<Food> listFoodsInCategory(int category);
 	
 	Food getFood(int id);
 	

@@ -8,13 +8,72 @@
 body {
 	display: flex;
 	font-family: "Roboto", sans-serif;
+}
 
+.rcorners1 {
+  border-radius: 25px;
+  background: #F3F1F5;
+  padding-left: 30px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  margin-bottom: 60px;
+}
+
+.rcorners2 {
+  border-radius: 25px;
+  background: #F8EDE3;
+  padding-left: 30px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  margin-bottom: 60px;
+}
+
+.rcorners3 {
+  border-radius: 25px;
+  background: #F6DFEB;
+  padding-left: 30px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  margin-bottom: 60px;
+}
+
+.food_title {
+	color: #0dcaf0;
+	text-shadow: 2px 2px 5px #fd7e14;
+	font-size: 26px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	margin-left: 50px;
+}
+
+.food_title2 {
+	color: #0dcaf0;
+	text-shadow: 2px 2px 5px #fd7e14;
+	font-size: 26px;
+	margin-bottom: 10px;
+	margin-left: 100px;
+}
+
+.food_title a {
+	text-decoration: none;
+}
+
+.food_title a:hover {
+	color: #dc3545;
 }
 
 .container {
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
+}
+
+.more {
+	display: flex;
+	align-items: center;
 }
 
 .fcard {

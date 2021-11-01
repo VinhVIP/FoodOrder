@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="food.utils.Constants"%>
 <fmt:setLocale value="vi-VN" scope="session" />
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 
@@ -87,38 +88,17 @@
 					</button>
 				</div>
 
-				<c:choose>
-					<c:when test="${food.type == 0 && addedToCart == false}">
-						<a href="food/cart.htm?id_food=${food.foodId}" type="button"
-							class="btn btn-primary mv-10 shadow"> <i
-							class="bi bi-cart-plus-fill"></i> Thêm vào giỏ
-						</a>
-						<a href="#" type="button" class="btn btn-danger ml-10 shadow">
-							<i class="bi bi-coin"></i> Đặt ngay
-						</a>
-					</c:when>
-					<c:when test="${addedToCart == true}">
-						<button type="button" class="btn btn-primary mv-10 shadow"
-							disabled>
-							<i class="bi bi-cart-plus-fill"></i> Đã có trong giỏ
-						</button>
-						<a href="#" type="button" class="btn btn-danger ml-10 shadow">
-							<i class="bi bi-coin"></i> Đặt ngay
-						</a>
-					</c:when>
-					<c:otherwise>
-						<!-- Disabled -->
-						<a><button href="#" type="button"
-								class="btn btn-primary mv-10 shadow" disabled>
-								<i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ
-							</button></a>
-						<a><button href="#" type="button"
-								class="btn btn-danger ml-10 shadow" disabled>
-								<i class="bi bi-coin"></i> Đặt ngay
-							</button></a>
-					</c:otherwise>
-				</c:choose>
+				<!-- Thêm vào giỏ & Đặt ngay -->
+				<a
+					class="btn btn-primary mv-10 shadow ${food.type == 0 && addedToCart == false?'':'disabled'}"
+					href="food/cart.htm?id_food=${food.foodId}"><i
+					class="bi bi-cart-plus-fill"></i> Thêm vào giỏ</a> <a href="#"
+					type="button"
+					class="btn btn-danger ml-10 shadow ${food.type == 0 && addedToCart == false?'':'disabled'}">
+					<i class="bi bi-coin"></i> Đặt ngay
+				</a>
 
+				<!-- Nút share lên facebook -->
 				<div class="fb-share-button shadow float-end mt-10"
 					data-href="http://foodorder.com:9919/Food/" data-layout="button"
 					data-size="large">
@@ -311,29 +291,62 @@
 				style="font-size: 18px"><i>Xem thêm </i><i
 				class="bi bi-arrow-right"></i></a>
 		</p>
-		<div class="row row-cols-2 row-cols-md-4 g-4">
-			<c:forEach var="f" items="${listFoodSameCategory}" begin="0" end="3">
-				<div class="col">
-					<div class="card h-100">
-						<a href="food/index.htm?id=${f.foodId}"><img
-							src="resources/img/suon.jpg" class="card-img-top" alt="..."></a>
-						<div class="card-body">
-							<h5 class="card-title">${f.name}</h5>
-							<p class="card-text">
-								Giá: <i><b>${f.price}</b></i> đ
-							</p>
-							<p class="card-text">${f.detail}</p>
+
+
+		<div class="container">
+			<c:forEach var="f" items="${listFoodSameCategory}">
+				<div class="fcard">
+					<div class="fcard-header">
+						<a href="food/${f.foodId}.htm"><img
+							src="${Constants.getBanner(f.images)}" class="card-img-top"
+							height="200px"></a>
+					</div>
+					<div class="fcard-body">
+						<div class="fcard-body-header">
+
+							<span class="ftag ftag-teal"><a
+								href="food/index.htm?id_category=${f.category.categoryId}&page=1">${f.category.name}</a>
+							</span> <span class="ftag ftag-price"><fmt:formatNumber
+									value="${f.price}" type="currency" currencySymbol="đ"
+									minFractionDigits="0" /></span>
 						</div>
-						<div class="card-footer">
-							<a href="#" class="btn btn-primary">Thêm vào giỏ</a>
-						</div>
+
+						<h5>${f.name}</h5>
+						<p>
+							<span class="small-ratings"> <c:forEach begin="1" end="5"
+									varStatus="index">
+									<c:choose>
+										<c:when test="${index.count <= Constants.getAvgStar(f)}">
+											<i class="fa fa-star rating-color"></i>
+										</c:when>
+										<c:otherwise>
+											<i class="fa fa-star"></i>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach> <span class="ml-10">${Constants.getAvgStarString(f)}</span>
+							</span>
+						</p>
+						<p>${Constants.getShortDetail(f.detail)}</p>
+
+					</div>
+
+					<div class="fbutton">
+						<a href="#" class="btn btn-primary shadow rounded-pill"
+							data-bs-toggle="tooltip" data-bs-placement="bottom"
+							title="Add to cart"><i class="bi bi-cart-plus-fill"></i></a> <a
+							href="food/${f.foodId}.htm"
+							class="btn btn-danger shadow rounded-pill float-end"
+							data-bs-toggle="tooltip" data-bs-placement="bottom"
+							title="Add to cart"><i class="bi bi-arrow-right"></i></a>
 					</div>
 				</div>
-
 			</c:forEach>
 		</div>
+
+
 	</div>
 </div>
+
 <br />
 
 
