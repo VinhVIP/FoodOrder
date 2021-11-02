@@ -56,10 +56,16 @@
 					</div>
 					<div class="carousel-inner">
 						<c:forEach items="${images}" var="img" varStatus="index">
-							<c:choose>
+
+							<div class="carousel-item ${index.count == 1 ? 'active' : ''}">
+								<img src="${img}" id="myImg${index.count}"
+									class="rounded d-block w-100" alt="${food.name}">
+							</div>
+
+							<%-- <c:choose>
 								<c:when test="${index.count == 1}">
 									<div class="carousel-item active">
-										<img src="${img}" class="rounded d-block w-100"
+										<img src="${img}" id = "myImg${index.count}" class="rounded d-block w-100"
 											alt="${food.name}">
 									</div>
 								</c:when>
@@ -69,7 +75,7 @@
 											alt="${food.name}">
 									</div>
 								</c:otherwise>
-							</c:choose>
+							</c:choose> --%>
 
 						</c:forEach>
 
@@ -92,7 +98,14 @@
 				<a
 					class="btn btn-primary mv-10 shadow ${food.type == 0 && addedToCart == false?'':'disabled'}"
 					href="food/cart.htm?id_food=${food.foodId}"><i
-					class="bi bi-cart-plus-fill"></i> Thêm vào giỏ</a>
+					class="bi bi-cart-plus-fill"></i> ${addedToCart ? 'Đã thêm' : 'Thêm vào giỏ'}</a>
+
+				<c:if test="${user.accountId == 1}">
+					<a class="btn btn-success ml-10 shadow"
+						href="admin/food/edit.htm?id=${food.foodId}"><i
+						class="bi bi-pencil-fill"></i> Chỉnh sửa</a>
+				</c:if>
+
 				<%-- <a href="#"
 					type="button"
 					class="btn btn-danger ml-10 shadow ${food.type == 0 && addedToCart == false?'':'disabled'}">
@@ -125,7 +138,9 @@
 					<b>Tình trạng: </b>
 					<c:choose>
 						<c:when test="${food.type == 0}">Còn món</c:when>
-						<c:otherwise>Hết món</c:otherwise>
+						<c:otherwise>
+							<span class="msg-fail">Hết món</span>
+						</c:otherwise>
 					</c:choose>
 				</p>
 
@@ -348,7 +363,15 @@
 	</div>
 </div>
 
-<br />
+
+
+<!-- <div id="myModal" class="modal">
+	<span class="close">&times;</span> <img class="modal-content"
+		id="img01">
+	<div id="caption"></div>
+</div>
+ -->
+
 
 
 <script>
@@ -453,6 +476,44 @@
 	function topFunction() {
 		document.body.scrollTop = 0;
 		document.documentElement.scrollTop = 0;
+	}
+</script>
+
+<script>
+	// Get the modal
+	var modal = document.getElementById("myModal");
+
+	// Get the image and insert it inside the modal - use its "alt" text as a caption
+	var img1 = document.getElementById("myImg1");
+	var img2 = document.getElementById("myImg2");
+	var img3 = document.getElementById("myImg3");
+
+	var modalImg = document.getElementById("img01");
+	var captionText = document.getElementById("caption");
+	img1.onclick = function() {
+		modal.style.display = "block";
+		modalImg.src = this.src;
+		captionText.innerHTML = this.alt;
+	}
+
+	img2.onclick = function() {
+		modal.style.display = "block";
+		modalImg.src = this.src;
+		captionText.innerHTML = this.alt;
+	}
+
+	img3.onclick = function() {
+		modal.style.display = "block";
+		modalImg.src = this.src;
+		captionText.innerHTML = this.alt;
+	}
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+		modal.style.display = "none";
 	}
 </script>
 

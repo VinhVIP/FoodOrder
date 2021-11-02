@@ -69,14 +69,22 @@ public class Constants {
 		if (account == null)
 			return false;
 		for (Cart c : account.getCarts()) {
-//			System.out.println(c.getFood().getFoodId() + " - " + foodId);
 			if (c.getFood().getFoodId() == foodId) {
-//				System.out.println("added");
 				return true;
 			}
-
 		}
 		return false;
+	}
+
+	public static int adminPanelIndex(String url) {
+		String[] path = { "admin/category", "admin/food", "admin/mail", "admin/order", "admin/coupons",
+				"admin/account" };
+		for (int i = 0; i < path.length; i++) {
+			if (url.toLowerCase().contains(path[i].toLowerCase())) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 }

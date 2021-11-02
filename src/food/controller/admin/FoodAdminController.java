@@ -45,11 +45,12 @@ public class FoodAdminController {
 
 	@RequestMapping(params = { "page" })
 	public String index(ModelMap model, @RequestParam("page") int page) {
-		List<Food> foods = foodDAO.listFoods("", -1, Constants.FILTER_BY_NEWEST, page);
+		List<Food> foods = foodDAO.listFoods("", -1, Constants.FILTER_BY_NEWEST, true);
 
-		model.addAttribute("foods", foods);
+		int endIndex = Math.min(foods.size(), page * Constants.FPP);
+		model.addAttribute("foods", foods.subList((page - 1) * Constants.FPP, endIndex));
 
-		int maxPage = Constants.getMaxPage(foodDAO.listFoods().size(), Constants.FPP);
+		int maxPage = Constants.getMaxPage(foods.size(), Constants.FPP);
 		model.addAttribute("page", page);
 		model.addAttribute("maxPage", maxPage);
 
@@ -164,7 +165,8 @@ public class FoodAdminController {
 			String imagePath = foodBean.getImagePath()[i];
 
 			if (img.isEmpty()) {
-				if(imagePath.trim().length() > 0) listImages.add(imagePath);
+				if (imagePath.trim().length() > 0)
+					listImages.add(imagePath);
 			} else {
 				String logoPath = upFile.getBasePath() + File.separator + img.getOriginalFilename();
 				listImages.add("resources/img/" + img.getOriginalFilename());

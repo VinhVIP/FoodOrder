@@ -11,7 +11,7 @@ public interface FoodDAO {
 	 */
 	List<Food> listFoods();
 	
-	List<Food> listFoods(String keyword, int category, int filter, int page);
+	List<Food> listFoods(String keyword, int category, int filter, boolean getAll);
 	
 	List<Food> listFoodsInCategory(int category);
 	

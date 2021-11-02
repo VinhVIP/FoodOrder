@@ -34,7 +34,7 @@
 
 
 <link rel='stylesheet' type='text/css' media='screen'
-	href='resources/css/app.css?ver=1.0.4'>
+	href='resources/css/app.css?ver=1.0.1'>
 </head>
 <body class="d-flex flex-column min-vh-100 container-fluid">
 

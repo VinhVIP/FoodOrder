@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import food.dao.AccountDAO;
 import food.dao.CartDAO;
 import food.dao.CategoryDAO;
 import food.dao.FoodDAO;
@@ -51,12 +50,13 @@ public class FoodController {
 	@Autowired
 	private OrderDAO orderDAO;
 
-
 	@RequestMapping("/{id}")
 	public String food(ModelMap model, HttpSession session, @PathVariable(value = "id") int id) {
 		Food food = foodDAO.getFood(id);
+		Account user = (Account) session.getAttribute("account");
+		int userId = user == null ? -1 : user.getAccountId();
 
-		if (food == null) {
+		if (food == null || (food.getStatus() == 1 && userId != 1)) {
 			return "not_found";
 		}
 
@@ -94,9 +94,9 @@ public class FoodController {
 		model.addAttribute("countStar", countStar);
 		model.addAttribute("listFoodSameCategory", listFoodSameCategory);
 
-		Account user = (Account) session.getAttribute("account");
+		
 		if (user != null) {
-			
+
 			// Kiểm tra xem user đã từng đặt món ăn này chưa? nếu đặt rồi mới cho đánh giá
 			boolean hasOrdered = orderDAO.hasOrdered(user.getAccountId(), id);
 
@@ -121,7 +121,7 @@ public class FoodController {
 	}
 
 	@RequestMapping(value = "index", method = RequestMethod.GET)
-	public String index(ModelMap model, @RequestParam Map<String, String> params) {
+	public String index(ModelMap model, HttpSession session, @RequestParam Map<String, String> params) {
 		int categoryId = -1, filter = -1, page = 1;
 		String keyword = "";
 
@@ -148,7 +148,11 @@ public class FoodController {
 			page = Integer.parseInt(params.get("page"));
 		}
 
-		List<Food> foods = foodDAO.listFoods(keyword, categoryId, filter, page);
+		
+		Account user = (Account) session.getAttribute("account");
+		int userId = user == null ? -1 : user.getAccountId();
+
+		List<Food> foods = foodDAO.listFoods(keyword, categoryId, filter, userId == 1);
 
 		int startIndex = (page - 1) * Constants.FPP;
 		int endIndex = Math.min(page * Constants.FPP, foods.size());
@@ -248,7 +252,7 @@ public class FoodController {
 
 		} else {
 			boolean hasOrdered = orderDAO.hasOrdered(user.getAccountId(), foodId);
-			
+
 			if (hasOrdered) {
 				System.out.println("them roi, them lại làm gì nữa bạn :v");
 			} else {

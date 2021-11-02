@@ -50,7 +50,7 @@
 
 		<div class="container">
 			<c:forEach var="f" items="${foods}">
-				<div class="fcard">
+				<div class="${f.status == 0 ? 'fcard' : 'fcard_fade'}">
 					<div class="fcard-header">
 						<a href="food/${f.foodId}.htm"><img
 							src="${Constants.getBanner(f.images)}" class="card-img-top"
@@ -70,14 +70,8 @@
 						<p>
 							<span class="small-ratings"> <c:forEach begin="1" end="5"
 									varStatus="index">
-									<c:choose>
-										<c:when test="${index.count <= Constants.getAvgStar(f)}">
-											<i class="fa fa-star rating-color"></i>
-										</c:when>
-										<c:otherwise>
-											<i class="fa fa-star"></i>
-										</c:otherwise>
-									</c:choose>
+									<i
+										class="fa fa-star ${index.count <= Constants.getAvgStar(f) ? 'rating-color' : ''}"></i>
 								</c:forEach> <span class="ml-10">${Constants.getAvgStarString(f)}</span>
 							</span>
 						</p>
@@ -87,8 +81,7 @@
 
 					<div class="fbutton">
 						<c:choose>
-							<c:when
-								test="${Constants.hasOrderedFood(user, f.foodId)}">
+							<c:when test="${Constants.hasOrderedFood(user, f.foodId)}">
 								<button disabled class="btn shadow rounded-pill btn-success"
 									data-bs-toggle="tooltip" data-bs-placement="bottom"
 									title="Đã có trong giỏ">
@@ -114,27 +107,23 @@
 		<br />
 		<nav aria-label="Page navigation">
 			<ul class="pagination justify-content-end">
-
-				<!-- Previous -->
-				<li class="page-item ${page <= 1 ? 'disabled' : ''}"><a
-					class="page-link" href="${url}${page-1}" tabindex="-1"
-					aria-disabled="true">Trước</a></li>
+				<!-- First Page -->
+				<li class="page-item ${page == 1 ? 'disabled' : '' }"><a
+					class="page-link" href="${url}1" tabindex="-1" aria-disabled="true">&laquo;</a></li>
 
 				<!-- Page Number -->
-				<c:forEach begin="${page-2 < 1 ? 1 : page-2}"
-					end="${page + 2 > maxPage ? maxPage : page+2}" varStatus="loop">
-
-					<li class="page-item ${page == loop.count ? 'active' : '' }"><a
+				<c:forEach begin="${page-2<1 ? 1 : page-2}"
+					end="${page+2 > maxPage ? maxPage : page+2}" varStatus="loop">
+					<li class="page-item ${loop.count == page ? 'active' : '' }"><a
 						class="page-link" href="${url}${loop.count}">${loop.count}</a></li>
-
 				</c:forEach>
 
-				<!-- Next -->
-				<li class="page-item ${page >= maxPage ? 'disabled':''}"><a
-					class="page-link" href="${url}${page+1}" tabindex="-1"
-					aria-disabled="true">Sau</a></li>
-
+				<!-- Last Page -->
+				<li class="page-item ${page == maxPage ? 'disabled' : '' }"><a
+					class="page-link" href="${url}${maxPage}" tabindex="-1"
+					aria-disabled="true">&raquo;</a></li>
 			</ul>
+
 		</nav>
 
 	</div>

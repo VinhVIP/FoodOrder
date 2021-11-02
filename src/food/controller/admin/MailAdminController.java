@@ -23,7 +23,7 @@ public class MailAdminController {
 	@Autowired
 	AccountDAO accountDAO;
 
-	@RequestMapping("form")
+	@RequestMapping()
 	public String form() {
 		return "admin/mail/form";
 	}

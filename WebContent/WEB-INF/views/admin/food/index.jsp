@@ -14,7 +14,8 @@
 			<span class="float-start msg-success">${message}</span> <span
 				class="float-start msg-fail">${msgError}</span> <span
 				class="float-end"><a href="admin/food/add.htm" type="button"
-				class="btn btn-primary rounded-pill mb-10 shadow"><i class="bi bi-plus-circle-fill"></i> Thêm món ăn</a></span>
+				class="btn btn-primary rounded-pill mb-10 shadow"><i
+					class="bi bi-plus-circle-fill"></i> Thêm món ăn</a></span>
 
 		</div>
 		<table class="shadow table table-hover">
@@ -27,7 +28,8 @@
 					<th scope="col">Tình trạng</th>
 					<th scope="col">Hiện/Ẩn</th>
 					<th scope="col">Sửa</th>
-					<th class="btrr" scope="col">Xóa</th>
+					<th scope="col">Xóa</th>
+					<th class="btrr" scope="col">Xem</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -37,21 +39,25 @@
 						<td>${f.name}</td>
 						<td><fmt:formatNumber value="${f.price}" type="currency"
 								currencySymbol="đ" minFractionDigits="0" /></td>
-						<td>${f.category.name}</td>
+						<td><span class="ftag ftag-teal"><a href="food/index.htm?id_category=${f.category.categoryId}">${f.category.name}</a></span></td>
 						<td><c:choose>
 								<c:when test="${f.type == 0}">
-									<p class="msg-success">Còn món</p>
+									<span class="msg-success">Còn món</span>
 								</c:when>
 								<c:otherwise>
-									<p class="msg-fail">Hết món</p>
+									<span class="msg-fail">Hết món</span>
 								</c:otherwise>
 							</c:choose></td>
 						<td>${f.status == 0 ? "Hiện" : "Ẩn"}</td>
 						<td><a href="admin/food/edit.htm?id=${f.foodId}"
-							type="button" class="btn btn-primary"><i
+							type="button" class="btn btn-primary btn-sm rounded-pill"><i
 								class="bi bi-pencil-fill"></i></a></td>
 						<td><a href="admin/food.htm?delete=${f.foodId}" type="button"
-							class="btn btn-danger"><i class="bi bi-x-lg"></i></a></td>
+							class="btn btn-danger btn-sm rounded-pill"><i
+								class="bi bi-x-lg"></i></a></td>
+						<td><a href="food/${f.foodId}.htm" type="button"
+							class="btn btn-warning btn-sm rounded-pill"><i
+								class="bi bi-eye-fill"></i></a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -60,52 +66,22 @@
 		<br />
 		<nav aria-label="Page navigation">
 			<ul class="pagination justify-content-end">
-
-				<!-- Previous -->
-				<c:choose>
-					<c:when test="${page <= 1}">
-						<li class="page-item disabled"><a class="page-link" href="#"
-							tabindex="-1" aria-disabled="true">Trước</a></li>
-					</c:when>
-
-					<c:otherwise>
-						<li class="page-item"><a class="page-link"
-							href="admin/food.htm?page=${page-1}" tabindex="-1"
-							aria-disabled="true">Trước</a></li>
-					</c:otherwise>
-				</c:choose>
+				<!-- First Page -->
+				<li class="page-item ${page == 1 ? 'disabled' : '' }"><a
+					class="page-link" href="admin/food.htm?page=1" tabindex="-1"
+					aria-disabled="true">&laquo;</a></li>
 
 				<!-- Page Number -->
-				<c:forEach begin="1" end="${maxPage}" varStatus="loop">
-
-					<c:choose>
-						<c:when test="${page == loop.count}">
-							<li class="page-item active"><a class="page-link"
-								href="admin/food.htm?page=${loop.count}">${loop.count}</a></li>
-						</c:when>
-
-						<c:otherwise>
-							<li class="page-item"><a class="page-link"
-								href="admin/food.htm?page=${loop.count}">${loop.count}</a></li>
-						</c:otherwise>
-					</c:choose>
-
+				<c:forEach begin="${page-2<1 ? 1 : page-2}"
+					end="${page+2 > maxPage ? maxPage : page+2}" varStatus="loop">
+					<li class="page-item ${loop.count == page ? 'active' : '' }"><a
+						class="page-link" href="admin/food.htm?page=${loop.count}">${loop.count}</a></li>
 				</c:forEach>
 
-				<!-- Next -->
-				<c:choose>
-					<c:when test="${page >= maxPage}">
-						<li class="page-item disabled"><a class="page-link" href="#"
-							tabindex="-1" aria-disabled="true">Sau</a></li>
-					</c:when>
-
-					<c:otherwise>
-						<li class="page-item"><a class="page-link"
-							href="admin/food.htm?page=${page+1}" tabindex="-1"
-							aria-disabled="true">Sau</a></li>
-					</c:otherwise>
-				</c:choose>
-
+				<!-- Last Page -->
+				<li class="page-item ${page == maxPage ? 'disabled' : '' }"><a
+					class="page-link" href="admin/food.htm?page=${maxPage}"
+					tabindex="-1" aria-disabled="true">&raquo;</a></li>
 			</ul>
 		</nav>
 	</div>

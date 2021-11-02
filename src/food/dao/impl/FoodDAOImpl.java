@@ -40,8 +40,17 @@ public class FoodDAOImpl implements FoodDAO {
 		return list;
 	}
 
-	public List<Food> listFoods(String keyword, int category, int filter, int page) {
-		List<Food> list = listFoods();
+	public List<Food> listFoods(String keyword, int category, int filter, boolean getAll) {
+		List<Food> list = new ArrayList<Food>();
+
+		if (!getAll) {
+			for (Food f : listFoods()) {
+				if (f.getStatus() == 0)
+					list.add(f);
+			}
+		} else {
+			list = listFoods();
+		}
 
 		if (keyword != null && keyword.trim().length() > 0) {
 			list = filterByKeyword(list, keyword);
@@ -54,7 +63,7 @@ public class FoodDAOImpl implements FoodDAO {
 		if (filter != -1) {
 			list = filterByCondition(list, filter);
 		}
-		
+
 		return list;
 	}
 

@@ -10,10 +10,11 @@
 	<div class="col-7">
 
 		<div>
-			<span class="float-start msg-success">${message}</span>
-			<span class="float-start msg-fail">${msgError}</span> <span class="float-end"><a
-				href="admin/category/add.htm" type="button" class="btn btn-primary rounded-pill mb-10 shadow"><i class="bi bi-plus-circle-fill"></i> Thêm
-					danh mục</a></span>
+			<span class="float-start msg-success">${message}</span> <span
+				class="float-start msg-fail">${msgError}</span> <span
+				class="float-end"><a href="admin/category/add.htm"
+				type="button" class="btn btn-primary rounded-pill mb-10 shadow"><i
+					class="bi bi-plus-circle-fill"></i> Thêm danh mục</a></span>
 
 		</div>
 		<table class="shadow table table-hover">
@@ -32,16 +33,20 @@
 						<td scope="row">${c.categoryId}</td>
 						<td><img class="rounded-circle z-depth-2 mr-10 shadow"
 							src="${c.logo}" width="50px" height="50px" /></td>
-						<td>${c.name}<span class="badge bg-warning ml-10">${c.foods.size()}</span></td>
+						<td>${c.name}<span class="badge bg-warning ml-10 rounded-pill">${c.foods.size()}</span></td>
 						<td><a href="admin/category/edit.htm?id=${c.categoryId}"
-							type="button" class="btn btn-primary"><i class="bi bi-pencil-fill"></i></a></td>
+							type="button" class="btn btn-primary btn-sm rounded-pill"><i
+								class="bi bi-pencil-fill"></i></a></td>
 						<td><c:choose>
 								<c:when test="${c.foods.size() > 0}">
-									<button type="button" class="btn btn-danger" disabled><i class="bi bi-x-lg"></i></button>
+									<button type="button" class="btn btn-danger btn-sm rounded-pill" disabled>
+										<i class="bi bi-x-lg"></i>
+									</button>
 								</c:when>
 								<c:otherwise>
 									<a href="admin/category.htm?delete=${c.categoryId}"
-										type="button" class="btn btn-danger"><i class="bi bi-x-lg"></i></a>
+										type="button" class="btn btn-danger btn-sm rounded-pill"><i
+										class="bi bi-x-lg"></i></a>
 								</c:otherwise>
 							</c:choose></td>
 					</tr>

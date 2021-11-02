@@ -34,9 +34,12 @@ public class HomeController {
 		List<Category> list = categoryDAO.listCategories();
 		model.addAttribute("categories", list);
 
-		List<Food> newFoods = foodDAO.listFoods("", -1, Constants.FILTER_BY_NEWEST, 1);
-		List<Food> popularFoods = foodDAO.listFoods("", -1, Constants.FILTER_BY_POPULAR, 1);
-		List<Food> highRatingFoods = foodDAO.listFoods("", -1, Constants.FILTER_BY_RATING, 1);
+		Account user = (Account) session.getAttribute("account");
+		int userId = user == null ? -1 : user.getAccountId();
+
+		List<Food> newFoods = foodDAO.listFoods("", -1, Constants.FILTER_BY_NEWEST, userId == 1);
+		List<Food> popularFoods = foodDAO.listFoods("", -1, Constants.FILTER_BY_POPULAR, userId == 1);
+		List<Food> highRatingFoods = foodDAO.listFoods("", -1, Constants.FILTER_BY_RATING, userId == 1);
 		
 		model.addAttribute("newFoods", newFoods.subList(0, Math.min(3, newFoods.size())));
 		model.addAttribute("mostBuyFoods", popularFoods.subList(0, Math.min(3, popularFoods.size())));
