@@ -1,5 +1,7 @@
 package food.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,6 +27,14 @@ public class AccountDAOImpl implements AccountDAO {
 		query.setInteger("id", id);
 		Account account = (Account) query.uniqueResult();
 		return account;
+	}
+
+	@Override
+	public List<Account> listAccounts() {
+		Session session = sessionFactory.getCurrentSession();
+		@SuppressWarnings("unchecked")
+		List<Account> list = session.createQuery("FROM Account WHERE accountId > 1").list();
+		return list;
 	}
 
 }

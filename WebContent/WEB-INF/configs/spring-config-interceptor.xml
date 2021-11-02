@@ -17,15 +17,8 @@
 	<!-- Cấu hình interceptor --> 
 	<mvc:interceptors>  
 		<!-- Lọc tất cả các URL -->
-		<!-- <bean class="food.interceptor.RoleInterceptor" /> -->
+		 <bean class="food.interceptor.UserInterceptor" /> 
 		
-		<!-- Chỉ lọc các URL theo path
-		<mvc:interceptor>
-			<mvc:mapping path="/home/**"/>
-			<mvc:exclude-mapping path="/home/index.htm"/>
-			<bean class="poly.interceptor.LoggerInterceptor" />
-		</mvc:interceptor>
-		 -->
 		 <mvc:interceptor>
 			<mvc:mapping path="/admin/**"/>
 			<bean class="food.interceptor.RoleInterceptor" />

@@ -92,16 +92,17 @@
 				<a
 					class="btn btn-primary mv-10 shadow ${food.type == 0 && addedToCart == false?'':'disabled'}"
 					href="food/cart.htm?id_food=${food.foodId}"><i
-					class="bi bi-cart-plus-fill"></i> Thêm vào giỏ</a> <a href="#"
+					class="bi bi-cart-plus-fill"></i> Thêm vào giỏ</a>
+				<%-- <a href="#"
 					type="button"
 					class="btn btn-danger ml-10 shadow ${food.type == 0 && addedToCart == false?'':'disabled'}">
 					<i class="bi bi-coin"></i> Đặt ngay
-				</a>
+				</a> --%>
 
 				<!-- Nút share lên facebook -->
 				<div class="fb-share-button shadow float-end mt-10"
-					data-href="http://foodorder.com:9919/Food/" data-layout="button"
-					data-size="large">
+					data-href="${requestScope['javax.servlet.forward.request_uri']}"
+					data-layout="button" data-size="large">
 					<a target="_blank"
 						href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
 						class="fb-xfbml-parse-ignore">Chia sẻ</a>

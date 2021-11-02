@@ -12,6 +12,13 @@
 <meta name="keywords" content="Food, order">
 <meta name="author" content="Vinh">
 
+<meta property="og:url" content="http://foodorder.com:9929/Food/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Food Order - Nhà Hàng" />
+<meta property="og:description"
+	content="Chỉ cần đặt móm - chúng tôi sẽ giao đến tận tay bạn" />
+<meta property="og:image" content="resources/img/food.jpg" />
+
 <link rel="icon" type="image/png" href="resources/img/icon.png" />
 <link rel='stylesheet' type='text/css' media='screen'
 	href='resources/css/bootstrap.min.css'>
@@ -25,15 +32,24 @@
 <script src='resources/js/bootstrap.min.js'></script>
 <script src='resources/js/jquery-3.6.0.min.js'></script>
 
+
 <link rel='stylesheet' type='text/css' media='screen'
 	href='resources/css/app.css?ver=1.0.4'>
 </head>
 <body class="d-flex flex-column min-vh-100 container-fluid">
 
 	<div id="fb-root"></div>
-	<script async defer crossorigin="anonymous"
-		src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0"
-		nonce="C1wAcng5"></script>
+	<script>
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id))
+				return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
 
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-md navbar-light bg-info fixed-top">
@@ -90,12 +106,14 @@
 									hàng của ${sessionScope.account.name}</a></li>
 						</ul>
 						<form class="d-flex">
-							<a href="cart.html" type="button" class="btn btn-primary shadow rounded-pill"><i class="bi bi-cart-check-fill"></i> 
-								Giỏ hàng <span class="badge bg-danger">${sessionScope.account.carts.size()}</span>
+							<a href="cart.html" type="button"
+								class="btn btn-primary shadow rounded-pill"><i
+								class="bi bi-cart-check-fill"></i> Giỏ hàng <span
+								class="badge bg-danger rounded-pill">${user.carts.size()}</span>
 							</a>
 							<div class="dropdown ml-10">
 								<a class="dropdown-toggle" href="#" data-bs-toggle="dropdown"
-									aria-expanded="false"> <img src="resources/img/user.png"
+									aria-expanded="false"> <img class="rounded-circle z-depth-2" src="${user.avatar}"
 									alt="" width="40" height="40">
 								</a>
 

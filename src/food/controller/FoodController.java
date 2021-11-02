@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import food.dao.AccountDAO;
 import food.dao.CartDAO;
 import food.dao.CategoryDAO;
 import food.dao.FoodDAO;
@@ -49,6 +50,7 @@ public class FoodController {
 
 	@Autowired
 	private OrderDAO orderDAO;
+
 
 	@RequestMapping("/{id}")
 	public String food(ModelMap model, HttpSession session, @PathVariable(value = "id") int id) {
@@ -94,6 +96,7 @@ public class FoodController {
 
 		Account user = (Account) session.getAttribute("account");
 		if (user != null) {
+			
 			// Kiểm tra xem user đã từng đặt món ăn này chưa? nếu đặt rồi mới cho đánh giá
 			boolean hasOrdered = orderDAO.hasOrdered(user.getAccountId(), id);
 
@@ -127,15 +130,19 @@ public class FoodController {
 
 		if (params.containsKey("id_category")) {
 			categoryId = Integer.parseInt(params.get("id_category"));
-			category = categoryDAO.getCategory(categoryId);
-			title = "Danh mục: " + category.getName();
+			if (categoryId != -1) {
+				category = categoryDAO.getCategory(categoryId);
+				title = "Danh mục: " + category.getName();
+			}
 		}
 		if (params.containsKey("filter")) {
 			filter = Integer.parseInt(params.get("filter"));
 		}
 		if (params.containsKey("keyword")) {
 			keyword = params.get("keyword");
-			title = "Tìm kiếm: " + keyword.trim();
+			if (keyword != null && keyword.trim().length() > 0) {
+				title = "Tìm kiếm: " + keyword.trim();
+			}
 		}
 		if (params.containsKey("page")) {
 			page = Integer.parseInt(params.get("page"));
@@ -238,16 +245,23 @@ public class FoodController {
 		Account user = (Account) session.getAttribute("account");
 		if (user == null) {
 			System.out.println("user null rooi");
-		} else {
-			Cart cart = new Cart();
-			cart.setCartId(new CartKey(user.getAccountId(), foodId));
-			cart.setQuantity(1);
 
-			boolean added = cartDAO.insert(cart);
-			System.out.println(added ? "OK Add" : "Fail Add");
+		} else {
+			boolean hasOrdered = orderDAO.hasOrdered(user.getAccountId(), foodId);
+			
+			if (hasOrdered) {
+				System.out.println("them roi, them lại làm gì nữa bạn :v");
+			} else {
+				Cart cart = new Cart();
+				cart.setCartId(new CartKey(user.getAccountId(), foodId));
+				cart.setQuantity(1);
+
+				boolean added = cartDAO.insert(cart);
+				System.out.println(added ? "OK Add" : "Fail Add");
+			}
 
 		}
-		return "redirect:/food/index.htm?id=" + foodId;
+		return "redirect:/food/" + foodId + ".htm";
 	}
 
 }

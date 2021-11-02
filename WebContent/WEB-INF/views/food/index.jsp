@@ -86,13 +86,27 @@
 					</div>
 
 					<div class="fbutton">
-						<a href="#" class="btn btn-primary shadow rounded-pill"
-							data-bs-toggle="tooltip" data-bs-placement="bottom"
-							title="Add to cart"><i class="bi bi-cart-plus-fill"></i></a> <a
-							href="food/${f.foodId}.htm"
+						<c:choose>
+							<c:when
+								test="${Constants.hasOrderedFood(user, f.foodId)}">
+								<button disabled class="btn shadow rounded-pill btn-success"
+									data-bs-toggle="tooltip" data-bs-placement="bottom"
+									title="Đã có trong giỏ">
+									<i class="bi bi-cart-check-fill"></i>
+								</button>
+							</c:when>
+							<c:otherwise>
+								<a href="food/cart.htm?id_food=${f.foodId}"
+									class="btn shadow rounded-pill btn-primary"
+									data-bs-toggle="tooltip" data-bs-placement="bottom"
+									title="Thêm vào giỏ"><i class="bi bi-cart-plus-fill"></i></a>
+							</c:otherwise>
+						</c:choose>
+
+						<a href="food/${f.foodId}.htm"
 							class="btn btn-danger shadow rounded-pill float-end"
 							data-bs-toggle="tooltip" data-bs-placement="bottom"
-							title="Xem chi tiết"><i class="bi bi-arrow-right"></i></a>
+							title="Add to cart"><i class="bi bi-arrow-right"></i></a>
 					</div>
 				</div>
 			</c:forEach>

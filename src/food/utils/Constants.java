@@ -1,12 +1,14 @@
 package food.utils;
 
+import food.entity.Account;
+import food.entity.Cart;
 import food.entity.Food;
 import food.entity.Rated;
 
 public class Constants {
 
 	public static final int FPP = 6; // Foods Per Page
-	
+
 	public static final int FILTER_BY_NEWEST = 1;
 	public static final int FILTER_BY_OLDEST = 2;
 	public static final int FILTER_BY_RATING = 3;
@@ -61,6 +63,20 @@ public class Constants {
 			detail += "...";
 		}
 		return detail;
+	}
+
+	public static boolean hasOrderedFood(Account account, int foodId) {
+		if (account == null)
+			return false;
+		for (Cart c : account.getCarts()) {
+//			System.out.println(c.getFood().getFoodId() + " - " + foodId);
+			if (c.getFood().getFoodId() == foodId) {
+//				System.out.println("added");
+				return true;
+			}
+
+		}
+		return false;
 	}
 
 }
