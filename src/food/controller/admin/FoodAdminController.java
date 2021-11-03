@@ -40,6 +40,10 @@ public class FoodAdminController {
 	@Qualifier("foodFile")
 	private UploadFile upFile;
 
+	@Autowired
+	@Qualifier("rootFile")
+	private UploadFile rootFile;
+
 	@RequestMapping()
 	public String index() {
 		return "redirect:/admin/food.htm?page=1";
@@ -90,7 +94,7 @@ public class FoodAdminController {
 			if (!img.isEmpty()) {
 				String nameFormat = Constants.getCurrentTime() + "_"
 						+ Constants.rewriteFileName(img.getOriginalFilename());
-				
+
 				String logoPath = upFile.getBasePath() + File.separator + nameFormat;
 				images += "resources/img/food/" + nameFormat + " ";
 
@@ -164,20 +168,42 @@ public class FoodAdminController {
 		food.setCategory(categoryDAO.getCategory(foodBean.getCategory()));
 
 		List<String> listImages = new ArrayList<>();
+		String[] imageInDBPath = {"", "", ""};
+		
+		if(food.getImages() != null) {
+			String[] imageList = food.getImages().trim().split("\\s+");
+			for(int i=0; i<imageList.length; i++) {
+				imageInDBPath[i] = imageList[i];
+			}
+		}
 
+		
 		for (int i = 0; i < foodBean.getImages().length; i++) {
 			MultipartFile img = foodBean.getImages()[i];
 			String imagePath = foodBean.getImagePath()[i];
 
 			if (img.isEmpty()) {
+				// Nếu k có hình ảnh nào được tải lên
+
+				// Kiểm tra xem trong db có hình ảnh nào khác không
+				// Có thì lưu lại vào listImages
 				if (imagePath.trim().length() > 0)
 					listImages.add(imagePath);
 			} else {
+				// Nếu có tải lên hình ảnh mới
+
+				// Xóa hình ảnh cũ nếu có
+				if (imageInDBPath[i].trim().length() > 0) {
+					File file = new File(rootFile.getBasePath() + File.separator + imageInDBPath[i]);
+					if (file.exists())
+						file.delete();
+				}
+
 				String nameFormat = Constants.getCurrentTime() + "_"
 						+ Constants.rewriteFileName(img.getOriginalFilename());
-				
+
 				String logoPath = upFile.getBasePath() + File.separator + nameFormat;
-				
+
 				listImages.add("resources/img/food/" + nameFormat);
 
 				try {
@@ -217,9 +243,20 @@ public class FoodAdminController {
 
 		if (food != null) {
 			boolean deleted = foodDAO.delete(food);
-			if (deleted)
+			if (deleted) {
+				// Xóa hình ảnh cũ
+
+				if (food.getImages().trim().length() > 0) {
+					String[] imageList = food.getImages().split("\\s+");
+					for (String fileName : imageList) {
+						File file = new File(rootFile.getBasePath() + File.separator + fileName);
+						if (file.exists())
+							file.delete();
+					}
+				}
+
 				reAttributes.addFlashAttribute("message", "Xóa thành công!");
-			else
+			} else
 				reAttributes.addFlashAttribute("msgError", "Xóa thất bại!");
 
 		} else {

@@ -32,6 +32,10 @@ public class CategoryAdminController {
 	@Qualifier("categoryFile")
 	private UploadFile upFile;
 
+	@Autowired
+	@Qualifier("rootFile")
+	private UploadFile rootFile;
+
 	@RequestMapping()
 	public String indexCategory(ModelMap model) {
 
@@ -153,6 +157,11 @@ public class CategoryAdminController {
 		if (cBean.getLogo().isEmpty()) {
 			// c.setLogo("resources/img/icon.png");
 		} else {
+			// Xóa hình ảnh cũ
+			File file = new File(rootFile.getBasePath() + File.separator + c.getLogo());
+			if (file.exists())
+				file.delete();
+			
 			String nameFormat = Constants.getCurrentTime() + "_"
 					+ Constants.rewriteFileName(cBean.getLogo().getOriginalFilename());
 
@@ -191,9 +200,12 @@ public class CategoryAdminController {
 				reAttributes.addFlashAttribute("msgError", "Đã có món trong danh mục nên không thể xóa!");
 			} else {
 				boolean deleted = categoryDAO.delete(c);
-				if (deleted)
+				if (deleted) {
 					reAttributes.addFlashAttribute("message", "Xóa thành công!");
-				else
+					File file = new File(rootFile.getBasePath() + File.separator + c.getLogo());
+					if (file.exists())
+						file.delete();
+				} else
 					reAttributes.addFlashAttribute("msgError", "Xóa thất bại!");
 			}
 

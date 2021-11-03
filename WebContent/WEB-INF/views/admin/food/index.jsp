@@ -37,9 +37,11 @@
 					<tr class="${f.status != 0 ? 'table-active' : '' }">
 						<td scope="row">${f.foodId}</td>
 						<td>${f.name}</td>
-						<td><fmt:formatNumber value="${f.price}" type="currency"
-								currencySymbol="đ" minFractionDigits="0" /></td>
-						<td><span class="ftag ftag-teal"><a href="food/index.htm?id_category=${f.category.categoryId}">${f.category.name}</a></span></td>
+						<td><span class="ftag ftag-price"><fmt:formatNumber
+									value="${f.price}" type="currency" currencySymbol="đ"
+									minFractionDigits="0" /></span></td>
+						<td><span class="ftag ftag-teal"><a
+								href="food/index.htm?id_category=${f.category.categoryId}">${f.category.name}</a></span></td>
 						<td><c:choose>
 								<c:when test="${f.type == 0}">
 									<span class="msg-success">Còn món</span>

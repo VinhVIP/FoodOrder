@@ -27,6 +27,10 @@
 		<property name="basePath"
 			value="D:\Programs\jee-2020-06\eclipse\Food\WebContent\resources\img\category" />
 	</bean>
+	<bean id="rootFile" class="food.bean.UploadFile">
+		<property name="basePath"
+			value="D:\Programs\jee-2020-06\eclipse\Food\WebContent" />
+	</bean>
 
 	<bean id="categoryDAO" class="food.dao.impl.CategoryDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
