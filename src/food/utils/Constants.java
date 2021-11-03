@@ -13,6 +13,7 @@ import food.entity.Rated;
 public class Constants {
 
 	public static final int FPP = 6; // Foods Per Page
+	public static final int RPP = 2; // Ratings Per Page
 
 	public static final int FILTER_BY_NEWEST = 1;
 	public static final int FILTER_BY_OLDEST = 2;

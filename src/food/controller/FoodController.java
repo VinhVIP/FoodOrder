@@ -94,7 +94,6 @@ public class FoodController {
 		model.addAttribute("countStar", countStar);
 		model.addAttribute("listFoodSameCategory", listFoodSameCategory);
 
-		
 		if (user != null) {
 
 			// Kiểm tra xem user đã từng đặt món ăn này chưa? nếu đặt rồi mới cho đánh giá
@@ -148,7 +147,6 @@ public class FoodController {
 			page = Integer.parseInt(params.get("page"));
 		}
 
-		
 		Account user = (Account) session.getAttribute("account");
 		int userId = user == null ? -1 : user.getAccountId();
 
@@ -179,16 +177,31 @@ public class FoodController {
 	}
 
 	@RequestMapping(value = "/{id}/rateds")
-	public String rating(ModelMap model, @PathVariable(value = "id") int foodId) {
+	public String ratingRedirect(@PathVariable(value = "id") int foodId) {
+		return String.format("redirect:/food/%d/rateds.htm?page=1", foodId);
+	}
+
+	@RequestMapping(value = "/{id}/rateds", params = { "page" })
+	public String rating(ModelMap model, @PathVariable(value = "id") int foodId, @RequestParam("page") int page) {
 		Food food = foodDAO.getFood(foodId);
 		if (food == null) {
 			return "not_found";
 		}
+		if (page <= 0)
+			return String.format("redirect:/food/%d/rateds.htm?page=1", foodId);
+		List<Rated> rateds = (List<Rated>) food.getRateds();
 
-		List<Category> categories = categoryDAO.listCategories();
+		int maxPage = Math.max(Constants.getMaxPage(rateds.size(), Constants.RPP), 1);
 
-		model.addAttribute("categories", categories);
+		if (page > maxPage)
+			return String.format("redirect:/food/%d/rateds.htm?page=%d", foodId, maxPage);
+
+		model.addAttribute("categories", categoryDAO.listCategories());
 		model.addAttribute("food", food);
+		model.addAttribute("page", page);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("rateds", rateds == null ? new ArrayList<>()
+				: rateds.subList((page - 1) * Constants.RPP, Math.min(page * Constants.RPP, rateds.size())));
 
 		return "food/rateds";
 	}

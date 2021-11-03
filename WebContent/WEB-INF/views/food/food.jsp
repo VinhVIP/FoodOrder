@@ -285,7 +285,12 @@
 											</c:choose>
 										</c:forEach>
 									</span> <span class="mh-10">•</span> <span class="time"><fmt:formatDate
-											pattern="dd/MM/yyyy - HH:mm" value="${rated.cmtTime}" /></span> <br>
+											pattern="dd/MM/yyyy - HH:mm" value="${rated.cmtTime}" /></span>
+									<%-- <c:if test="${user.accountId == 1}">
+										<span class="ml-10" style="font-size: 18px">• <a
+											class="ml-10" href="#">Ẩn nội dung</a></span>
+									</c:if> --%>
+									<br>
 									<p class="comment">${rated.comment}</p>
 									<hr style="border: 1px solid #f1f1f1">
 								</div>
