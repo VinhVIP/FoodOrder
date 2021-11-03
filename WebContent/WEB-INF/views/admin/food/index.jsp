@@ -54,9 +54,13 @@
 						<td><a href="admin/food/edit.htm?id=${f.foodId}"
 							type="button" class="btn btn-primary btn-sm rounded-pill"><i
 								class="bi bi-pencil-fill"></i></a></td>
-						<td><a href="admin/food.htm?delete=${f.foodId}" type="button"
-							class="btn btn-danger btn-sm rounded-pill"><i
-								class="bi bi-x-lg"></i></a></td>
+						<td>
+							<button type="button" class="btn btn-danger btn-sm rounded-pill"
+								onclick="confirm(${f.foodId})"
+								${f.orderDetails.size() > 0 ? 'disabled' : ''}>
+								<i class="bi bi-x-lg"></i>
+							</button>
+						</td>
 						<td><a href="food/${f.foodId}.htm" type="button"
 							class="btn btn-warning btn-sm rounded-pill"><i
 								class="bi bi-eye-fill"></i></a></td>
@@ -64,6 +68,37 @@
 				</c:forEach>
 			</tbody>
 		</table>
+
+
+
+
+		<!-- Modal -->
+		<div id="confirmModel" class="modal fade hide" id="exampleModal"
+			tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Xác nhận xóa
+							món ăn ?</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div id="confirmBody" class="modal-body">
+						Nếu món ăn đã được thêm vào giỏ của người dùng thì vẫn sẽ bị xóa.
+						<br> Thao tác này không thể khôi phục. <br>Bạn chắc chắn
+						chứ ?
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-bs-dismiss="modal">Hủy</button>
+						<button id="btnConfirm" type="button" class="btn btn-primary">Xóa</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
 
 		<br />
 		<nav aria-label="Page navigation">
@@ -89,6 +124,22 @@
 	</div>
 
 </div>
+
+<script>
+	var id = -1;
+	
+	var confirm = function(foodId){
+		id = foodId;
+		console.log(foodId);
+		$('#confirmModel').modal('show');
+		var str = "Thao tác này không thể khôi phục<br>Bạn chắc chắn muốn xóa chứ?";
+		$('#confirmBody').html(str);	
+	}
+	$('#btnConfirm').on('click', function(event) {
+		console.log("AA: "+id);
+		window.location.href = "admin/food.htm?delete="+id;
+	});
+</script>
 
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>

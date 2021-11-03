@@ -168,16 +168,15 @@ public class FoodAdminController {
 		food.setCategory(categoryDAO.getCategory(foodBean.getCategory()));
 
 		List<String> listImages = new ArrayList<>();
-		String[] imageInDBPath = {"", "", ""};
-		
-		if(food.getImages() != null) {
+		String[] imageInDBPath = { "", "", "" };
+
+		if (food.getImages() != null) {
 			String[] imageList = food.getImages().trim().split("\\s+");
-			for(int i=0; i<imageList.length; i++) {
+			for (int i = 0; i < imageList.length; i++) {
 				imageInDBPath[i] = imageList[i];
 			}
 		}
 
-		
 		for (int i = 0; i < foodBean.getImages().length; i++) {
 			MultipartFile img = foodBean.getImages()[i];
 			String imagePath = foodBean.getImagePath()[i];
@@ -224,7 +223,8 @@ public class FoodAdminController {
 
 		boolean added = foodDAO.update(food);
 		if (added) {
-			reAttributes.addFlashAttribute("message", "Chỉnh sửa món ăn thành công!");
+			reAttributes.addFlashAttribute("message",
+					"Chỉnh sửa món ăn thành công! <a href='food/" + foodId + ".htm'>Xem kết quả</a>");
 		} else {
 			model.addAttribute("msgError", "Chỉnh sửa món ăn thất bại!");
 			return "admin/food/form";
@@ -246,7 +246,7 @@ public class FoodAdminController {
 			if (deleted) {
 				// Xóa hình ảnh cũ
 
-				if (food.getImages().trim().length() > 0) {
+				if (food.getImages() != null && food.getImages().trim().length() > 0) {
 					String[] imageList = food.getImages().split("\\s+");
 					for (String fileName : imageList) {
 						File file = new File(rootFile.getBasePath() + File.separator + fileName);
