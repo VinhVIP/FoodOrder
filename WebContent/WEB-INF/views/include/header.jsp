@@ -99,7 +99,7 @@
 
 							<c:if test="${sessionScope.account.accountId == 1}">
 								<li class="nav-item"><a class="nav-link"
-									href="admin/index.htm">Admin Panel</a></li>
+									href="admin/category.htm">Admin Panel</a></li>
 							</c:if>
 
 							<li class="nav-item"><a class="nav-link" href="#">Đơn

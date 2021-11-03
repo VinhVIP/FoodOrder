@@ -23,6 +23,7 @@
 					<th class="btlr" scope="col">ID</th>
 					<th scope="col">Logo</th>
 					<th scope="col">Tên</th>
+					<th scope="col">Số lượng món</th>
 					<th scope="col">Sửa</th>
 					<th class="btrr" scope="col">Xóa</th>
 				</tr>
@@ -33,13 +34,15 @@
 						<td scope="row">${c.categoryId}</td>
 						<td><img class="rounded-circle z-depth-2 mr-10 shadow"
 							src="${c.logo}" width="50px" height="50px" /></td>
-						<td>${c.name}<span class="badge bg-warning ml-10 rounded-pill">${c.foods.size()}</span></td>
+						<td>${c.name}</td>
+						<td><span class="badge bg-warning ml-10 rounded-pill">${c.foods.size()}</span></td>
 						<td><a href="admin/category/edit.htm?id=${c.categoryId}"
 							type="button" class="btn btn-primary btn-sm rounded-pill"><i
 								class="bi bi-pencil-fill"></i></a></td>
 						<td><c:choose>
 								<c:when test="${c.foods.size() > 0}">
-									<button type="button" class="btn btn-danger btn-sm rounded-pill" disabled>
+									<button type="button"
+										class="btn btn-danger btn-sm rounded-pill" disabled>
 										<i class="bi bi-x-lg"></i>
 									</button>
 								</c:when>

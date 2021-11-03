@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -36,6 +37,7 @@ public class FoodAdminController {
 	private CategoryDAO categoryDAO;
 
 	@Autowired
+	@Qualifier("foodFile")
 	private UploadFile upFile;
 
 	@RequestMapping()
@@ -86,8 +88,11 @@ public class FoodAdminController {
 
 		for (MultipartFile img : foodBean.getImages()) {
 			if (!img.isEmpty()) {
-				String logoPath = upFile.getBasePath() + File.separator + img.getOriginalFilename();
-				images += "resources/img/" + img.getOriginalFilename() + " ";
+				String nameFormat = Constants.getCurrentTime() + "_"
+						+ Constants.rewriteFileName(img.getOriginalFilename());
+				
+				String logoPath = upFile.getBasePath() + File.separator + nameFormat;
+				images += "resources/img/food/" + nameFormat + " ";
 
 				try {
 					img.transferTo(new File(logoPath));
@@ -168,8 +173,12 @@ public class FoodAdminController {
 				if (imagePath.trim().length() > 0)
 					listImages.add(imagePath);
 			} else {
-				String logoPath = upFile.getBasePath() + File.separator + img.getOriginalFilename();
-				listImages.add("resources/img/" + img.getOriginalFilename());
+				String nameFormat = Constants.getCurrentTime() + "_"
+						+ Constants.rewriteFileName(img.getOriginalFilename());
+				
+				String logoPath = upFile.getBasePath() + File.separator + nameFormat;
+				
+				listImages.add("resources/img/food/" + nameFormat);
 
 				try {
 					img.transferTo(new File(logoPath));

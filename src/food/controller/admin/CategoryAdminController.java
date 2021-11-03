@@ -5,6 +5,7 @@ import java.io.File;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,7 @@ import food.bean.CategoryBean;
 import food.bean.UploadFile;
 import food.dao.CategoryDAO;
 import food.entity.Category;
+import food.utils.Constants;
 
 @Controller
 @RequestMapping("admin/category")
@@ -27,6 +29,7 @@ public class CategoryAdminController {
 	private CategoryDAO categoryDAO;
 
 	@Autowired
+	@Qualifier("categoryFile")
 	private UploadFile upFile;
 
 	@RequestMapping()
@@ -67,8 +70,11 @@ public class CategoryAdminController {
 				c.setLogo("resources/img/icon.png");
 			} else {
 
-				String logoPath = upFile.getBasePath() + File.separator + cBean.getLogo().getOriginalFilename();
-				c.setLogo("resources/img/" + cBean.getLogo().getOriginalFilename());
+				String nameFormat = Constants.getCurrentTime() + "_"
+						+ Constants.rewriteFileName(cBean.getLogo().getOriginalFilename());
+
+				String logoPath = upFile.getBasePath() + File.separator + nameFormat;
+				c.setLogo("resources/img/category/" + nameFormat);
 
 				try {
 					cBean.getLogo().transferTo(new File(logoPath));
@@ -147,8 +153,11 @@ public class CategoryAdminController {
 		if (cBean.getLogo().isEmpty()) {
 			// c.setLogo("resources/img/icon.png");
 		} else {
-			String logoPath = upFile.getBasePath() + File.separator + cBean.getLogo().getOriginalFilename();
-			c.setLogo("resources/img/" + cBean.getLogo().getOriginalFilename());
+			String nameFormat = Constants.getCurrentTime() + "_"
+					+ Constants.rewriteFileName(cBean.getLogo().getOriginalFilename());
+
+			String logoPath = upFile.getBasePath() + File.separator + nameFormat;
+			c.setLogo("resources/img/category/" + nameFormat);
 
 			try {
 				cBean.getLogo().transferTo(new File(logoPath));
