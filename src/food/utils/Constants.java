@@ -20,6 +20,14 @@ public class Constants {
 	public static final int FILTER_BY_RATING = 3;
 	public static final int FILTER_BY_POPULAR = 4;
 	
+	public static final int RATE_FILTER_BY_NEWEST = 1;
+	public static final int RATE_FILTER_HIGHEST = 2;
+	public static final int RATE_FILTER_5_STAR = 3;
+	public static final int RATE_FILTER_4_STAR = 4;
+	public static final int RATE_FILTER_3_STAR = 5;
+	public static final int RATE_FILTER_2_STAR = 6;
+	public static final int RATE_FILTER_1_STAR = 7;
+	
 	public static HashMap<Character, Character> mapChar;
 	static {
 		mapChar = new HashMap<>();

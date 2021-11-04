@@ -1,5 +1,7 @@
 package food.dao;
 
+import java.util.List;
+
 import food.entity.Rated;
 
 public interface RatedDAO {
@@ -11,5 +13,9 @@ public interface RatedDAO {
 	boolean delete(Rated rated);
 	
 	Rated getRated(int accountId, int foodId);
+	
+	List<Rated> listRated(int foodId);
+	
+	List<Rated> listRated(int foodId, int rateFilter);
 	
 }
