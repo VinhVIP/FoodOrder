@@ -41,7 +41,7 @@ public class Order {
 
 	@ManyToOne
 	@JoinColumn(name="id_coupons")
-	private Account coupons;
+	private Coupons coupons;
 	
 	@OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
 	private Collection<OrderDetail> orderDetails;
@@ -88,11 +88,11 @@ public class Order {
 		this.account = account;
 	}
 
-	public Account getCoupons() {
+	public Coupons getCoupons() {
 		return coupons;
 	}
 
-	public void setCoupons(Account coupons) {
+	public void setCoupons(Coupons coupons) {
 		this.coupons = coupons;
 	}
 

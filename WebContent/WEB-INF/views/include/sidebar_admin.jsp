@@ -12,7 +12,7 @@
 		class="list-group-item list-group-item-action ${Constants.adminPanelIndex(requestScope['javax.servlet.forward.request_uri']) == 1 ? 'active' : '' }">
 		Quản lý món ăn</a> <a href="admin/mail.htm"
 		class="list-group-item list-group-item-action ${Constants.adminPanelIndex(requestScope['javax.servlet.forward.request_uri']) == 2 ? 'active' : '' }">
-		Gửi mail</a> <a href="admin/order.htm"
+		Gửi mail</a> <a href="admin/order/index.htm"
 		class="list-group-item list-group-item-action ${Constants.adminPanelIndex(requestScope['javax.servlet.forward.request_uri']) == 3 ? 'active' : '' }">
 		Quản lý đơn</a> <a href="admin/coupons.htm"
 		class="list-group-item list-group-item-action ${Constants.adminPanelIndex(requestScope['javax.servlet.forward.request_uri']) == 4 ? 'active' : '' }">

@@ -102,11 +102,11 @@
 									href="admin/category.htm">Admin Panel</a></li>
 							</c:if>
 
-							<li class="nav-item"><a class="nav-link" href="#">Đơn
-									hàng của ${sessionScope.account.name}</a></li>
+							<li class="nav-item"><a class="nav-link" href="order/index.htm">Đơn
+									hàng của tôi</a></li>
 						</ul>
 						<form class="d-flex">
-							<a href="cart.html" type="button"
+							<a href="cart/index.htm" type="button"
 								class="btn btn-primary shadow rounded-pill"><i
 								class="bi bi-cart-check-fill"></i> Giỏ hàng <span
 								class="badge bg-danger rounded-pill">${user.carts.size()}</span>

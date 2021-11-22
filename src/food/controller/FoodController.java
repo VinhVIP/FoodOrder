@@ -211,8 +211,6 @@ public class FoodController {
 		model.addAttribute("rateds", rateds == null ? new ArrayList<>()
 				: rateds.subList((page - 1) * Constants.RPP, Math.min(page * Constants.RPP, rateds.size())));
 
-		System.out.println("alo ");
-
 		return "food/rateds";
 	}
 

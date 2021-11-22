@@ -20,7 +20,7 @@ public class Coupons {
 
 	@Id
 	@Column(name="id_coupons")
-	private int couponsId;
+	private String couponsId;
 	
 	@Column(name="detail")
 	private String detail;
@@ -50,11 +50,11 @@ public class Coupons {
 
 	
 	// Setter and getter
-	public int getCouponsId() {
+	public String getCouponsId() {
 		return couponsId;
 	}
 
-	public void setCouponsId(int couponsId) {
+	public void setCouponsId(String couponsId) {
 		this.couponsId = couponsId;
 	}
 
