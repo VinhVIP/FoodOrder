@@ -20,7 +20,7 @@ public class UserInterceptor extends HandlerInterceptorAdapter{
 			throws Exception {
 		HttpSession session = request.getSession();
 		Account user = (Account) session.getAttribute("account");
-		if (user != null && user.getAccountId() == 1) {
+		if (user != null) {
 			request.setAttribute("user", accountDAO.getAccount(user.getAccountId()));
 		}
 

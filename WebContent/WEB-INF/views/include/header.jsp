@@ -34,7 +34,7 @@
 
 
 <link rel='stylesheet' type='text/css' media='screen'
-	href='resources/css/app.css?ver=1.0.1'>
+	href='resources/css/app.css?ver=1.0.7'>
 </head>
 <body class="d-flex flex-column min-vh-100 container-fluid">
 
@@ -119,7 +119,7 @@
 
 								<ul class="dropdown-menu dropdown-menu-end"
 									aria-labelledby="dropdownMenuLink">
-									<li><a class="dropdown-item" href="profile.html">Trang
+									<li><a class="dropdown-item" href="account/profile.htm">Trang
 											cá nhân</a></li>
 									<li><a class="dropdown-item" href="coupon.html">Phiếu
 											giảm giá</a></li>

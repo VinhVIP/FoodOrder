@@ -1,27 +1,54 @@
 <%@ page language="java" pageEncoding="utf-8"%>
 </div>
-<footer class="footer bg-info text-center text-white mt-auto">
-	<!-- Grid container -->
-	<div class="container p-4">
-		<!-- Section: Text -->
-		<section class="mb-4">
-			<p>Food Order - Cam kết luôn mang lại bữa ăn chất lượng nhất đến
-				thực khách</p>
-		</section>
-		<!-- Section: Text -->
 
+<footer class="footer-distributed">
+	<div class="footer-left">
+		<h3>
+			<span><img src="resources/img/logo.jpg" width="70%" height="60%"/></span>
+		</h3>
+		<!-- <p class="footer-links">
+			<a href="#" class="link-1">Home</a> <a href="#">Blog</a> <a href="#">Pricing</a>
+
+			<a href="#">About</a> <a href="#">Faq</a> <a href="#">Contact</a>
+		</p> -->
+
+		<p class="footer-company-name">Company Name © 2015</p>
+	</div>
+
+	<div class="footer-center">
+		<div>
+			<i class="fa fa-map-marker"></i>
+			<p>
+				<span>97 Man Thiện, Hiệp Phú</span> TP Thủ Đức, TP Hồ Chí Minh
+			</p>
+		</div>
+		<div>
+			<i class="fa fa-phone"></i>
+			<p>+84159784650</p>
+		</div>
+		<div>
+			<i class="fa fa-envelope"></i>
+			<p>
+				<a href="mailto:support@company.com">dream.restaurant@gmail.com</a>
+			</p>
+		</div>
 
 	</div>
-	<!-- Grid container -->
+	<div class="footer-right">
+		<p class="footer-company-about">
+			<span>Về nhà hàng</span> Chúng tôi luôn cam kết luôn mang lại bữa ăn chất lượng nhất đến
+				thực khách
+		</p>
 
-	<!-- Copyright -->
-	<div class="text-center p-3"
-		style="background-color: rgba(0, 0, 0, 0.2)">
-		© 2021 Copyright: <a class="text-white" href="#">Môn học Web
-			Spring MVC</a>
+		<div class="footer-icons">
+			<a href="#" style="background-color: #3B5998;"><i class="fa fa-facebook" ></i>
+			</a> 
+			<a href="#" style="background-color: #55ACEE;"><i
+				class="fa fa-twitter"></i></a>
+			<a href="#" style="background-color: #0976B4;"><i class="fa fa-linkedin"></i></a>
+			<a href="#" style="background-color: #B7242A;"><i class="fa fa-instagram"></i></a>
+		</div>
 	</div>
-	<!-- Copyright -->
-
 </footer>
 
 </body>

@@ -10,4 +10,6 @@ public interface AccountDAO {
 	
 	Account getAccount(int id);
 	
+	boolean update(Account account);
+	
 }

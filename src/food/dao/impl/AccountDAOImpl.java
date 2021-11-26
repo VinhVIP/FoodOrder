@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.transaction.annotation.Transactional;
 
 import food.dao.AccountDAO;
@@ -35,6 +36,24 @@ public class AccountDAOImpl implements AccountDAO {
 		@SuppressWarnings("unchecked")
 		List<Account> list = session.createQuery("FROM Account WHERE accountId > 1").list();
 		return list;
+	}
+
+	@Override
+	public boolean update(Account account) {
+		Session session = sessionFactory.openSession();
+		Transaction t = session.beginTransaction();
+		try {
+			session.update(account);
+			t.commit();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			t.rollback();
+		} finally {
+			session.close();
+		}
+
+		return false;
 	}
 
 }
