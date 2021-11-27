@@ -102,7 +102,6 @@ VALUES (2, 1, 1), (3, 2, 3);
 
 CREATE TABLE coupons (
 	id_coupons varchar(50),
-	id_account int,
 	detail ntext,
 	type int CHECK (type >= 0 AND type <= 1),
 		-- 0: Giảm theo tiền
@@ -117,10 +116,6 @@ CREATE TABLE coupons (
 
 	PRIMARY KEY (id_coupons)
 )
-
-ALTER TABLE coupons ADD CONSTRAINT fk_coupons_account 
-FOREIGN KEY (id_account) REFERENCES account(id_account)
-ON DELETE CASCADE;
 
 -- 
 INSERT INTO coupons (id_coupons, detail, type, value, expired_time, amount, status)
