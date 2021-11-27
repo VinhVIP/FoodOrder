@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import food.dao.AccountDAO;
 import food.entity.Account;
 
+
 @Transactional
 public class AccountDAOImpl implements AccountDAO {
 
@@ -29,13 +30,40 @@ public class AccountDAOImpl implements AccountDAO {
 		Account account = (Account) query.uniqueResult();
 		return account;
 	}
-
+	
+	@Override
+	public Account findByEmail(String email) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM Account WHERE email = :email";
+		Query query = session.createQuery(hql);
+		query.setString("email", email);
+		Account account = (Account) query.uniqueResult();
+		return account;
+	}
+	
 	@Override
 	public List<Account> listAccounts() {
 		Session session = sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
 		List<Account> list = session.createQuery("FROM Account WHERE accountId > 1").list();
 		return list;
+	}
+	@Override
+	public boolean insert(Account account) {
+
+		Session session = sessionFactory.openSession();
+		Transaction t = session.beginTransaction();
+		try {
+			session.save(account);
+			t.commit();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			t.rollback();
+		} finally {
+			session.close();
+		}
+		return false;
 	}
 
 	@Override
@@ -52,8 +80,23 @@ public class AccountDAOImpl implements AccountDAO {
 		} finally {
 			session.close();
 		}
-
 		return false;
 	}
 
+	@Override
+	public boolean delete(Account account) {
+		Session session = sessionFactory.openSession();
+		Transaction t = session.beginTransaction();
+		try {
+			session.delete(account);
+			t.commit();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			t.rollback();
+		} finally {
+			session.close();
+		}
+		return false;
+	}
 }

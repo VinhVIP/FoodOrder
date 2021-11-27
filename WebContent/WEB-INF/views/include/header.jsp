@@ -73,8 +73,10 @@
 						</ul>
 						<form class="d-flex">
 							<a href="login.htm" type="button"
+								class="btn btn-primary btn-sm ml-10">Fake login</a> <a
+								href="account/signin.htm" type="button"
 								class="btn btn-primary btn-sm ml-10">Đăng nhập</a> <a
-								href="signup.htm" type="button"
+								href="account/signup.htm" type="button"
 								class="btn btn-outline-success btn-sm ml-10">Đăng ký</a>
 						</form>
 					</div>
@@ -102,8 +104,8 @@
 									href="admin/category.htm">Admin Panel</a></li>
 							</c:if>
 
-							<li class="nav-item"><a class="nav-link" href="order/index.htm">Đơn
-									hàng của tôi</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="order/index.htm">Đơn hàng của tôi</a></li>
 						</ul>
 						<form class="d-flex">
 							<a href="cart/index.htm" type="button"
@@ -113,8 +115,9 @@
 							</a>
 							<div class="dropdown ml-10">
 								<a class="dropdown-toggle" href="#" data-bs-toggle="dropdown"
-									aria-expanded="false"> <img class="rounded-circle z-depth-2" src="${user.avatar}"
-									alt="" width="40" height="40">
+									aria-expanded="false"> <img
+									class="rounded-circle z-depth-2" src="${user.avatar}" alt=""
+									width="40" height="40">
 								</a>
 
 								<ul class="dropdown-menu dropdown-menu-end"

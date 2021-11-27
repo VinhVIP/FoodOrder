@@ -63,5 +63,7 @@
 	<bean id="couponsDAO" class="food.dao.impl.CouponsDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+
 
 </beans>

@@ -6,10 +6,16 @@ import food.entity.Account;
 
 public interface AccountDAO {
 	
-	List<Account> listAccounts();
+List<Account> listAccounts();
 	
 	Account getAccount(int id);
 	
+	Account findByEmail(String email);
+
+	boolean insert(Account account);
+
 	boolean update(Account account);
+
+	boolean delete(Account account);
 	
 }
