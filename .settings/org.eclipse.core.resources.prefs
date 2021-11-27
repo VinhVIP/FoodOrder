@@ -1,13 +1,16 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/views/include/footer.jsp=UTF-8
+encoding//WebContent/resources/css/app.css=UTF-8
 encoding//src/food/bean/AccountBean.java=UTF-8
 encoding//src/food/bean/CategoryBean.java=UTF-8
+encoding//src/food/bean/CouponsBean.java=UTF-8
 encoding//src/food/bean/FoodBean.java=UTF-8
 encoding//src/food/controller/AccountController.java=UTF-8
 encoding//src/food/controller/AdminController.java=UTF-8
 encoding//src/food/controller/CartController.java=UTF-8
 encoding//src/food/controller/FoodController.java=UTF-8
 encoding//src/food/controller/admin/CategoryAdminController.java=UTF-8
+encoding//src/food/controller/admin/CouponsAdminController.java=UTF-8
 encoding//src/food/controller/admin/FoodAdminController.java=UTF-8
 encoding//src/food/controller/admin/MailAdminController.java=UTF-8
 encoding//src/food/dao/FoodDAO.java=UTF-8

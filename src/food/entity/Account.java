@@ -54,9 +54,6 @@ public class Account {
 	private Collection<Order> orders;
 	
 	@OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
-	private Collection<Coupons> coupons;
-	
-	@OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
 	private Collection<Cart> carts;
 
 	
@@ -147,14 +144,6 @@ public class Account {
 
 	public void setOrders(Collection<Order> orders) {
 		this.orders = orders;
-	}
-
-	public Collection<Coupons> getCoupons() {
-		return coupons;
-	}
-
-	public void setCoupons(Collection<Coupons> coupons) {
-		this.coupons = coupons;
 	}
 
 	public Collection<Cart> getCarts() {

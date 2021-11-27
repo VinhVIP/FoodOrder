@@ -7,8 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -41,9 +39,6 @@ public class Coupons {
 	@Column(name="status")
 	private int status;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_account")
-	private Account account;
 	
 	@OneToMany(mappedBy = "coupons", fetch = FetchType.EAGER)
 	private Collection<Order> orders;
@@ -104,14 +99,6 @@ public class Coupons {
 
 	public void setStatus(int status) {
 		this.status = status;
-	}
-
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
 	}
 
 	public Collection<Order> getOrders() {

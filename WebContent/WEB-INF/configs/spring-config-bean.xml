@@ -59,5 +59,9 @@
 	<bean id="orderDAO" class="food.dao.impl.OrderDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	<bean id="couponsDAO" class="food.dao.impl.CouponsDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 </beans>

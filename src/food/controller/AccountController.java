@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import food.bean.AccountBean;
 import food.bean.UploadFile;
 import food.dao.AccountDAO;
+import food.dao.CouponsDAO;
 import food.entity.Account;
 
 @Controller
@@ -26,6 +27,8 @@ public class AccountController {
 	
 	@Autowired
 	private AccountDAO accountDAO;
+	
+	@Autowired CouponsDAO couponsDAO;
 	
 	@Autowired
 	@Qualifier("avatarFile")
@@ -103,4 +106,10 @@ public class AccountController {
 		return "redirect:/account/profile.htm";
 	}
 	
+	@RequestMapping("coupons")
+	public String coupons(ModelMap model, HttpSession session) {
+		model.addAttribute("coupons", couponsDAO.listPublicCoupons());
+		
+		return "account/coupons";
+	}
 }
