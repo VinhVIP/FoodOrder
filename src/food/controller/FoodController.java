@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import food.dao.AccountDAO;
 import food.dao.CartDAO;
 import food.dao.CategoryDAO;
 import food.dao.FoodDAO;
@@ -49,6 +50,9 @@ public class FoodController {
 
 	@Autowired
 	private OrderDAO orderDAO;
+	
+	@Autowired
+	private AccountDAO accountDAO;
 
 	@RequestMapping("/{id}")
 	public String food(ModelMap model, HttpSession session, @PathVariable(value = "id") int id) {
@@ -268,16 +272,19 @@ public class FoodController {
 	@RequestMapping(value = "cart", params = { "id_food" })
 	public String addToCart(ModelMap model, HttpSession session, @RequestParam("id_food") int foodId) {
 		Account user = (Account) session.getAttribute("account");
+		
 		if (user == null) {
 			System.out.println("user null rooi");
 
 		} else {
-			boolean hasOrdered = orderDAO.hasOrdered(user.getAccountId(), foodId);
+			user = accountDAO.getAccount(user.getAccountId());
+			
+			Cart cart = cartDAO.get(user.getAccountId(), foodId);
 
-			if (hasOrdered) {
-				System.out.println("them roi, them lại làm gì nữa bạn :v");
+			if (cart != null) {
+				System.out.println("them roi, them lại làm gì nữa: "+cart.getQuantity());
 			} else {
-				Cart cart = new Cart();
+				cart = new Cart();
 				cart.setCartId(new CartKey(user.getAccountId(), foodId));
 				cart.setQuantity(1);
 

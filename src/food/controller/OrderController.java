@@ -20,30 +20,39 @@ import food.entity.OrderDetail;
 public class OrderController {
 	@Autowired
 	OrderDAO orderDAO;
-	
+
 	@RequestMapping(value = "index")
 	public String index(ModelMap model, HttpSession session) {
 		Account user = (Account) session.getAttribute("account");
 		List<Order> list = orderDAO.getOrder(user.getAccountId());
-		model.addAttribute("orders",list);
-		
+		model.addAttribute("orders", list);
+
 		return "order/index";
 	}
-	
+
 	@RequestMapping(value = "detail/{id}.htm")
 	public String detail(ModelMap model, @PathVariable("id") int id) {
 		float total = 0;
-		float discount = 0;
+		float discountValue = 0;
+		float discountType = 0;
 		List<OrderDetail> list = orderDAO.getOrdersDetail(id);
-		if(list.get(0).getOrder().getCoupons() != null) {
-			discount = list.get(0).getOrder().getCoupons().getValue();
+		if (list.get(0).getOrder().getCoupons() != null) {
+			discountValue = list.get(0).getOrder().getCoupons().getValue();
+			discountType = list.get(0).getOrder().getCoupons().getType();
 		}
-		
+
 		for (OrderDetail o : list) {
 			total += o.getAmount() * o.getPrice();
 		}
-		model.addAttribute("total",total-discount);
-		model.addAttribute("orderDetail",list);
+
+		float finalPrice = total;
+		if (discountType == 0)
+			finalPrice -= discountValue;
+		else
+			finalPrice *= (discountValue / 100);
+
+		model.addAttribute("total", finalPrice);
+		model.addAttribute("orderDetail", list);
 		return "order/detail";
 	}
 }

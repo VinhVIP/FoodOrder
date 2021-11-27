@@ -11,7 +11,7 @@ public interface CartDAO {
 
 	boolean delete(Cart cart);
 
-	Coupons getCoupon(String coupon, int idAcc);
+	Coupons getCoupon(String coupon);
 
 	int updateQty(int foodId, int qty);
 

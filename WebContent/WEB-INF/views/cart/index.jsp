@@ -305,307 +305,292 @@
 	outline: rgb(5, 5, 5) none 0px;
 } /*#IMG_1:before*/
 #P_1 {
-    block-size: 26.4px;
-    border-block-end-color: rgb(5, 5, 5);
-    border-block-start-color: rgb(5, 5, 5);
-    border-inline-end-color: rgb(5, 5, 5);
-    border-inline-start-color: rgb(5, 5, 5);
-    box-sizing: border-box;
-    caret-color: rgb(5, 5, 5);
-    color: rgb(5, 5, 5);
-    column-rule-color: rgb(5, 5, 5);
-    height: 26.4px;
-    inline-size: 850.8px;
-    margin-block-end: 40px;
-    margin-block-start: 0px;
-    perspective-origin: 425.4px 13.2px;
-    text-align: right;
-    text-decoration: none solid rgb(5, 5, 5);
-    text-rendering: optimizelegibility;
-    text-size-adjust: 100%;
-    transform-origin: 425.4px 13.2px;
-    width: 850.8px;
-    border: 0px none rgb(5, 5, 5);
-    font: 500 16px / 21px Quicksand, sans-serif;
-    margin: 0px 0px 40px;
-    outline: rgb(5, 5, 5) none 0px;
-    text-align: right;
-}/*#P_1*/
-
+	block-size: 26.4px;
+	border-block-end-color: rgb(5, 5, 5);
+	border-block-start-color: rgb(5, 5, 5);
+	border-inline-end-color: rgb(5, 5, 5);
+	border-inline-start-color: rgb(5, 5, 5);
+	box-sizing: border-box;
+	caret-color: rgb(5, 5, 5);
+	color: rgb(5, 5, 5);
+	column-rule-color: rgb(5, 5, 5);
+	height: 26.4px;
+	inline-size: 850.8px;
+	margin-block-end: 40px;
+	margin-block-start: 0px;
+	perspective-origin: 425.4px 13.2px;
+	text-align: right;
+	text-decoration: none solid rgb(5, 5, 5);
+	text-rendering: optimizelegibility;
+	text-size-adjust: 100%;
+	transform-origin: 425.4px 13.2px;
+	width: 850.8px;
+	border: 0px none rgb(5, 5, 5);
+	font: 500 16px/21px Quicksand, sans-serif;
+	margin: 0px 0px 40px;
+	outline: rgb(5, 5, 5) none 0px;
+	text-align: right;
+} /*#P_1*/
 #P_1:after {
-    border-block-end-color: rgb(5, 5, 5);
-    border-block-start-color: rgb(5, 5, 5);
-    border-inline-end-color: rgb(5, 5, 5);
-    border-inline-start-color: rgb(5, 5, 5);
-    box-sizing: border-box;
-    caret-color: rgb(5, 5, 5);
-    color: rgb(5, 5, 5);
-    column-rule-color: rgb(5, 5, 5);
-    text-align: right;
-    text-decoration: none solid rgb(5, 5, 5);
-    text-rendering: optimizelegibility;
-    text-size-adjust: 100%;
-    border: 0px none rgb(5, 5, 5);
-    font: 500 16px / 21px Quicksand, sans-serif;
-    outline: rgb(5, 5, 5) none 0px;
-}/*#P_1:after*/
-
+	border-block-end-color: rgb(5, 5, 5);
+	border-block-start-color: rgb(5, 5, 5);
+	border-inline-end-color: rgb(5, 5, 5);
+	border-inline-start-color: rgb(5, 5, 5);
+	box-sizing: border-box;
+	caret-color: rgb(5, 5, 5);
+	color: rgb(5, 5, 5);
+	column-rule-color: rgb(5, 5, 5);
+	text-align: right;
+	text-decoration: none solid rgb(5, 5, 5);
+	text-rendering: optimizelegibility;
+	text-size-adjust: 100%;
+	border: 0px none rgb(5, 5, 5);
+	font: 500 16px/21px Quicksand, sans-serif;
+	outline: rgb(5, 5, 5) none 0px;
+} /*#P_1:after*/
 #P_1:before {
-    border-block-end-color: rgb(5, 5, 5);
-    border-block-start-color: rgb(5, 5, 5);
-    border-inline-end-color: rgb(5, 5, 5);
-    border-inline-start-color: rgb(5, 5, 5);
-    box-sizing: border-box;
-    caret-color: rgb(5, 5, 5);
-    color: rgb(5, 5, 5);
-    column-rule-color: rgb(5, 5, 5);
-    text-align: right;
-    text-decoration: none solid rgb(5, 5, 5);
-    text-rendering: optimizelegibility;
-    text-size-adjust: 100%;
-    border: 0px none rgb(5, 5, 5);
-    font: 500 16px / 21px Quicksand, sans-serif;
-    outline: rgb(5, 5, 5) none 0px;
-}/*#P_1:before*/
-
+	border-block-end-color: rgb(5, 5, 5);
+	border-block-start-color: rgb(5, 5, 5);
+	border-inline-end-color: rgb(5, 5, 5);
+	border-inline-start-color: rgb(5, 5, 5);
+	box-sizing: border-box;
+	caret-color: rgb(5, 5, 5);
+	color: rgb(5, 5, 5);
+	column-rule-color: rgb(5, 5, 5);
+	text-align: right;
+	text-decoration: none solid rgb(5, 5, 5);
+	text-rendering: optimizelegibility;
+	text-size-adjust: 100%;
+	border: 0px none rgb(5, 5, 5);
+	font: 500 16px/21px Quicksand, sans-serif;
+	outline: rgb(5, 5, 5) none 0px;
+} /*#P_1:before*/
 #SPAN_2 {
-    border-block-end-color: rgb(5, 5, 5);
-    border-block-start-color: rgb(5, 5, 5);
-    border-inline-end-color: rgb(5, 5, 5);
-    border-inline-start-color: rgb(5, 5, 5);
-    box-sizing: border-box;
-    caret-color: rgb(5, 5, 5);
-    color: rgb(5, 5, 5);
-    column-rule-color: rgb(5, 5, 5);
-    margin-inline-start: 7px;
-    perspective-origin: 0px 0px;
-    text-align: right;
-    text-decoration: none solid rgb(5, 5, 5);
-    text-rendering: optimizelegibility;
-    text-size-adjust: 100%;
-    transform-origin: 0px 0px;
-    border: 0px none rgb(5, 5, 5);
-    font: 500 30px / 21px Quicksand, sans-serif;
-    margin: 0px 0px 0px 7px;
-    outline: rgb(5, 5, 5) none 0px;
-}/*#SPAN_2*/
-
+	border-block-end-color: rgb(5, 5, 5);
+	border-block-start-color: rgb(5, 5, 5);
+	border-inline-end-color: rgb(5, 5, 5);
+	border-inline-start-color: rgb(5, 5, 5);
+	box-sizing: border-box;
+	caret-color: rgb(5, 5, 5);
+	color: rgb(5, 5, 5);
+	column-rule-color: rgb(5, 5, 5);
+	margin-inline-start: 7px;
+	perspective-origin: 0px 0px;
+	text-align: right;
+	text-decoration: none solid rgb(5, 5, 5);
+	text-rendering: optimizelegibility;
+	text-size-adjust: 100%;
+	transform-origin: 0px 0px;
+	border: 0px none rgb(5, 5, 5);
+	font: 500 30px/21px Quicksand, sans-serif;
+	margin: 0px 0px 0px 7px;
+	outline: rgb(5, 5, 5) none 0px;
+} /*#SPAN_2*/
 #SPAN_2:after {
-    border-block-end-color: rgb(5, 5, 5);
-    border-block-start-color: rgb(5, 5, 5);
-    border-inline-end-color: rgb(5, 5, 5);
-    border-inline-start-color: rgb(5, 5, 5);
-    box-sizing: border-box;
-    caret-color: rgb(5, 5, 5);
-    color: rgb(5, 5, 5);
-    column-rule-color: rgb(5, 5, 5);
-    text-align: right;
-    text-decoration: none solid rgb(5, 5, 5);
-    text-rendering: optimizelegibility;
-    text-size-adjust: 100%;
-    border: 0px none rgb(5, 5, 5);
-    font: 500 30px / 21px Quicksand, sans-serif;
-    outline: rgb(5, 5, 5) none 0px;
-}/*#SPAN_2:after*/
-
+	border-block-end-color: rgb(5, 5, 5);
+	border-block-start-color: rgb(5, 5, 5);
+	border-inline-end-color: rgb(5, 5, 5);
+	border-inline-start-color: rgb(5, 5, 5);
+	box-sizing: border-box;
+	caret-color: rgb(5, 5, 5);
+	color: rgb(5, 5, 5);
+	column-rule-color: rgb(5, 5, 5);
+	text-align: right;
+	text-decoration: none solid rgb(5, 5, 5);
+	text-rendering: optimizelegibility;
+	text-size-adjust: 100%;
+	border: 0px none rgb(5, 5, 5);
+	font: 500 30px/21px Quicksand, sans-serif;
+	outline: rgb(5, 5, 5) none 0px;
+} /*#SPAN_2:after*/
 #SPAN_2:before {
-    border-block-end-color: rgb(5, 5, 5);
-    border-block-start-color: rgb(5, 5, 5);
-    border-inline-end-color: rgb(5, 5, 5);
-    border-inline-start-color: rgb(5, 5, 5);
-    box-sizing: border-box;
-    caret-color: rgb(5, 5, 5);
-    color: rgb(5, 5, 5);
-    column-rule-color: rgb(5, 5, 5);
-    text-align: right;
-    text-decoration: none solid rgb(5, 5, 5);
-    text-rendering: optimizelegibility;
-    text-size-adjust: 100%;
-    border: 0px none rgb(5, 5, 5);
-    font: 500 30px / 21px Quicksand, sans-serif;
-    outline: rgb(5, 5, 5) none 0px;
-}/*#SPAN_2:before*/
-
+	border-block-end-color: rgb(5, 5, 5);
+	border-block-start-color: rgb(5, 5, 5);
+	border-inline-end-color: rgb(5, 5, 5);
+	border-inline-start-color: rgb(5, 5, 5);
+	box-sizing: border-box;
+	caret-color: rgb(5, 5, 5);
+	color: rgb(5, 5, 5);
+	column-rule-color: rgb(5, 5, 5);
+	text-align: right;
+	text-decoration: none solid rgb(5, 5, 5);
+	text-rendering: optimizelegibility;
+	text-size-adjust: 100%;
+	border: 0px none rgb(5, 5, 5);
+	font: 500 30px/21px Quicksand, sans-serif;
+	outline: rgb(5, 5, 5) none 0px;
+} /*#SPAN_2:before*/
 #B_3 {
-    border-block-end-color: rgb(5, 5, 5);
-    border-block-start-color: rgb(5, 5, 5);
-    border-inline-end-color: rgb(5, 5, 5);
-    border-inline-start-color: rgb(5, 5, 5);
-    box-sizing: border-box;
-    caret-color: rgb(5, 5, 5);
-    color: rgb(5, 5, 5);
-    column-rule-color: rgb(5, 5, 5);
-    perspective-origin: 0px 0px;
-    text-align: right;
-    text-decoration: none solid rgb(5, 5, 5);
-    text-rendering: optimizelegibility;
-    text-size-adjust: 100%;
-    transform-origin: 0px 0px;
-    border: 0px none rgb(5, 5, 5);
-    font: 700 30px / 21px Quicksand, sans-serif;
-    outline: rgb(5, 5, 5) none 0px;
-}/*#B_3*/
-
+	border-block-end-color: rgb(5, 5, 5);
+	border-block-start-color: rgb(5, 5, 5);
+	border-inline-end-color: rgb(5, 5, 5);
+	border-inline-start-color: rgb(5, 5, 5);
+	box-sizing: border-box;
+	caret-color: rgb(5, 5, 5);
+	color: rgb(5, 5, 5);
+	column-rule-color: rgb(5, 5, 5);
+	perspective-origin: 0px 0px;
+	text-align: right;
+	text-decoration: none solid rgb(5, 5, 5);
+	text-rendering: optimizelegibility;
+	text-size-adjust: 100%;
+	transform-origin: 0px 0px;
+	border: 0px none rgb(5, 5, 5);
+	font: 700 30px/21px Quicksand, sans-serif;
+	outline: rgb(5, 5, 5) none 0px;
+} /*#B_3*/
 #B_3:after {
-    border-block-end-color: rgb(5, 5, 5);
-    border-block-start-color: rgb(5, 5, 5);
-    border-inline-end-color: rgb(5, 5, 5);
-    border-inline-start-color: rgb(5, 5, 5);
-    box-sizing: border-box;
-    caret-color: rgb(5, 5, 5);
-    color: rgb(5, 5, 5);
-    column-rule-color: rgb(5, 5, 5);
-    text-align: right;
-    text-decoration: none solid rgb(5, 5, 5);
-    text-rendering: optimizelegibility;
-    text-size-adjust: 100%;
-    border: 0px none rgb(5, 5, 5);
-    font: 700 30px / 21px Quicksand, sans-serif;
-    outline: rgb(5, 5, 5) none 0px;
-}/*#B_3:after*/
-
+	border-block-end-color: rgb(5, 5, 5);
+	border-block-start-color: rgb(5, 5, 5);
+	border-inline-end-color: rgb(5, 5, 5);
+	border-inline-start-color: rgb(5, 5, 5);
+	box-sizing: border-box;
+	caret-color: rgb(5, 5, 5);
+	color: rgb(5, 5, 5);
+	column-rule-color: rgb(5, 5, 5);
+	text-align: right;
+	text-decoration: none solid rgb(5, 5, 5);
+	text-rendering: optimizelegibility;
+	text-size-adjust: 100%;
+	border: 0px none rgb(5, 5, 5);
+	font: 700 30px/21px Quicksand, sans-serif;
+	outline: rgb(5, 5, 5) none 0px;
+} /*#B_3:after*/
 #B_3:before {
-    border-block-end-color: rgb(5, 5, 5);
-    border-block-start-color: rgb(5, 5, 5);
-    border-inline-end-color: rgb(5, 5, 5);
-    border-inline-start-color: rgb(5, 5, 5);
-    box-sizing: border-box;
-    caret-color: rgb(5, 5, 5);
-    color: rgb(5, 5, 5);
-    column-rule-color: rgb(5, 5, 5);
-    text-align: right;
-    text-decoration: none solid rgb(5, 5, 5);
-    text-rendering: optimizelegibility;
-    text-size-adjust: 100%;
-    border: 0px none rgb(5, 5, 5);
-    font: 700 30px / 21px Quicksand, sans-serif;
-    outline: rgb(5, 5, 5) none 0px;
-}/*#B_3:before*/
+	border-block-end-color: rgb(5, 5, 5);
+	border-block-start-color: rgb(5, 5, 5);
+	border-inline-end-color: rgb(5, 5, 5);
+	border-inline-start-color: rgb(5, 5, 5);
+	box-sizing: border-box;
+	caret-color: rgb(5, 5, 5);
+	color: rgb(5, 5, 5);
+	column-rule-color: rgb(5, 5, 5);
+	text-align: right;
+	text-decoration: none solid rgb(5, 5, 5);
+	text-rendering: optimizelegibility;
+	text-size-adjust: 100%;
+	border: 0px none rgb(5, 5, 5);
+	font: 700 30px/21px Quicksand, sans-serif;
+	outline: rgb(5, 5, 5) none 0px;
+} /*#B_3:before*/
 #H1_1 {
-    block-size: 36px;
-    box-sizing: border-box;
-    height: 36px;
-    inline-size: 880.8px;
-    margin-block-end: 10px;
-    margin-block-start: 0px;
-    perspective-origin: 440.4px 18px;
-    text-align: right;
-    text-rendering: optimizelegibility;
-    text-size-adjust: 100%;
-    transform-origin: 440.4px 18px;
-    width: 880.8px;
-    font: 700 30px / 36px Quicksand, sans-serif;
-    margin: 0px 0px 10px;
-}/*#H1_1*/
-
+	block-size: 36px;
+	box-sizing: border-box;
+	height: 36px;
+	inline-size: 880.8px;
+	margin-block-end: 10px;
+	margin-block-start: 0px;
+	perspective-origin: 440.4px 18px;
+	text-align: right;
+	text-rendering: optimizelegibility;
+	text-size-adjust: 100%;
+	transform-origin: 440.4px 18px;
+	width: 880.8px;
+	font: 700 30px/36px Quicksand, sans-serif;
+	margin: 0px 0px 10px;
+} /*#H1_1*/
 #H1_1:after {
-    box-sizing: border-box;
-    text-align: center;
-    text-rendering: optimizelegibility;
-    text-size-adjust: 100%;
-    font: 700 30px / 36px Quicksand, sans-serif;
-}/*#H1_1:after*/
-
+	box-sizing: border-box;
+	text-align: center;
+	text-rendering: optimizelegibility;
+	text-size-adjust: 100%;
+	font: 700 30px/36px Quicksand, sans-serif;
+} /*#H1_1:after*/
 #H1_1:before {
-    box-sizing: border-box;
-    text-align: center;
-    text-rendering: optimizelegibility;
-    text-size-adjust: 100%;
-    font: 700 30px / 36px Quicksand, sans-serif;
-}/*#H1_1:before*/
+	box-sizing: border-box;
+	text-align: center;
+	text-rendering: optimizelegibility;
+	text-size-adjust: 100%;
+	font: 700 30px/36px Quicksand, sans-serif;
+} /*#H1_1:before*/
 #INPUT_1 {
-    appearance: none;
-    block-size: 43.1px;
-    border-block-end-color: rgb(51, 51, 51);
-    border-block-end-style: none;
-    border-block-end-width: 0px;
-    border-block-start-color: rgb(51, 51, 51);
-    border-block-start-style: none;
-    border-block-start-width: 0px;
-    border-end-end-radius: 4px;
-    border-end-start-radius: 4px;
-    border-inline-end-color: rgb(51, 51, 51);
-    border-inline-end-style: none;
-    border-inline-end-width: 0px;
-    border-inline-start-color: rgb(51, 51, 51);
-    border-inline-start-style: none;
-    border-inline-start-width: 0px;
-    border-start-end-radius: 4px;
-    border-start-start-radius: 4px;
-    box-shadow: rgb(217, 217, 217) 0px 0px 0px 1px;
-    caret-color: rgb(51, 51, 51);
-    color: rgb(51, 51, 51);
-    column-rule-color: rgb(51, 51, 51);
-    display: block;
-    height: 43.1px;
-    inline-size: 418.05px;
-    overflow-wrap: break-word;
-    padding-block-end: 13.16px;
-    padding-block-start: 13.16px;
-    padding-inline-end: 39.2px;
-    padding-inline-start: 11.2px;
-    perspective-origin: 209.025px 21.55px;
-    text-decoration: none solid rgb(51, 51, 51);
-    transform-origin: 209.025px 21.55px;
-    width: 418.05px;
-    border: 0px none rgb(51, 51, 51);
-    border-radius: 4px;
-    font: 14px "Helvetica Neue", sans-serif;
-    outline: rgb(51, 51, 51) none 0px;
-    padding: 13.16px 39.2px 13.16px 11.2px;
-    transition: all 0.2s ease-out 0s;
-}/*#INPUT_1*/
-
+	appearance: none;
+	block-size: 43.1px;
+	border-block-end-color: rgb(51, 51, 51);
+	border-block-end-style: none;
+	border-block-end-width: 0px;
+	border-block-start-color: rgb(51, 51, 51);
+	border-block-start-style: none;
+	border-block-start-width: 0px;
+	border-end-end-radius: 4px;
+	border-end-start-radius: 4px;
+	border-inline-end-color: rgb(51, 51, 51);
+	border-inline-end-style: none;
+	border-inline-end-width: 0px;
+	border-inline-start-color: rgb(51, 51, 51);
+	border-inline-start-style: none;
+	border-inline-start-width: 0px;
+	border-start-end-radius: 4px;
+	border-start-start-radius: 4px;
+	box-shadow: rgb(217, 217, 217) 0px 0px 0px 1px;
+	caret-color: rgb(51, 51, 51);
+	color: rgb(51, 51, 51);
+	column-rule-color: rgb(51, 51, 51);
+	display: block;
+	height: 43.1px;
+	inline-size: 418.05px;
+	overflow-wrap: break-word;
+	padding-block-end: 13.16px;
+	padding-block-start: 13.16px;
+	padding-inline-end: 39.2px;
+	padding-inline-start: 11.2px;
+	perspective-origin: 209.025px 21.55px;
+	text-decoration: none solid rgb(51, 51, 51);
+	transform-origin: 209.025px 21.55px;
+	width: 418.05px;
+	border: 0px none rgb(51, 51, 51);
+	border-radius: 4px;
+	font: 14px "Helvetica Neue", sans-serif;
+	outline: rgb(51, 51, 51) none 0px;
+	padding: 13.16px 39.2px 13.16px 11.2px;
+	transition: all 0.2s ease-out 0s;
+} /*#INPUT_1*/
 #INPUT_1:after {
-    border-block-end-color: rgb(51, 51, 51);
-    border-block-start-color: rgb(51, 51, 51);
-    border-inline-end-color: rgb(51, 51, 51);
-    border-inline-start-color: rgb(51, 51, 51);
-    caret-color: rgb(51, 51, 51);
-    color: rgb(51, 51, 51);
-    column-rule-color: rgb(51, 51, 51);
-    overflow-wrap: break-word;
-    text-decoration: none solid rgb(51, 51, 51);
-    border: 0px none rgb(51, 51, 51);
-    font: 14px "Helvetica Neue", sans-serif;
-    outline: rgb(51, 51, 51) none 0px;
-}/*#INPUT_1:after*/
-
+	border-block-end-color: rgb(51, 51, 51);
+	border-block-start-color: rgb(51, 51, 51);
+	border-inline-end-color: rgb(51, 51, 51);
+	border-inline-start-color: rgb(51, 51, 51);
+	caret-color: rgb(51, 51, 51);
+	color: rgb(51, 51, 51);
+	column-rule-color: rgb(51, 51, 51);
+	overflow-wrap: break-word;
+	text-decoration: none solid rgb(51, 51, 51);
+	border: 0px none rgb(51, 51, 51);
+	font: 14px "Helvetica Neue", sans-serif;
+	outline: rgb(51, 51, 51) none 0px;
+} /*#INPUT_1:after*/
 #INPUT_1:before {
-    border-block-end-color: rgb(51, 51, 51);
-    border-block-start-color: rgb(51, 51, 51);
-    border-inline-end-color: rgb(51, 51, 51);
-    border-inline-start-color: rgb(51, 51, 51);
-    caret-color: rgb(51, 51, 51);
-    color: rgb(51, 51, 51);
-    column-rule-color: rgb(51, 51, 51);
-    overflow-wrap: break-word;
-    text-decoration: none solid rgb(51, 51, 51);
-    border: 0px none rgb(51, 51, 51);
-    font: 14px "Helvetica Neue", sans-serif;
-    outline: rgb(51, 51, 51) none 0px;
-}/*#INPUT_1:before*/
+	border-block-end-color: rgb(51, 51, 51);
+	border-block-start-color: rgb(51, 51, 51);
+	border-inline-end-color: rgb(51, 51, 51);
+	border-inline-start-color: rgb(51, 51, 51);
+	caret-color: rgb(51, 51, 51);
+	color: rgb(51, 51, 51);
+	column-rule-color: rgb(51, 51, 51);
+	overflow-wrap: break-word;
+	text-decoration: none solid rgb(51, 51, 51);
+	border: 0px none rgb(51, 51, 51);
+	font: 14px "Helvetica Neue", sans-serif;
+	outline: rgb(51, 51, 51) none 0px;
+} /*#INPUT_1:before*/
 a.disabled {
-  pointer-events: none;
-  cursor: default;
+	pointer-events: none;
+	cursor: default;
 }
-
-
-
 -->
 </style>
 <div>
 	<c:choose>
-		<c:when test="${cart.isEmpty() ==  true}" >
-		<div id="H1_1">
-			<h1 > Giỏ hàng trống.</h1>
-			<a href="home.htm" >Thêm món ăn</a>
-		</div>
-			
-		
+		<c:when test="${cart.isEmpty() ==  true}">
+			<div id="H1_1">
+				<h1>Giỏ hàng trống.</h1>
+				<a href="home.htm">Thêm món ăn</a>
+			</div>
+
+
 		</c:when>
 		<c:when test="${cart.isEmpty() ==  false}">
-			<table class="table table-hover" >
+			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th scope="col">Tên món</th>
@@ -614,83 +599,106 @@ a.disabled {
 						<th scope="col">Thao tác</th>
 					</tr>
 				</thead>
-		<c:forEach var="c" items="${cart}">
-			<tbody>
-				<tr>
-					<td><img id="IMG_1" src="${Constants.getImageAt(c.food.images, 0)}">
-						${c.food.name}</td>
-					<td>
-						<div>
-							<c:if test="${c.quantity > 1}"><a id="BUTTON_2" type="button" href="cart/qty/minus.htm?id_food=${c.food.foodId}&qty=${c.quantity}">-</a></c:if>
-							<c:if test="${c.quantity == 1}"><a class="disabled" id="BUTTON_2" type="button" href="cart/qty/minus.htm?id_food=${c.food.foodId}&qty=${c.quantity}">-</a></c:if>
-							<label id="INPUT_3">${c.quantity}</label> 
-							<a id="BUTTON_4" type="button" href="cart/qty/plus.htm?id_food=${c.food.foodId}&qty=${c.quantity}">+</a>
+				<c:forEach var="c" items="${cart}">
+					<tbody>
+						<tr>
+							<td><img id="IMG_1"
+								src="${Constants.getImageAt(c.food.images, 0)}">
+								${c.food.name}</td>
+							<td>
+								<div>
+									<c:if test="${c.quantity > 1}">
+										<a id="BUTTON_2" type="button"
+											href="cart/qty/minus.htm?id_food=${c.food.foodId}&qty=${c.quantity}">-</a>
+									</c:if>
+									<c:if test="${c.quantity == 1}">
+										<a class="disabled" id="BUTTON_2" type="button"
+											href="cart/qty/minus.htm?id_food=${c.food.foodId}&qty=${c.quantity}">-</a>
+									</c:if>
+									<label id="INPUT_3">${c.quantity}</label> <a id="BUTTON_4"
+										type="button"
+										href="cart/qty/plus.htm?id_food=${c.food.foodId}&qty=${c.quantity}">+</a>
+								</div>
+							</td>
+							<td><fmt:formatNumber value="${c.food.price}"
+									type="currency" currencySymbol="đ" minFractionDigits="0" /></td>
+							<td><a type="button" class="btn btn-danger"
+								data-bs-toggle="modal" data-bs-target="#exampleModal">Xóa</a></td>
+						</tr>
+					</tbody>
+					<!-- modal delete -->
+					<div class="modal fade" id="exampleModal" tabindex="-1"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Xác nhận</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body">Bạn chắc chắn muốn xóa món ăn khỏi
+									giỏ hàng không?</div>
+								<div class="modal-footer">
+									<a type="button" class="btn btn-danger"
+										href="cart/delete/${c.food.foodId}.htm">Đồng ý</a>
+									<button type="button" class="btn btn-primary"
+										data-bs-dismiss="modal">Hủy</button>
+
+								</div>
+							</div>
 						</div>
-					</td>
-					<td><fmt:formatNumber value="${c.food.price}" type="currency"
-							currencySymbol="đ" minFractionDigits="0" /></td>
-					<td><a type="button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#exampleModal">Xóa</a></td>
-				</tr>
-			</tbody>
-			<!-- modal delete -->
-<div class="modal fade" id="exampleModal" tabindex="-1"
-	aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Xác nhận</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal"
-					aria-label="Close"></button>
+					</div>
+				</c:forEach>
+			</table>
+			<div>
+				<form:form action="cart/discount.htm?total=${total}">
+					<div style="text-align: center;">
+						<input type="text" name="couponsId"
+							aria-describedby="inputGroup-sizing-default"
+							placeholder="Mã giảm giá" value="${coupon.couponsId}" />
+						<c:choose>
+							<c:when test="${coupon.couponsId.isEmpty() == false}">
+								<button type="submit" class="btn btn-primary disabled"
+									name="discount">Sử dụng</button>
+								<a style="color: red;" class="btn" href="cart/index.htm">Hủy</a>
+							</c:when>
+							<c:otherwise>
+								<button type="submit" class="btn btn-primary" name="discount">Sử
+									dụng</button>
+							</c:otherwise>
+						</c:choose>
+						<!-- <button type="submit" class="btn btn-primary" name="discount">Sử dụng</button> -->
+					</div>
+
+					<c:if test="${message.isEmpty() != null }">
+						<br>
+						<h4 style="color: red; text-align: center;">${message}</h4>
+					</c:if>
+					<br>
+					<p id="P_1">
+						Tổng tiền: <span id="SPAN_2"><b id="B_3"><fmt:formatNumber
+									value="${total}" type="currency" currencySymbol="đ"
+									minFractionDigits="0" /></b></span>
+					</p>
+				</form:form>
 			</div>
-			<div class="modal-body">Bạn chắc chắn muốn xóa món ăn khỏi giỏ
-				hàng không?</div>
-			<div class="modal-footer">
-				<a type="button" class="btn btn-danger" href="cart/delete/${c.food.foodId}.htm">Đồng ý</a>
-				<button type="button" class="btn btn-primary"
-					data-bs-dismiss="modal">Hủy</button>
+			<div style="text-align: center;">
+				<c:choose>
+					<c:when test="${coupon.couponsId.isEmpty() == false}">
+						<a class="btn btn-primary"
+							href="cart/checkout.htm?coupon=${coupon.couponsId}">Thanh
+							toán</a>
+					</c:when>
+					<c:otherwise>
+						<a class="btn btn-primary" href="cart/checkout.htm">Thanh toán</a>
+					</c:otherwise>
+				</c:choose>
+
 
 			</div>
-		</div>
-	</div>
-</div>
-		</c:forEach>
-	</table>
-	<div>	
-		<form:form action = "cart/discount.htm?total=${total}">
-			<div style="text-align: center;">
-				<input type="text" name="couponsId"  aria-describedby="inputGroup-sizing-default" placeholder="Mã giảm giá" value="${coupon.couponsId}"/>
-				<c:choose>
-					<c:when test="${coupon.couponsId.isEmpty() == false}"><button type="submit" class="btn btn-primary disabled" name="discount">Sử dụng</button>
-						<a style="color: red;" class="btn" href="cart/index.htm" >Hủy</a>
-					</c:when>
-					<c:otherwise><button type="submit" class="btn btn-primary" name="discount">Sử dụng</button></c:otherwise>
-				</c:choose>
-				<!-- <button type="submit" class="btn btn-primary" name="discount">Sử dụng</button> -->
-			</div>
-			
-			<c:if test="${message.isEmpty() != null }"> <br> <h4 style="color: red; text-align: center;"> ${message} </h4> </c:if>
-			<br>
-			<p id="P_1">
-				Tổng tiền: <span id="SPAN_2"><b id="B_3"><fmt:formatNumber value="${total}" type="currency"
-									currencySymbol="đ" minFractionDigits="0" /></b></span>
-			</p>
-		</form:form>
-	</div>
-	<div style="text-align: center;">
-		<c:choose>
-			<c:when test="${coupon.couponsId.isEmpty() == false}">
-				<a class="btn btn-primary" href="cart/checkout.htm?coupon=${coupon.couponsId}">Thanh toán</a>
-			</c:when>
-			<c:otherwise>
-				<a class="btn btn-primary" href="cart/checkout.htm">Thanh toán</a>
-			</c:otherwise>
-		</c:choose>
-		
-	
-	</div>
 		</c:when>
 	</c:choose>
-	
+
 </div>
 
 

@@ -92,12 +92,11 @@ public class CartDAOImpl implements CartDAO {
 		return result;
 	}
 	@Override
-	public Coupons getCoupon(String couponId, int idAcc) {
+	public Coupons getCoupon(String couponId) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "FROM Coupons"+" WHERE couponsId = :couponId AND account.accountId = :accID";
+		String hql = "FROM Coupons"+" WHERE couponsId = :couponId";
 		Query query = session.createQuery(hql);
 		query.setParameter("couponId", couponId);
-		query.setParameter("accID", idAcc);
 		Coupons coupon = (Coupons) query.uniqueResult();
 		return coupon;
 	}

@@ -52,7 +52,7 @@ public class HomeController {
 	public String login(HttpSession session) {
 		// Fake login
 		// Login vào account có id = ?
-		Account account = accountDAO.getAccount(1);
+		Account account = accountDAO.getAccount(2);
 		System.out.println(account.getName());
 		session.setAttribute("account", account);
 

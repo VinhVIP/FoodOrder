@@ -85,21 +85,29 @@ public class CartController {
 		Account user = (Account) session.getAttribute("account");
 		String voucher = request.getParameter("couponsId");
 
-		Coupons coupons = cartDAO.getCoupon(voucher, user.getAccountId());
-		float temp = 0f;
-		if (coupons == null) {
-			temp = 0;
-			model.addAttribute("message", "Mã khuyến mãi không hợp lệ!");
-		} else
-			temp = coupons.getValue();
+		Coupons coupons = cartDAO.getCoupon(voucher);
 
-		total -= temp;
-		if (total <= 0)
-			total = 0;
+		if (coupons == null) {
+			model.addAttribute("message", "Mã khuyến mãi không hợp lệ!");
+		} else {
+			System.out.println(coupons.getExpiredTime());
+
+			if (coupons.getAmount() <= 0) {
+				model.addAttribute("message", "Mã khuyến mãi đã hết!");
+			} else if (new Date().after(coupons.getExpiredTime())) {
+				model.addAttribute("message", "Mã khuyến mãi đã quá hạn sử dụng!");
+			} else {
+				if (coupons.getType() == 0) {
+					total -= coupons.getValue();
+				} else {
+					total = total * (coupons.getValue() * 1.0f / 100);
+				}
+			}
+		}
 
 		model.addAttribute("total", total);
 		model.addAttribute("coupon", coupons);
-		model.addAttribute("cart", (List<Cart>) cartDAO.getCart(user.getAccountId()));
+		model.addAttribute("cart", cartDAO.getCart(user.getAccountId()));
 
 		return "cart/index";
 	}
@@ -111,8 +119,8 @@ public class CartController {
 		Coupons coupon = new Coupons();
 		Order order = new Order();
 
-		coupon = cartDAO.getCoupon(couponId, user.getAccountId());
-		cartDAO.updateCoupon(coupon.getCouponsId()+"", coupon.getAmount() - 1);
+		coupon = cartDAO.getCoupon(couponId);
+		cartDAO.updateCoupon(coupon.getCouponsId() + "", coupon.getAmount() - 1);
 		order.setCoupons(coupon);
 
 		order.setAccount(user);
