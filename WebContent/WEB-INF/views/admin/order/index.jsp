@@ -33,14 +33,14 @@
 				      <td>${o.account.address}</td>
 				      <td>${o.orderTime}</td>
 				      <td>
-				      	<c:if test="${o.status == 0}"><p style="color:blue;">Đã hoàn thành</p></c:if>
+				      	<c:if test="${o.status == 2}"><p style="color:blue;">Đã hoàn thành</p></c:if>
 				      	<c:if test="${o.status == 1}"><p style="color: green;">Đang giao</p></c:if>
-				      	<c:if test="${o.status == 2}"><p style="color: yellow;">Chờ xác nhận</p></c:if>
+				      	<c:if test="${o.status == 0}"><p style="color: yellow;">Chờ xác nhận</p></c:if>
 				   
 				      </td>
 				      <td>
-				      	<c:if test="${o.status == 1}"><a class="btn btn-primary" href="admin/order/status.htm?orderId=${o.orderId}&status=0">Hoàn thành</a></c:if>
-				      	<c:if test="${o.status == 2}"><a class="btn btn-primary" href="admin/order/status.htm?orderId=${o.orderId}&status=1">Xác nhận</a>
+				      	<c:if test="${o.status == 1}"><a class="btn btn-primary" href="admin/order/status.htm?orderId=${o.orderId}&status=2">Hoàn thành</a></c:if>
+				      	<c:if test="${o.status == 0}"><a class="btn btn-primary" href="admin/order/status.htm?orderId=${o.orderId}&status=1">Xác nhận</a>
 				      								<a class="btn btn-danger" href="admin/order/status.htm?orderId=${o.orderId}&status=3">Hủy đơn</a>				      	
 				      	</c:if>
 				      </td>

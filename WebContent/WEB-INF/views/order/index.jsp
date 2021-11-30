@@ -33,9 +33,9 @@
 				      <td>${o.account.address}</td>
 				      <td>${o.orderTime}</td>
 				      <td>
-				      	<c:if test="${o.status == 0}"><p style="color:blue;">Đã hoàn thành</p></c:if>
+				      	<c:if test="${o.status == 2}"><p style="color:blue;">Đã hoàn thành</p></c:if>
 				      	<c:if test="${o.status == 1}"><p style="color: green;">Đang giao</p></c:if>
-				      	<c:if test="${o.status == 2}"><p style="color: yellow;">Chờ xác nhận</p></c:if>
+				      	<c:if test="${o.status == 0}"><p style="color: yellow;">Chờ xác nhận</p></c:if>
 				   		<c:if test="${o.status == 3}"><p style="color: red;">Đã hủy</p></c:if>
 				      </td>
 				      

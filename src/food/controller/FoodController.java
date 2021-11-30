@@ -50,13 +50,14 @@ public class FoodController {
 
 	@Autowired
 	private OrderDAO orderDAO;
-	
+
 	@Autowired
 	private AccountDAO accountDAO;
 
 	@RequestMapping("/{id}")
 	public String food(ModelMap model, HttpSession session, @PathVariable(value = "id") int id) {
 		Food food = foodDAO.getFood(id);
+		
 		Account user = (Account) session.getAttribute("account");
 		int userId = user == null ? -1 : user.getAccountId();
 
@@ -65,12 +66,14 @@ public class FoodController {
 		}
 
 		List<Category> list = categoryDAO.listCategories();
+		List<Rated> rateds = ratedDAO.listRated(id);
+		
 		int[] countStar = new int[6];
 		for (int i = 1; i < 6; i++) {
 			countStar[i] = 0;
 		}
 
-		for (Rated rated : food.getRateds()) {
+		for (Rated rated : rateds) {
 			countStar[rated.getStar()]++;
 		}
 
@@ -97,11 +100,16 @@ public class FoodController {
 		model.addAttribute("avgStarString", String.format("%.1f", avgStar));
 		model.addAttribute("countStar", countStar);
 		model.addAttribute("listFoodSameCategory", listFoodSameCategory);
+		model.addAttribute("rateds", rateds);
+
+		System.out.println(user != null ? "not" : "null");
 
 		if (user != null) {
 
 			// Kiểm tra xem user đã từng đặt món ăn này chưa? nếu đặt rồi mới cho đánh giá
 			boolean hasOrdered = orderDAO.hasOrdered(user.getAccountId(), id);
+
+			System.out.println(hasOrdered);
 
 			// Kiêm tra món ăn đã có trong giỏ hay chưa
 			Cart cart = cartDAO.get(user.getAccountId(), id);
@@ -198,7 +206,7 @@ public class FoodController {
 
 		if (page <= 0)
 			return String.format("redirect:/food/%d/rateds.htm?page=1&filter=%d", foodId, filter);
-		
+
 		List<Rated> rateds = ratedDAO.listRated(food.getFoodId(), filter);
 
 		int maxPage = Math.max(Constants.getMaxPage(rateds.size(), Constants.RPP), 1);
@@ -246,7 +254,7 @@ public class FoodController {
 			}
 		}
 
-		return "redirect:/food/index.htm?id=" + id;
+		return "redirect:/food/" + id + ".htm";
 	}
 
 	@RequestMapping(value = "rating", params = { "deleteId" })
@@ -266,23 +274,23 @@ public class FoodController {
 			}
 		}
 
-		return "redirect:/food/index.htm?id=" + foodId;
+		return "redirect:/food/" + foodId + ".htm";
 	}
 
 	@RequestMapping(value = "cart", params = { "id_food" })
 	public String addToCart(ModelMap model, HttpSession session, @RequestParam("id_food") int foodId) {
 		Account user = (Account) session.getAttribute("account");
-		
+
 		if (user == null) {
 			System.out.println("user null rooi");
 
 		} else {
 			user = accountDAO.getAccount(user.getAccountId());
-			
+
 			Cart cart = cartDAO.get(user.getAccountId(), foodId);
 
 			if (cart != null) {
-				System.out.println("them roi, them lại làm gì nữa: "+cart.getQuantity());
+				System.out.println("them roi, them lại làm gì nữa: " + cart.getQuantity());
 			} else {
 				cart = new Cart();
 				cart.setCartId(new CartKey(user.getAccountId(), foodId));

@@ -625,8 +625,8 @@ a.disabled {
 	</div>
 	
 	<div style="text-align: center;">
-		<c:if test="${orderDetail[0].order.status == 1}"><a  class="btn btn-primary" href="admin/order/status.htm?orderId=${orderDetail[0].order.orderId}&status=0">Hoàn thành</a> </c:if>
-		<c:if test="${orderDetail[0].order.status == 2}"><a  class="btn btn-primary" href="admin/order/status.htm?orderId=${orderDetail[0].order.orderId}&status=1">Xác nhận</a>
+		<c:if test="${orderDetail[0].order.status == 1}"><a  class="btn btn-primary" href="admin/order/status.htm?orderId=${orderDetail[0].order.orderId}&status=2">Hoàn thành</a> </c:if>
+		<c:if test="${orderDetail[0].order.status == 0}"><a  class="btn btn-primary" href="admin/order/status.htm?orderId=${orderDetail[0].order.orderId}&status=1">Xác nhận</a>
 				      								<a  class="btn btn-danger" href="admin/order/status.htm?orderId=${orderDetail[0].order.orderId}&status=3">Hủy đơn</a> </c:if>
 	</div>
 </div>

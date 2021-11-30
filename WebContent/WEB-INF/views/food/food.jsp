@@ -164,7 +164,7 @@
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
-					</span> <i>(${food.rateds.size()} lượt)</i>
+					</span> <i>(${rateds.size()} lượt)</i>
 				</p>
 
 				<hr style="border: 1px solid #f1f1f1">
@@ -192,7 +192,7 @@
 
 
 				<br /> <br />
-				<c:if test="${sessionScope.account != null and hasOrdered}">
+				<c:if test="${hasOrdered}">
 					<form:form action="food/rating.htm?id=${food.foodId}" method="POST"
 						modelAttribute="userRating">
 						<div>
@@ -264,7 +264,7 @@
 								thêm </i><i class="bi bi-arrow-right"></i></a>
 					</p>
 					<div class="col">
-						<c:forEach items="${food.rateds}" var="rated" begin="0" end="4">
+						<c:forEach items="${rateds}" var="rated" begin="0" end="4">
 							<div class="row">
 								<div class="col-1 mr-10">
 									<img class="rounded-circle z-depth-2" alt="50x50" width="60px"
