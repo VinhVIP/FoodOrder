@@ -98,7 +98,7 @@ public class CartController {
 				model.addAttribute("message", "Mã khuyến mãi đã quá hạn sử dụng!");
 			} else {
 				if (coupons.getType() == 0) {
-					total -= coupons.getValue();
+					total = Math.max(total-coupons.getValue(), 0);
 				} else {
 					total = total * (coupons.getValue() * 1.0f / 100);
 				}

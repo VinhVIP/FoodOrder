@@ -47,7 +47,7 @@ public class OrderController {
 
 		float finalPrice = total;
 		if (discountType == 0)
-			finalPrice -= discountValue;
+			finalPrice = Math.max(finalPrice - discountValue, 0);
 		else
 			finalPrice *= (discountValue / 100);
 
