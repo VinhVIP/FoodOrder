@@ -10,6 +10,14 @@ body {
 	font-family: "Roboto", sans-serif;
 }
 
+#datepicker {
+	margin: 0px;
+}
+
+#datepicker>span:hover {
+	cursor: pointer;
+}
+
 .rcorners1 {
 	border-radius: 25px;
 	background: #F3F1F5;
@@ -519,11 +527,8 @@ pre {
 	color: #ff0000;
 }
 
-
-
 /* Css for footer  */
-
-.footer-distributed{
+.footer-distributed {
 	background: #151414;;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
 	box-sizing: border-box;
@@ -533,62 +538,57 @@ pre {
 	padding: 55px 50px;
 }
 
-.footer-distributed .footer-left,
-.footer-distributed .footer-center,
-.footer-distributed .footer-right{
+.footer-distributed .footer-left, .footer-distributed .footer-center,
+	.footer-distributed .footer-right {
 	display: inline-block;
 	vertical-align: top;
 }
 
 /* Footer left */
-
-.footer-distributed .footer-left{
+.footer-distributed .footer-left {
 	width: 40%;
 }
 
 /* The company logo */
-
-.footer-distributed h3{
-	color:  #ffffff;
+.footer-distributed h3 {
+	color: #ffffff;
 	font: normal 36px 'Open Sans', cursive;
 	margin: 0;
 }
 
-.footer-distributed h3 span{
-	color:  lightseagreen;
+.footer-distributed h3 span {
+	color: lightseagreen;
 }
 
 /* Footer links */
-
-.footer-distributed .footer-links{
-	color:  #ffffff;
+.footer-distributed .footer-links {
+	color: #ffffff;
 	margin: 20px 0 12px;
 	padding: 0;
 }
 
-.footer-distributed .footer-links a{
-	display:inline-block;
+.footer-distributed .footer-links a {
+	display: inline-block;
 	line-height: 1.8;
-  font-weight:400;
+	font-weight: 400;
 	text-decoration: none;
-	color:  inherit;
+	color: inherit;
 }
 
-.footer-distributed .footer-company-name{
-	color:  #222;
+.footer-distributed .footer-company-name {
+	color: #222;
 	font-size: 14px;
 	font-weight: normal;
 	margin: 0;
 }
 
 /* Footer Center */
-
-.footer-distributed .footer-center{
+.footer-distributed .footer-center {
 	width: 35%;
 }
 
-.footer-distributed .footer-center i{
-	background-color:  #33383b;
+.footer-distributed .footer-center i {
+	background-color: #33383b;
 	color: #ffffff;
 	font-size: 25px;
 	width: 38px;
@@ -600,83 +600,81 @@ pre {
 	vertical-align: middle;
 }
 
-.footer-distributed .footer-center i.fa-envelope{
+.footer-distributed .footer-center i.fa-envelope {
 	font-size: 17px;
 	line-height: 38px;
 }
 
-.footer-distributed .footer-center p{
+.footer-distributed .footer-center p {
 	display: inline-block;
 	color: #ffffff;
-  font-weight:400;
+	font-weight: 400;
 	vertical-align: middle;
-	margin:0;
+	margin: 0;
 }
 
-.footer-distributed .footer-center p span{
-	display:block;
+.footer-distributed .footer-center p span {
+	display: block;
 	font-weight: normal;
-	font-size:14px;
-	line-height:2;
+	font-size: 14px;
+	line-height: 2;
 }
 
-.footer-distributed .footer-center p a{
-	color:  lightseagreen;
+.footer-distributed .footer-center p a {
+	color: lightseagreen;
 	text-decoration: none;;
 }
 
 .footer-distributed .footer-links a:before {
-  content: "|";
-  font-weight:300;
-  font-size: 20px;
-  left: 0;
-  color: #fff;
-  display: inline-block;
-  padding-right: 5px;
+	content: "|";
+	font-weight: 300;
+	font-size: 20px;
+	left: 0;
+	color: #fff;
+	display: inline-block;
+	padding-right: 5px;
 }
 
 .footer-distributed .footer-links .link-1:before {
-  content: none;
+	content: none;
 }
 
 /* Footer Right */
-
-.footer-distributed .footer-right{
+.footer-distributed .footer-right {
 	width: 20%;
 }
 
-.footer-distributed .footer-company-about{
+.footer-distributed .footer-company-about {
 	line-height: 20px;
-	color:  #92999f;
+	color: #92999f;
 	font-size: 13px;
 	font-weight: normal;
 	margin: 0;
 }
 
-.footer-distributed .footer-company-about span{
+.footer-distributed .footer-company-about span {
 	display: block;
-	color:  #ffffff;
+	color: #ffffff;
 	font-size: 14px;
 	font-weight: bold;
 	margin-bottom: 20px;
 }
 
-.footer-distributed .footer-icons{
+.footer-distributed .footer-icons {
 	margin-top: 25px;
 }
 
-.footer-distributed .footer-icons a{
+.footer-distributed .footer-icons a {
 	display: inline-block;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 40px;
-    background: #000;
-    margin-right: 5px;
-    color: #fff;
-    padding-top: 5px;
-    
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 40px;
+	background: #000;
+	margin-right: 5px;
+	color: #fff;
+	padding-top: 5px;
 	/* display: inline-block;
 	width: 35px;
 	height: 35px;
@@ -688,59 +686,53 @@ pre {
 	color: #ffffff;
 	text-align: center;
 	line-height: 35px; */
-
 	margin-right: 3px;
 	margin-bottom: 5px;
 }
 
 /* If you don't want the footer to be responsive, remove these media queries */
-
-@media (max-width: 880px) {
-
-	.footer-distributed{
+@media ( max-width : 880px) {
+	.footer-distributed {
 		font: bold 14px sans-serif;
 	}
-
-	.footer-distributed .footer-left,
-	.footer-distributed .footer-center,
-	.footer-distributed .footer-right{
+	.footer-distributed .footer-left, .footer-distributed .footer-center,
+		.footer-distributed .footer-right {
 		display: block;
 		width: 100%;
 		margin-bottom: 40px;
 		text-align: center;
 	}
-
-	.footer-distributed .footer-center i{
+	.footer-distributed .footer-center i {
 		margin-left: 0;
 	}
-
 }
-
 
 /* Phiếu giảm giá */
 .coupon .kanan {
-    border-left: 1px dashed #ffc299;
-    width: 40% !important;
-    position:relative;
+	border-left: 1px dashed #ffc299;
+	width: 40% !important;
+	position: relative;
 }
 
 .coupon .kanan .info::after, .coupon .kanan .info::before {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: #ff6600;
-    border-radius: 100%;
+	content: '';
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	background: #ff6600;
+	border-radius: 100%;
 }
+
 .coupon .kanan .info::before {
-    top: -10px;
-    left: -10px;
+	top: -10px;
+	left: -10px;
 }
 
 .coupon .kanan .info::after {
-    bottom: -10px;
-    left: -10px;
+	bottom: -10px;
+	left: -10px;
 }
+
 .coupon .time {
-    font-size: 1.6rem;
+	font-size: 1.6rem;
 }

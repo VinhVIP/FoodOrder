@@ -23,7 +23,6 @@
 <link rel='stylesheet' type='text/css' media='screen'
 	href='resources/css/bootstrap.min.css'>
 
-
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
@@ -32,9 +31,14 @@
 <script src='resources/js/bootstrap.min.js'></script>
 <script src='resources/js/jquery-3.6.0.min.js'></script>
 
+<link rel="stylesheet prefetch"
+	href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css">
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+
 
 <link rel='stylesheet' type='text/css' media='screen'
-	href='resources/css/app.css?ver=1.0.8'>
+	href='resources/css/app.css?ver=1.0.6'>
 </head>
 <body class="d-flex flex-column min-vh-100 container-fluid">
 

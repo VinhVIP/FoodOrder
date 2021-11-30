@@ -3,6 +3,21 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 
+<!-- <style>
+label {
+	margin-left: 20px;
+}
+
+#datepicker {
+	width: 180px;
+	margin: 0 20px 20px 20px;
+}
+
+#datepicker>span:hover {
+	cursor: pointer;
+}
+</style> -->
+
 <div class="row ml-10">
 	<div class="col-lg-3">
 		<%@include file="/WEB-INF/views/include/sidebar_admin.jsp"%>
@@ -76,11 +91,13 @@
 			</div>
 
 			<div>
-				<label class="form-label"><b>Hạn sử dụng</b></label>
-				<form:input path="expiredTime" type="text" class="form-control"
-					id="txtNameControl" />
-				<form:errors path="expiredTime" />
+				<label class="form-label">Hạn sử dụng</label>
+				
+				<form:input data-date-format="dd-mm-yyyy" path="expiredTime"
+					id="datepicker" class="form-control" readonly="" type="text" />
+
 			</div>
+
 
 			<hr style="border: 1px solid #f1f1f1">
 
@@ -93,6 +110,14 @@
 
 </div>
 
+<script type="text/javascript">
+	$(function() {
+		$("#datepicker").datepicker({
+			autoclose : true,
+			todayHighlight : true
+		}).datepicker('update', new Date());
+	});
+</script>
 
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
