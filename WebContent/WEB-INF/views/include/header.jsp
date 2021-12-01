@@ -38,7 +38,7 @@
 
 
 <link rel='stylesheet' type='text/css' media='screen'
-	href='resources/css/app.css?ver=1.0.6'>
+	href='resources/css/app.css?ver=1.0.7'>
 </head>
 <body class="d-flex flex-column min-vh-100 container-fluid">
 
@@ -128,6 +128,8 @@
 									aria-labelledby="dropdownMenuLink">
 									<li><a class="dropdown-item" href="account/profile.htm">Trang
 											cá nhân</a></li>
+									<li><a class="dropdown-item" href="account/change.htm">Đổi
+											mật khẩu</a></li>
 									<li><a class="dropdown-item" href="account/coupons.htm">Phiếu
 											giảm giá</a></li>
 									<li><a class="dropdown-item" href="logout.htm">Đăng

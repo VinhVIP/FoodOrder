@@ -41,7 +41,7 @@ public class OrderDAOImpl implements OrderDAO{
 	@Override
 	public List<Order> getOrders(){
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "FROM Order WHERE status != 3 ORDER BY status DESC";
+		String hql = "FROM Order WHERE status != 3 ORDER BY orderTime DESC";
 		Query query = session.createQuery(hql);
 		List<Order> list = new ArrayList<Order>();
 		for(Object q:query.list()) {

@@ -1,7 +1,7 @@
 package food.controller;
 
-import java.io.File;
 import java.util.Base64;
+import java.util.Date;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -12,14 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import food.bean.AccountBean;
 import food.bean.AdminMailer;
 import food.bean.UploadFile;
 import food.dao.AccountDAO;
@@ -39,6 +40,13 @@ public class AccountController {
 	@Autowired
 	@Qualifier("avatarFile")
 	private UploadFile upFile;
+
+	@Autowired
+	HttpServletRequest request;
+
+	@Autowired
+	@Qualifier("rootFile")
+	private UploadFile rootFile;
 
 	public Cookie create(String name, String value, int days) {
 		String encodedValue = Base64.getEncoder().encodeToString(value.getBytes());
@@ -83,26 +91,24 @@ public class AccountController {
 
 	@RequestMapping(value = "signin", method = RequestMethod.POST)
 	public String signin(ModelMap model, HttpServletResponse response, HttpSession session,
-			@RequestParam("email") String email, @RequestParam("password") String pw,
+			@RequestParam("email") String email, @RequestParam("pw") String pw,
 			@RequestParam(value = "rm", defaultValue = "false") boolean rm) {
 
 		Account user = accountDAO.findByEmail(email);
 		if (user == null) {
-			model.addAttribute("message", "Tên đăng nhập không hợp lệ!");
-		} else if (pw.equals(user.getPassword())) {
-			model.addAttribute("message", "Mật khẩu không hợp lệ!");
+			model.addAttribute("message", "Vui lòng nhập Email hợp lệ!");
 		} else if (user.getStatus() == 1) {
 			model.addAttribute("message", "Tài khoản đã bị khoá, vui lòng liên hệ admin để mở khoá");
+		} else if (!Constants.md5(pw).equals(user.getPassword())) {
+			model.addAttribute("message", "Mật khẩu không hợp lệ!");
 		} else {
-			model.addAttribute("message", "Đăng nhập thành công");
-
-			// lưu là account nha
+			System.out.println(pw);
 			session.setAttribute("account", user);
 
 			// Ghi nho tai khoan bang cookie
 			if (rm == true) {
 				Cookie ckemail = this.create("email", user.getEmail(), 30);
-				Cookie ckpass = this.create("pass", user.getPassword(), 30);
+				Cookie ckpass = this.create("pass", pw, 30);
 
 				response.addCookie(ckemail);
 				response.addCookie(ckpass);
@@ -111,48 +117,49 @@ public class AccountController {
 				this.delete("email");
 				this.delete("pass");
 			}
+			return "redirect:/home.htm";
 		}
 		return "account/signin";
 	}
 
 	@RequestMapping(value = "signup", method = RequestMethod.GET)
-	public String signup(ModelMap model) {
-		Account user = new Account();
-		model.addAttribute("user", user);
+	public String signup(ModelMap model, HttpSession session) {
+
+		AccountBean aBean = new AccountBean();
+		model.addAttribute("user", aBean);
 		return "account/signup";
 	}
 
 	@RequestMapping(value = "signup", method = RequestMethod.POST)
-	public String signup(ModelMap model, RedirectAttributes reAttributes, @ModelAttribute("user") Account user,
-			@RequestParam("avatar") MultipartFile img) {
-		String images = "";
-		if (img.isEmpty()) {
-			user.setAvatar("avatar.jpg");
-		} else {
-			String nameFormat = Constants.getCurrentTime() + "_" + Constants.rewriteFileName(img.getOriginalFilename());
+	public String signup(ModelMap model, RedirectAttributes reAttributes, HttpSession session,
+			@Validated @ModelAttribute("user") AccountBean aBean, BindingResult errors) {
 
-			String logoPath = upFile.getBasePath() + File.separator + nameFormat;
-			images += "resources/img/avatar/" + nameFormat + " ";
-
-			try {
-				img.transferTo(new File(logoPath));
-				Thread.sleep(500);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		user.setAvatar(images.trim());
-
-		boolean added = accountDAO.insert(user);
-		if (added) {
-			reAttributes.addFlashAttribute("message", "Đăng ký thành công!");
-		} else {
-			model.addAttribute("msgError", "Đăng ký thất bại!");
+		if (errors.hasErrors()) {
+			model.addAttribute("user", aBean);
 			return "account/signup";
 		}
 
-		return "redirect:/account/signup";
+//		Account user = (Account) session.getAttribute("account");
+		Account user = new Account();
+
+		user.setName(aBean.getName());
+		user.setEmail(aBean.getEmail());
+		user.setPhone(aBean.getPhone());
+		user.setAddress(aBean.getAddress());
+		user.setPassword(Constants.md5(aBean.getPassword()));
+		user.setAvatar("resources/img/avatar/avatar.jpg");
+		user.setCreatedTime(new Date());
+		user.setStatus(0);
+
+		boolean add = accountDAO.insert(user);
+		System.out.println(add ? "OK" : "Ko");
+		if (add) {
+			model.addAttribute("message", "Đăng ký thành công!");
+		} else {
+			model.addAttribute("message", "Đăng ký thất bại");
+		}
+		model.addAttribute("accountBean", aBean);
+		return "account/signup";
 	}
 
 	@RequestMapping(value = "forgot", method = RequestMethod.GET)
@@ -161,23 +168,44 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = "forgot", method = RequestMethod.POST)
-	public String forgot(ModelMap model, @RequestParam("email") String email) {
-		Account user = new Account();
-		if (!email.equals(user.getEmail())) {
-			model.addAttribute("message", "Email chưa đăng ký");
+	public String forgot(ModelMap model, RedirectAttributes reAttributes, @RequestParam("email") String email,
+			HttpServletRequest request, HttpServletResponse response, HttpSession ss) {
+		String captcha = ss.getAttribute("captcha_security").toString();
+		String verifyCaptcha = request.getParameter("captcha");
+
+		boolean verify = false;
+		if (captcha.equals(verifyCaptcha)) {
+			verify = true;
 		} else {
-
-			String from = "vinhvipit@gmail.com";
-			String to = email;
-			String subject = "Forgot Password";
-			String body = "Your password is " + user.getPassword();
-
-			mailer.sendmailer(from, to, subject, body);
-
-			model.addAttribute("message", "Mật khẩu của bạn đã được gửi đến hộp thư đến của bạn");
+			verify = false;
 		}
+		if (!verify) {
+			model.addAttribute("message", "Vui lòng nhập Captcha");
+			return "account/forgot";
+		} else {
+			Account user = accountDAO.findByEmail(email);
+			if (user == null) {
+				model.addAttribute("message", "Email chưa đăng ký");
+			} else {
 
-		return "redirect:/account/signin";
+				String code = Constants.randomCode(6);
+
+				ss.setAttribute(email, code);
+
+				String from = "npnhanh19@gmail.com";
+				String to = email;
+				String subject = "Forgot Password";
+				String body = "Your code is " + code;
+
+				mailer.sendmailer(from, to, subject, body);
+//				String url = request.getRequestURI().toString().replace("forgot", "signin");
+				model.addAttribute("message", "Mã xác nhận đã được gửi đến hộp thư của bạn");
+
+				model.addAttribute("email", email);
+				return "account/code";
+			}
+		}
+		return "account/forgot";
 	}
 
 	@RequestMapping(value = "change", method = RequestMethod.GET)
@@ -186,22 +214,76 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = "change", method = RequestMethod.POST)
-	public String change(ModelMap model, @RequestParam("email") String email, @RequestParam("password") String pw,
-			@RequestParam("password1") String pw1, @RequestParam("password1") String pw2) {
+	public String change(ModelMap model, @RequestParam("email") String email, @RequestParam("pw") String pw,
+			@RequestParam("pw1") String pw1, @RequestParam("pw2") String pw2) {
+
 		Account user = accountDAO.findByEmail(email);
-		if (!pw1.equals(pw2)) {
-			model.addAttribute("message", "Mật khẩu không giống nhau!");
+		if (user == null) {
+			model.addAttribute("message", "Vui lòng nhập Email hợp lệ!");
+		} else if (Constants.isSameMD5(pw, user.getPassword())) {
+			model.addAttribute("message", "Mật khẩu không đúng!");
 		} else {
-			if (user == null) {
-				model.addAttribute("message", "Tên đăng nhập không hợp lệ!");
-			} else if (pw.equals(user.getPassword())) {
-				model.addAttribute("message", "Mật khẩu không hợp lệ!");
+			if (!pw1.equals(pw2)) {
+				model.addAttribute("message", "Xác nhận mật khẩu không khớp!");
 			} else {
-				user.setPassword(pw1);
+				user.setPassword(Constants.md5(pw1));
 				accountDAO.update(user);
-				model.addAttribute("message", "Đổi mật khẩu thành công!");
+				String url = request.getServletContext().getContextPath() + "/home.htm";
+				model.addAttribute("message",
+						"Đổi mật khẩu thành công! <br/>" + "<a href='" + url + "'>Quay về trang chủ</a>");
 			}
 		}
-		return "redirect:/account/signin";
+		return "account/change";
+	}
+
+	@RequestMapping(value = "change_forgot", method = RequestMethod.GET)
+	public String changeForgot(ModelMap model) {
+//		model.addAttribute("email", "");
+		return "account/change_forgot";
+	}
+
+	@RequestMapping("code")
+	public String code(ModelMap model) {
+		return "account/code";
+	}
+
+	@RequestMapping(value = "code", method = RequestMethod.POST)
+	public String code(ModelMap model, RedirectAttributes reAttributes, HttpSession session,
+			@RequestParam("email") String email, @RequestParam("code") String code) {
+		String ranCode = (String) session.getAttribute(email);
+		if (ranCode == null || ranCode.length() == 0) {
+			System.out.println("random code không tồn tại!");
+			return "redirect:/home.htm";
+		}
+		System.out.println(ranCode + " - " + code);
+		if (ranCode.equals(code)) {
+			model.addAttribute("email", email);
+			return "account/change_forgot";
+		}
+
+		model.addAttribute("email", email);
+		model.addAttribute("message", "Mã code không chính xác!");
+		return "account/code";
+	}
+
+	@RequestMapping(value = "change_forgot", method = RequestMethod.POST)
+	public String changeForgot(ModelMap model, @RequestParam("email") String email, @RequestParam("pw1") String pw1,
+			@RequestParam("pw2") String pw2) {
+
+		Account user = accountDAO.findByEmail(email);
+		if (user == null) {
+			model.addAttribute("message", "Vui lòng nhập Email hợp lệ!");
+		} else {
+			if (!pw1.equals(pw2)) {
+				model.addAttribute("message", "Xác nhận mật khẩu không khớp!");
+			} else {
+				user.setPassword(Constants.md5(pw1));
+				accountDAO.update(user);
+				String url = request.getServletContext().getContextPath() + "/account/signin.htm";
+				model.addAttribute("message",
+						"Đổi mật khẩu thành công. " + "Click <a href='" + url + "'>SignIn</a> để đăng nhập");
+			}
+		}
+		return "account/change_forgot";
 	}
 }

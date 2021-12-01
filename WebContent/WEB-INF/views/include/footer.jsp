@@ -1,6 +1,6 @@
 <%@ page language="java" pageEncoding="utf-8"%>
 </div>
-
+<br/>
 <footer class="footer-distributed">
 	<div class="footer-left">
 		<h3>

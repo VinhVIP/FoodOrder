@@ -137,6 +137,7 @@ public class CartController {
 		order.setStatus(0);
 
 		orderDAO.insertOrder(order);
+		
 
 		for (Cart c : list) {
 			OrderDetail orderDetail = new OrderDetail();
@@ -170,7 +171,7 @@ public class CartController {
 		c1.setTime(out);
 		c1.add(Calendar.MINUTE, 30);
 		order.setDeliveryTime(c1.getTime());
-		order.setStatus(2);
+		order.setStatus(0);
 
 		orderDAO.insertOrder(order);
 

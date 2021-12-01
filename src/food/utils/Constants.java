@@ -4,11 +4,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Random;
 
 import food.entity.Account;
 import food.entity.Cart;
 import food.entity.Food;
 import food.entity.Rated;
+import org.apache.commons.codec.digest.DigestUtils;
 
 public class Constants {
 
@@ -32,6 +34,23 @@ public class Constants {
 	static {
 		mapChar = new HashMap<>();
 		initMap();
+	}
+	
+	public static String md5(String data) {
+		return DigestUtils.md5Hex(data);
+	}
+	
+	public static boolean isSameMD5(String data1, String data2) {
+		return md5(data1).equals(md5(data2));
+	}
+	
+	public static String randomCode(int len) {
+		Random r = new Random();
+		String s = "";
+		for(int i=0; i<len; i++) {
+			s += Math.abs(r.nextInt()%10);
+		}
+		return s;
 	}
 
 	/**

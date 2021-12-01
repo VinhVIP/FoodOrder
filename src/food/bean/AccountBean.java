@@ -8,6 +8,7 @@ public class AccountBean {
 	@NotBlank(message = "Họ và tên không được bỏ trống!")
 	private String name;
 	
+	@NotBlank(message = "Email không được bỏ trống!")
 	private String email;
 	
 	@NotBlank(message = "Số điện thoại không được bỏ trống!")
@@ -18,7 +19,17 @@ public class AccountBean {
 	
 	private MultipartFile avatar;
 
+	@NotBlank(message = "Mật khẩu không được bỏ trống!")
+	private String password;
 	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public String getName() {
 		return name;
 	}
