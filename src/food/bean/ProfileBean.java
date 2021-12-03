@@ -1,40 +1,27 @@
 package food.bean;
 
-import javax.validation.constraints.Size;
-
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.web.multipart.MultipartFile;
 
-public class AccountBean {
-
+public class ProfileBean {
+	
 	@NotBlank(message = "Họ và tên không được bỏ trống!")
 	private String name;
-
+	
 	@NotBlank(message = "Email không được bỏ trống!")
 	@Email(message = "Email không đúng định dạng!")
 	private String email;
-
+	
 	@NotBlank(message = "Số điện thoại không được bỏ trống!")
 	private String phone;
-
+	
 	@NotBlank(message = "Địa chỉ liên hệ không được bỏ trống!")
 	private String address;
-
+	
 	private MultipartFile avatar;
 
-	@NotBlank(message = "Mật khẩu không được bỏ trống!")
-	@Size(min = 4)
-	private String password;
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
+	
 	public String getName() {
 		return name;
 	}
@@ -74,5 +61,5 @@ public class AccountBean {
 	public void setAvatar(MultipartFile avatar) {
 		this.avatar = avatar;
 	}
-
+	
 }

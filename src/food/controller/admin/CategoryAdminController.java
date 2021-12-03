@@ -71,7 +71,7 @@ public class CategoryAdminController {
 		if (sameName == null) {
 
 			if (cBean.getLogo().isEmpty()) {
-				c.setLogo("resources/img/icon.png");
+				c.setLogo("resources/img/category/icon.png");
 			} else {
 
 				String nameFormat = Constants.getCurrentTime() + "_"

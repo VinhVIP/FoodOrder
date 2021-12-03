@@ -5,6 +5,7 @@ encoding//src/food/bean/AccountBean.java=UTF-8
 encoding//src/food/bean/CategoryBean.java=UTF-8
 encoding//src/food/bean/CouponsBean.java=UTF-8
 encoding//src/food/bean/FoodBean.java=UTF-8
+encoding//src/food/bean/ProfileBean.java=UTF-8
 encoding//src/food/bean/SignupBean.java=UTF-8
 encoding//src/food/controller/AccountController.java=UTF-8
 encoding//src/food/controller/AdminController.java=UTF-8

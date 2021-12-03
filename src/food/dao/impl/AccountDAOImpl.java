@@ -99,4 +99,14 @@ public class AccountDAOImpl implements AccountDAO {
 		}
 		return false;
 	}
+
+	@Override
+	public Account findByPhone(String phone) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM Account WHERE phone = :phone";
+		Query query = session.createQuery(hql);
+		query.setString("phone", phone);
+		Account account = (Account) query.uniqueResult();
+		return account;
+	}
 }

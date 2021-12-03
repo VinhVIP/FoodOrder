@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Đăng nhập</title>
 <base href="${pageContext.servletContext.contextPath}/">
-<link rel="stylesheet" type="text/css" href="resources/css/signin.css">
+<link rel="stylesheet" type="text/css" href="resources/css/signin.css?ver=1.0.3">
 <link href='https://fonts.googleapis.com/css?family=Ubuntu:500'
 	rel='stylesheet' type='text/css'>
 </head>
@@ -18,8 +18,8 @@
 				<h5 style="color: red; font-style: italic; padding-top: 15px;">${message}</h5>
 			</div>
 			<div class="signin-form">
-				<h3>Nhập Email:</h3>
-				<input type="email" placeholder="Nhập Email" name="email"
+				<h3>Nhập Email/SĐT:</h3>
+				<input type="text" placeholder="Nhập Email" name="email"
 					value="${email}" /> <br>
 				<h3>Nhập Password:</h3>
 				<input type="password" placeholder="Nhập password" name="pw"

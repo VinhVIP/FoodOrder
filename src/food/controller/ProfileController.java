@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import food.bean.AccountBean;
+import food.bean.ProfileBean;
 import food.bean.UploadFile;
 import food.dao.AccountDAO;
 import food.dao.CouponsDAO;
@@ -46,7 +46,7 @@ public class ProfileController {
 			return "redirect:/home.htm";
 		}
 
-		AccountBean accountBean = new AccountBean();
+		ProfileBean accountBean = new ProfileBean();
 		accountBean.setName(user.getName());
 		accountBean.setEmail(user.getEmail());
 		accountBean.setPhone(user.getPhone());
@@ -60,7 +60,7 @@ public class ProfileController {
 	@RequestMapping(value = "profile", method = RequestMethod.POST)
 	public String editProfile(ModelMap model, RedirectAttributes reAttributes,
 			HttpSession session,
-			@Validated @ModelAttribute("accountBean") AccountBean aBean,
+			@Validated @ModelAttribute("accountBean") ProfileBean aBean,
 			BindingResult errors) {
 		
 		if(errors.hasErrors()) {
@@ -74,6 +74,7 @@ public class ProfileController {
 		user.setEmail(aBean.getEmail());
 		user.setPhone(aBean.getPhone());
 		user.setAddress(aBean.getAddress());
+		
 		
 		if(aBean.getAvatar().isEmpty()) {
 			// Nếu k chọn ảnh mới thì k cập nhật avatar
@@ -96,14 +97,20 @@ public class ProfileController {
 		
 		boolean updated = accountDAO.update(user);
 		if(updated) {
-			reAttributes.addFlashAttribute("message", "Cập nhật thông tin cá nhân thành công!");
+			System.out.println("OK");
+//			reAttributes.addFlashAttribute("message", "Cập nhật thông tin cá nhân thành công!");
+			model.addAttribute("message", "Cập nhật thông tin cá nhân thành công!");
 		}else {
-			reAttributes.addFlashAttribute("message", "Cập nhật thất bại, xin vui lòng thử lại sau!");
+			System.out.println("No");
+//			reAttributes.addFlashAttribute("message", "Cập nhật thất bại, xin vui lòng thử lại sau!");
+			model.addAttribute("message", "Cập nhật thất bại, xin vui lòng thử lại sau!");
 		}
 		
-		reAttributes.addFlashAttribute("accountBean", aBean);
+//		reAttributes.addFlashAttribute("accountBean", aBean);
 		
-		return "redirect:/account/profile.htm";
+		model.addAttribute("accountBean", aBean);
+		return "account/profile";
+//		return "redirect:/account/profile.htm";
 	}
 	
 	@RequestMapping("coupons")

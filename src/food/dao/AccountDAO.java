@@ -18,4 +18,6 @@ List<Account> listAccounts();
 
 	boolean delete(Account account);
 	
+	Account findByPhone(String phone);
+	
 }

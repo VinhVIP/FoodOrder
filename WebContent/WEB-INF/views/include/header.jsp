@@ -38,7 +38,7 @@
 
 
 <link rel='stylesheet' type='text/css' media='screen'
-	href='resources/css/app.css?ver=1.0.7'>
+	href='resources/css/app.css?ver=1.1.0'>
 </head>
 <body class="d-flex flex-column min-vh-100 container-fluid">
 
@@ -76,8 +76,9 @@
 
 						</ul>
 						<form class="d-flex">
-							<a href="login.htm" type="button"
-								class="btn btn-primary btn-sm ml-10">Fake login</a> <a
+							<!-- <a href="login.htm" type="button"
+								class="btn btn-primary btn-sm ml-10">Fake login</a>  -->
+								<a
 								href="account/signin.htm" type="button"
 								class="btn btn-primary btn-sm ml-10">Đăng nhập</a> <a
 								href="account/signup.htm" type="button"

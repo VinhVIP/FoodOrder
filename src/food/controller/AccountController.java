@@ -94,9 +94,20 @@ public class AccountController {
 			@RequestParam("email") String email, @RequestParam("pw") String pw,
 			@RequestParam(value = "rm", defaultValue = "false") boolean rm) {
 
-		Account user = accountDAO.findByEmail(email);
+		boolean isEmail = false;
+		if (email.contains("@"))
+			isEmail = true;
+
+		Account user = null;
+
+		if (isEmail) {
+			user = accountDAO.findByEmail(email);
+		} else {
+			user = accountDAO.findByPhone(email);
+		}
+
 		if (user == null) {
-			model.addAttribute("message", "Vui lòng nhập Email hợp lệ!");
+			model.addAttribute("message", "Email/SĐT không chính xác!");
 		} else if (user.getStatus() == 1) {
 			model.addAttribute("message", "Tài khoản đã bị khoá, vui lòng liên hệ admin để mở khoá");
 		} else if (!Constants.md5(pw).equals(user.getPassword())) {
@@ -139,7 +150,20 @@ public class AccountController {
 			return "account/signup";
 		}
 
-//		Account user = (Account) session.getAttribute("account");
+		Account exists = accountDAO.findByEmail(aBean.getEmail());
+		if (exists != null) {
+			errors.rejectValue("email", "user", "Email này đã được đăng ký!");
+//			model.addAttribute("accountBean", aBean);
+			return "account/signup";
+		}
+
+		exists = accountDAO.findByPhone(aBean.getPhone());
+		if (exists != null) {
+			errors.rejectValue("phone", "user", "SĐT này đã được đăng ký!");
+//			model.addAttribute("accountBean", aBean);
+			return "account/signup";
+		}
+
 		Account user = new Account();
 
 		user.setName(aBean.getName());
@@ -284,6 +308,7 @@ public class AccountController {
 						"Đổi mật khẩu thành công. " + "Click <a href='" + url + "'>SignIn</a> để đăng nhập");
 			}
 		}
+		model.addAttribute("email", email);
 		return "account/change_forgot";
 	}
 }
