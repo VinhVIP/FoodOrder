@@ -2,13 +2,18 @@ package food.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import food.dao.OrderDAO;
 import food.entity.Account;
@@ -22,10 +27,18 @@ public class OrderController {
 	OrderDAO orderDAO;
 
 	@RequestMapping(value = "index")
-	public String index(ModelMap model, HttpSession session) {
+	public String index(ModelMap model, HttpSession session, HttpServletRequest request) {
 		Account user = (Account) session.getAttribute("account");
 		List<Order> list = orderDAO.getOrder(user.getAccountId());
-		model.addAttribute("orders", list);
+		
+		PagedListHolder pagedListHolder = new PagedListHolder(list);
+		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
+		pagedListHolder.setPage(page);
+		pagedListHolder.setMaxLinkedPages(5);
+	
+		pagedListHolder.setPageSize(10);
+		//model.addAttribute("orders", list);
+		model.addAttribute("pagedListHolder", pagedListHolder);
 
 		return "order/index";
 	}
@@ -54,5 +67,10 @@ public class OrderController {
 		model.addAttribute("total", finalPrice);
 		model.addAttribute("orderDetail", list);
 		return "order/detail";
+	}
+	@RequestMapping(value = "status", params = {"orderId","status"})
+	public String updateStatus(ModelMap model, @RequestParam("orderId") int orderId, @RequestParam("status") int status, HttpSession session) {
+		orderDAO.updateStatus(orderId, status);
+		return "redirect:/order/index.htm";
 	}
 }

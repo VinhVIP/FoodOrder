@@ -24,8 +24,8 @@ INSERT INTO account (email, name, password)
 VALUES ('admin.foodorder@gmail.com', N'Admin', '123456');
 
 INSERT INTO account (email, phone, name, address, avatar, password)
-VALUES ('vinhvipvl@gmail.com', '0123456789', N'Trần Quang Vinh', N'Q9, TPHCM', '/public/image/vinh.jpg', '123456'),
-('phuc@gmail.com', '0654231789', N'Hồng Phúc', N'Q9, TPHCM', '/public/image/phuc.jpg', '123456');
+VALUES ('vinhvipvl@gmail.com', '0123456789', N'Trần Quang Vinh', N'Q9, TPHCM', 'resources/img/avatar/avatar.jpg', 'e10adc3949ba59abbe56e057f20f883e'),
+('phuc@gmail.com', '0654231789', N'Hồng Phúc', N'Q9, TPHCM', 'resources/img/avatar/avatar.jpg', 'e10adc3949ba59abbe56e057f20f883e');
 
 --------------------------------
 -- Tạo bảng Danh mục

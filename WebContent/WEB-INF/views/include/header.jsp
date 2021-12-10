@@ -12,14 +12,14 @@
 <meta name="keywords" content="Food, order">
 <meta name="author" content="Vinh">
 
-<meta property="og:url" content="http://foodorder.com:9929/Food/" />
+<meta property="og:url" content="http://foodorder.com:9920/Food/" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Food Order - Nhà Hàng" />
 <meta property="og:description"
 	content="Chỉ cần đặt móm - chúng tôi sẽ giao đến tận tay bạn" />
-<meta property="og:image" content="resources/img/food.jpg" />
+<meta property="og:image" content="resources/img/icon.png" />
 
-<link rel="icon" type="image/png" href="resources/img/icon.png" />
+<link rel="icon" type="image/png" href="resources/img/icon.jpg" />
 <link rel='stylesheet' type='text/css' media='screen'
 	href='resources/css/bootstrap.min.css'>
 

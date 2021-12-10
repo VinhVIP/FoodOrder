@@ -64,5 +64,11 @@ public class HomeController {
 		session.removeAttribute("account");
 		return "redirect:/home.htm";
 	}
+	
+	@RequestMapping("map")
+	public String map() {
+		System.out.println("MAP");
+		return "map";
+	}
 
 }

@@ -48,6 +48,15 @@ public class AccountDAOImpl implements AccountDAO {
 		List<Account> list = session.createQuery("FROM Account WHERE accountId > 1").list();
 		return list;
 	}
+	
+	@Override
+	public List<Account> listLockAccounts() {
+		Session session = sessionFactory.getCurrentSession();
+		@SuppressWarnings("unchecked")
+		List<Account> list = session.createQuery("FROM Account WHERE accountId > 1 and status = 1").list();
+		return list;
+	}
+	
 	@Override
 	public boolean insert(Account account) {
 

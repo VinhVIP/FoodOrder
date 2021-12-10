@@ -5,14 +5,24 @@
 <%@ page import="food.utils.Constants"%>
 <fmt:setLocale value="vi-VN" scope="session" />
 <%@include file="/WEB-INF/views/include/header.jsp"%>
+<%@ taglib prefix="tg" tagdir="/WEB-INF/tags"%>
 
 
 <div>
+	<jsp:useBean id="pagedListHolder" scope="request"
+		type="org.springframework.beans.support.PagedListHolder" />
+	<c:url value="admin/order/" var="pagedLink">
+		<c:param name="p" value="~" />
+	</c:url>
 	<c:choose>
-		<c:when test="${orders.isEmpty() == true }">
+		<c:when test="${pagedListHolder.pageList.isEmpty() == true }">
 			<h1>Đơn hàng trống.</h1>
 		</c:when>
-		<c:when test="${orders.isEmpty() == false }">
+		<c:when test="${pagedListHolder.pageList.isEmpty() == false }">
+			<div>
+				<tg:paging pagedListHolder="${pagedListHolder}"
+					pagedLink="${pagedLink}" />
+			</div>
 			<table class="table">
 				<thead>
 					<tr>
@@ -25,7 +35,7 @@
 						<th scope="col">Thông tin</th>
 					</tr>
 				</thead>
-				<c:forEach var="o" items="${orders}">
+				<c:forEach var="o" items="${pagedListHolder.pageList}">
 					<tbody>
 						<tr>
 							<th scope="row">${o.orderId}</th>
@@ -42,7 +52,7 @@
 								</c:if></td>
 							<td><c:if test="${o.status == 1}">
 									<a class="btn btn-primary"
-										href="admin/order/status.htm?orderId=${o.orderId}&status=2">Hoàn
+										href="admin/order/statusDaGiao.htm?orderId=${o.orderId}&email=${o.account.email}&status=2">Hoàn
 										thành</a>
 								</c:if> <c:if test="${o.status == 0}">
 									<a class="btn btn-primary"
@@ -60,6 +70,10 @@
 				</c:forEach>
 
 			</table>
+			<div>
+				<tg:paging pagedListHolder="${pagedListHolder}"
+					pagedLink="${pagedLink}" />
+			</div>
 		</c:when>
 	</c:choose>
 </div>

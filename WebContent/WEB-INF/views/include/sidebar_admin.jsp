@@ -16,7 +16,8 @@
 		class="list-group-item list-group-item-action ${Constants.adminPanelIndex(requestScope['javax.servlet.forward.request_uri']) == 3 ? 'active' : '' }">
 		Quản lý đơn</a> <a href="admin/coupons.htm"
 		class="list-group-item list-group-item-action ${Constants.adminPanelIndex(requestScope['javax.servlet.forward.request_uri']) == 4 ? 'active' : '' }">
-		Quản lý phiếu giảm giá</a> <a href="admin/account.htm"
+		Quản lý phiếu giảm giá</a> 
+		<a href="admin/account.htm"
 		class="list-group-item list-group-item-action ${Constants.adminPanelIndex(requestScope['javax.servlet.forward.request_uri']) == 5 ? 'active' : '' }">
 		Quản lý tài khoản</a>
 

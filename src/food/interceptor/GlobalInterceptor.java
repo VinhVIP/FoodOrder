@@ -10,7 +10,8 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import food.dao.AccountDAO;
 import food.entity.Account;
 
-public class UserInterceptor extends HandlerInterceptorAdapter {
+public class GlobalInterceptor extends HandlerInterceptorAdapter{
+	
 	@Autowired
 	AccountDAO accountDAO;
 
@@ -20,10 +21,15 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 		Account user = (Account) session.getAttribute("account");
 		if (user != null) {
-			response.sendRedirect(request.getContextPath() + "/home.htm");
-			return false;
+			request.setAttribute("user", accountDAO.getAccount(user.getAccountId()));
+			if(user.getStatus() == 1) {
+				session.removeAttribute("account");
+				response.sendRedirect(request.getContextPath() + "/home.htm");
+				return false;
+			}
 		}
 
 		return true;
 	}
+
 }

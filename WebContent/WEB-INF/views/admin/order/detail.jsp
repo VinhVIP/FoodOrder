@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="food.utils.Constants"%>
-<fmt:setLocale value="vi-VN" scope="session" />
+<fmt:setLocale value="vi-VN" scope="session" /> 
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <style>
 <!--
