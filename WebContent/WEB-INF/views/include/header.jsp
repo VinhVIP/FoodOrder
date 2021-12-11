@@ -43,17 +43,9 @@
 <body class="d-flex flex-column min-vh-100 container-fluid">
 
 	<div id="fb-root"></div>
-	<script>
-		(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id))
-				return;
-			js = d.createElement(s);
-			js.id = id;
-			js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-	</script>
+	<script async defer crossorigin="anonymous"
+		src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0"
+		nonce="FQmdELxV"></script>
 
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-md navbar-light bg-info fixed-top">
@@ -78,8 +70,7 @@
 						<form class="d-flex">
 							<!-- <a href="login.htm" type="button"
 								class="btn btn-primary btn-sm ml-10">Fake login</a>  -->
-								<a
-								href="account/signin.htm" type="button"
+							<a href="account/signin.htm" type="button"
 								class="btn btn-primary btn-sm ml-10">Đăng nhập</a> <a
 								href="account/signup.htm" type="button"
 								class="btn btn-outline-success btn-sm ml-10">Đăng ký</a>

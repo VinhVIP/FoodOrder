@@ -13,8 +13,9 @@
 		<div>
 			<span class="float-start msg-success">${message}</span> <span
 				class="float-start msg-fail">${msgError}</span> <span
-				class="float-end"><a href="admin/account/locked.htm?page=1" type="button"
-				class="btn btn-primary rounded-pill mb-10 shadow">Xem danh sách tài khoản bị khóa</a></span>
+				class="float-end"><a href="admin/account/locked.htm?page=1"
+				type="button" class="btn btn-primary rounded-pill mb-10 shadow">Xem
+					danh sách tài khoản bị khóa</a></span>
 
 		</div>
 
@@ -22,6 +23,7 @@
 			<thead class="indigo">
 				<tr>
 					<th class="btlr" scope="col">ID</th>
+					<th scope="col">Avatar</th>
 					<th scope="col">Tên</th>
 					<th scope="col">Email</th>
 					<th scope="col">SĐT</th>
@@ -33,6 +35,8 @@
 				<c:forEach var="a" items="${accounts}">
 					<tr>
 						<td scope="row"><b>${a.accountId}</b></td>
+						<td><img class="rounded-circle z-depth-2 mr-10 shadow"
+							src="${a.avatar}" width="50px" height="50px" /></td>
 						<td><b>${a.name}</b></td>
 						<td><i>${a.email}</i></td>
 						<td>${a.phone}</td>

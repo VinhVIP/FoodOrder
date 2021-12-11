@@ -112,6 +112,14 @@
 					<i class="bi bi-coin"></i> Đặt ngay
 				</a> --%>
 
+				<!-- <div class="fb-share-button"
+					data-href="https://developers.facebook.com/docs/plugins/"
+					data-layout="button" data-size="small">
+					<a target="_blank"
+						href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
+						class="fb-xfbml-parse-ignore">Chia sẻ</a>
+				</div> -->
+
 				<!-- Nút share lên facebook -->
 				<div class="fb-share-button shadow float-end mt-10"
 					data-href="${requestScope['javax.servlet.forward.request_uri']}"

@@ -129,6 +129,8 @@ public class CouponsAdminController {
 	public String addCounpons(ModelMap model, RedirectAttributes reAttributes, @RequestParam("id") String couponsId,
 			@Validated @ModelAttribute("couponsBean") CouponsBean cBean, BindingResult errors) {
 		
+		System.out.println("Edit");
+		
 		Coupons coupons = couponsDAO.get(couponsId);
 		cBean.setCouponsId(couponsId);
 		
@@ -137,12 +139,16 @@ public class CouponsAdminController {
 			return "admin/coupons/form";
 		}
 		
+		System.out.println("1");
+		
 		if (cBean.getType() == 1) {
 			if(cBean.getValue() > 100) {
 				errors.rejectValue("value", "couponsBean", "Giá trị phiếu không hợp lệ!");
 				return "admin/coupons/form";
 			}
 		}
+		
+		System.out.println("2");
 		
 		if (cBean.getExpiredTime().trim().length() > 0) {
 			try {
@@ -154,6 +160,8 @@ public class CouponsAdminController {
 			}
 
 		}
+		
+		System.out.println("3");
 		
 		if (errors.hasErrors()) {
 			model.addAttribute("couponsBean", cBean);
@@ -167,11 +175,14 @@ public class CouponsAdminController {
 		coupons.setAmount(cBean.getAmount());
 		coupons.setStatus(cBean.getStatus());
 		
+		System.out.println("4");
+		
 		boolean added = couponsDAO.update(coupons);
 		if (added) {
 			reAttributes.addFlashAttribute("message", "Chỉnh sửa phiếu thành công!");
 		} else {
 			model.addAttribute("msgError", "Chỉnh sửa thất bại!");
+			System.out.println("That bai");
 			return "admin/coupons/form";
 		}
 

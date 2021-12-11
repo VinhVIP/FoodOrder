@@ -16,7 +16,7 @@
 				class="form-control" /> <label class="form-label mt-10"><b>Nội
 					dung</b></label>
 			<textarea name="body" id="body" rows="10" cols="80">
-                This is my textarea to be replaced with CKEditor 4.
+                Khuyến mãi siêu to 12/12, giảm giá 50% tất cả món ăn
             </textarea>
 			<div class="text-center mt-10">
 				<button type="submit" class="btn btn-primary">Gửi</button>

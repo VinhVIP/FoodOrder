@@ -28,6 +28,7 @@
 					<tr>
 						<th scope="col">Mã đơn hàng</th>
 						<th scope="col">Người đặt</th>
+						<th scope="col">SĐT</th>
 						<th scope="col">Địa chỉ</th>
 						<th scope="col">Thời gian đặt</th>
 						<th scope="col">Trạng thái</th>
@@ -40,6 +41,7 @@
 						<tr>
 							<th scope="row">${o.orderId}</th>
 							<td>${o.account.name}</td>
+							<td>${o.account.phone}</td>
 							<td>${o.account.address}</td>
 							<td><fmt:formatDate pattern="dd/MM/yyyy - HH:mm"
 									value="${o.orderTime}" /></td>

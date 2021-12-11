@@ -25,6 +25,14 @@ label {
 	<div class="col-lg-1"></div>
 	<div class="col-lg-6">
 
+		<div class="mb-10">
+			<span class="float-start msg-success">${message}</span> <span
+				class="float-start msg-fail">${msgError}</span> <span
+				class="float-end"></span>
+
+		</div>
+		<br />
+
 		<form:form modelAttribute="couponsBean"
 			action="${coupons == null ? 'admin/coupons/add.htm' : 'admin/coupons/edit.htm?id='}${coupons!=null?coupons.couponsId:''}"
 			method="post">
@@ -92,9 +100,10 @@ label {
 
 			<div>
 				<label class="form-label">Hạn sử dụng</label>
-				
-				<form:input data-date-format="dd-mm-yyyy" path="expiredTime"
+
+				<form:input data-date-format="dd/mm/yyyy" path="expiredTime"
 					id="datepicker" class="form-control" readonly="" type="text" />
+				<form:errors path="expiredTime" />
 
 			</div>
 
